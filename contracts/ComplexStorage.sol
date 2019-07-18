@@ -1,43 +1,54 @@
 pragma solidity >=0.4.21 <0.6.0;
 
 contract ComplexStorage {
-    uint public storeduint1 = 15;
-    uint public constant constuint = 16;
-    uint128 public investmentsLimit = 17055;
-    uint32 public investmentsDeadlineTimeStamp = uint32(now);
-
-    bytes16 public string1 = "test1";
-    bytes32 public string2 = "test1236";
-    string public string3 = "lets string something";
-
-    mapping (address => uint) uints1;
-    mapping (address => DeviceData) structs1;
-
-    uint[] public uintarray;
-    competencesData[] public competenceData;
-
     struct competenceData {
         string authorCompetence;
         address addressCompetence;
-        string centerCompetence;
-        string typeCompetence
+        uint centerCompetence;
+        uint typeCompetence;
+    }
+    struct centerCompetenceStruct {
+        uint indexCenterCompetence;
+        address addressCenterCompetence;
+        string nameCompetence;
+    }
+    centerCompetenceStruct ownCenterCompetence;
+
+    // esta tripleta deberia ser un contrato separado deberia estar en un contrato
+    struct competenceDetails {
+        uint competence;
+        string nameCompetence;
+        string departamentCompetence;
+    }
+    mapping (uint => competenceDetails) competenceTypeData;
+    uint competenceTypeIndex;
+
+    mapping (uint => competenceData) competenceDataArray;
+    uint countCompentences = 0;
+
+    constructor(uint indexCenterCompetence, address addressCenterCompetence, string memory nameCompetence) public {
+        ownCenterCompetence = centerCompetenceStruct(indexCenterCompetence, addressCenterCompetence, nameCompetence);
+        competenceTypeData[0] = competenceDetails(0, "Ingenieria en Sistemas", "Ciencias de la Compuraticon");
     }
 
-    constructor() public {
-        address address1 = 0xbCcc714d56bc0da0fd33d96d2a87b680dD6D0DF6;
-        address address2 = 0xaee905FdD3ED851e48d22059575b9F4245A82B04;
+    // Deberia ser NombreDelInteresado, Direccion del Interesado, TypoDeCompetencia
+    function set(string memory authorCompetence, address addressCompetence, uint typeCompentence) public {
+        competenceDataArray[countCompentences] = competenceData(authorCompetence,
+        addressCompetence,
+        ownCenterCompetence.indexCenterCompetence,
+        typeCompentence);
+    }
 
-        uints1[address1] = 88;
-        uints1[address2] = 99;
-
-        structs1[address1] = DeviceData("deviceBrand", "deviceYear", "wearLevel");
-        structs1[address2] = DeviceData("deviceBrand2", "deviceYear2", "wearLevel2");
-        singleDD = DeviceData("deviceBrand3", "deviceYear3", "wearLevel3");
-
-        uintarray.push(8000);
-        uintarray.push(9000);
-
-        deviceDataArray.push(structs1[address1]);
-        deviceDataArray.push(structs1[address2]);
+    //Obtener compentencia
+    function get(uint index) public view returns (string memory authorCompetence,
+                                                       address addressCompetence,
+                                                       string memory centerCompetence,
+                                                       string memory typeCompetence) {
+        authorCompetence = competenceDataArray[index].authorCompetence;
+        addressCompetence = competenceDataArray[index].addressCompetence;
+        centerCompetence = ownCenterCompetence.nameCompetence;
+        typeCompetence = competenceTypeData[competenceDataArray[index].typeCompetence].nameCompetence;
     }
 }
+
+
