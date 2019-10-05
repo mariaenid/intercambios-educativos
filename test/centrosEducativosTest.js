@@ -1,9 +1,10 @@
-const CentrosEducativosContract = artifacts.require("ComplexStorage");
+const CentrosEducativosContract = artifacts.require("CompetenciasAcademicas");
 
-contract("ComplexStorage", accounts => {
+contract("CompetenciasAcademicas", accounts => {
   it("...should  save the contract to centros Educativos Test", async () => {
     const centrosEducativosContract = await CentrosEducativosContract.new(1, accounts[0], "UTPL");
 
+    centrosEducativosContract.set();
     // Set value of 89
     //await centrosEducativosContract.set(89, { from: accounts[0] });
 

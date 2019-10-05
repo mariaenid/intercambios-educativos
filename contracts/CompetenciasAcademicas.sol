@@ -1,12 +1,23 @@
 pragma solidity >=0.4.21 <0.6.0;
+// Competencias academicas
 
-contract ComplexStorage {
+contract CompetenciasAcademicas {
     struct competenceData {
         string authorCompetence;
         address addressCompetence;
         uint centerCompetence;
         uint typeCompetence;
     }
+    // un contrato de definiciones de niveles de competencia
+    // Tipo de Formacion (Formal, INformal)
+    //
+    // Tipo formal
+    // PREGRADO / POSTGRADO
+    //
+
+    // Tipo Informal
+    // Titulo de certificacion
+
     struct centerCompetenceStruct {
         uint indexCenterCompetence;
         address addressCenterCompetence;
