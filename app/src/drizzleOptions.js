@@ -1,4 +1,4 @@
-import SimpleStorage from "./contracts/SimpleStorage.json";
+import CompetenciasAcademicas from "./contracts/CompetenciasAcademicas.json";
 import TutorialToken from "./contracts/TutorialToken.json";
 
 const options = {
@@ -9,10 +9,10 @@ const options = {
       url: "ws://127.0.0.1:8545",
     },
   },
-  contracts: [SimpleStorage, TutorialToken],
-  events: {
-    SimpleStorage: ["StorageSet"],
-  },
+  contracts: [CompetenciasAcademicas, TutorialToken],
+//  events: {
+//    SimpleStorage: ["StorageSet"],
+//  },
   polls: {
     accounts: 1500,
   },

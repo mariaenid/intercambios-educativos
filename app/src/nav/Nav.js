@@ -13,7 +13,7 @@ function Nav() {
   return (
     <BrowserRouter>
       <div>
-        <Route path="/" exact component={CompetenciasContainer}></Route>
+        <Route path="/register" exact component={CompetenciasContainer}></Route>
       </div>
     </BrowserRouter>
   );

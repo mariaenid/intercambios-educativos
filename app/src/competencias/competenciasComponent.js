@@ -10,6 +10,20 @@ import {
 
 export default ({accounts})=> (
     <div>
-        Componente Registros Academicos
+        <div className="section">
+            <h2>Usuario con la cuenta</h2>
+            <AccountData accountIndex="0"
+                         units="ether"
+                         precision="3"
+            />
+        </div>
+        <p>
+            <strong>Datos del contrato inteligente: </strong>
+            <ContractData
+            contract="CompetenciasAcademicas"
+            method="probarMetodo"
+            methodArgs={[0]}
+            />
+        </p>
     </div>
 );

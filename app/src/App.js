@@ -6,14 +6,14 @@ import "./App.css";
 
 import store from './middleware'
 import drizzleOptions from "./drizzleOptions";
-import MyContainer from "./MyContainer";;
+import Nav from "./nav/Nav";
 
 class App extends Component {
   render() {
     return (
       <DrizzleProvider store={store} options={drizzleOptions}>
         <LoadingContainer>
-          <MyContainer />
+          <Nav />
         </LoadingContainer>
       </DrizzleProvider>
     );
