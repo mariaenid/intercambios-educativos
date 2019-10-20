@@ -4,9 +4,8 @@ import {
     ContractData,
     ContractForm,
   } from "drizzle-react-components";
-  import { ToastContainer } from 'react-toastify'
-  import 'react-toastify/dist/ReactToastify.css'
-
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 export default ({accounts})=> (
     <div>
@@ -20,9 +19,8 @@ export default ({accounts})=> (
         <p>
             <strong>Datos del contrato inteligente: </strong>
             <ContractData
-            contract="CompetenciasAcademicas"
-            method="probarMetodo"
-            methodArgs={[0]}
+            contract="CompetenciaAcademica"
+            method="get"
             />
         </p>
     </div>

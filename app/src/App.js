@@ -1,14 +1,19 @@
 import React, { Component } from "react";
 import { DrizzleProvider } from "drizzle-react";
 import { LoadingContainer } from "drizzle-react-components";
+import { withTheme } from 'styled-components';
 
 import "./App.css";
 
 import store from './middleware'
 import drizzleOptions from "./drizzleOptions";
 import Nav from "./nav/Nav";
+// import { getContractInstance } from './services';
 
 class App extends Component {
+  componentDidMount() {
+  }
+
   render() {
     return (
       <DrizzleProvider store={store} options={drizzleOptions}>
@@ -20,4 +25,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withTheme(App);
