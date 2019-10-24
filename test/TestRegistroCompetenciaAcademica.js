@@ -13,14 +13,6 @@ contract("RegistroCompetenciaAcademica", accounts => {
   });
 
   it("...should  get all competences", async () => {
-
-    await RegistroCompetenciaAcademica.set(
-      'Ingenieria en Sistemas',
-      0);
-    await RegistroCompetenciaAcademica.set(
-      'Ingenieria en Electronica',
-      0);
-
     const real_response = [
       {indexCompetenciaAcademica: 0, nameCompetenciaAcademica: 'Ingenieria en Sistemas', indexTipoCompetenciaAcademica: 0},
       {indexCompetenciaAcademica: 1, nameCompetenciaAcademica: 'Ingenieria en Electronica', indexTipoCompetenciaAcademica: 0}

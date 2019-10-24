@@ -3,16 +3,13 @@ import { DrizzleProvider } from "drizzle-react";
 import { LoadingContainer } from "drizzle-react-components";
 import { withTheme } from 'styled-components';
 
-import "./App.css";
+import "App.css";
 
-import store from './middleware'
-import drizzleOptions from "./drizzleOptions";
-import Nav from "./nav/Nav";
-// import { getContractInstance } from './services';
+import store from 'middleware'
+import drizzleOptions from "drizzleOptions";
+import Nav from "nav/Nav";
 
 class App extends Component {
-  componentDidMount() {
-  }
 
   render() {
     return (

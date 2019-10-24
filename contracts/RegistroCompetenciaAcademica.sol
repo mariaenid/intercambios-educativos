@@ -15,6 +15,16 @@ contract RegistroCompetenciaAcademica {
     constructor () public {
         tipoCompetenciaAcademicaList.push("Formal");
         tipoCompetenciaAcademicaList.push("Informal");
+
+        competenciaAcademicaList[countList].indexCompetenciaAcademica = countList;
+        competenciaAcademicaList[countList].nameCompetenciaAcademica = 'Ingenieria en Sistemas';
+        competenciaAcademicaList[countList].indexTipoCompetenciaAcademica = 0;
+        countList++;
+
+        competenciaAcademicaList[countList].indexCompetenciaAcademica = countList;
+        competenciaAcademicaList[countList].nameCompetenciaAcademica = 'Ingenieria en Electronica';
+        competenciaAcademicaList[countList].indexTipoCompetenciaAcademica = 0;
+        countList++;
     }
 
     function set (

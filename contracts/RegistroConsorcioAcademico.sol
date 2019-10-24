@@ -8,8 +8,14 @@ contract RegistroConsorcioAcademico {
     mapping(uint => consorcioConstructor) registerConsorcioList;
     uint countList = 0;
 
-    constructor () public {
+    constructor (address c1, address c2) public {
+        registerConsorcioList[countList].indexConsorcio = countList;
+        registerConsorcioList[countList].addressConsorcio = c1;
+        countList++;
 
+        registerConsorcioList[countList].indexConsorcio = countList;
+        registerConsorcioList[countList].addressConsorcio = c2;
+        countList++;
     }
 
     function set (

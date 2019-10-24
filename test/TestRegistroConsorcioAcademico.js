@@ -9,17 +9,17 @@ contract("RegistroConsorcioAcademico", accounts => {
   let RegistroConsorcioAcademico;
 
   beforeEach(async () => {
-    RegistroConsorcioAcademico = await RegistroConsorcioAcademicoArtifacts.new();
+    RegistroConsorcioAcademico = await RegistroConsorcioAcademicoArtifacts.new(accounts[0], accounts[1]);
   });
 
   it("...should  get all competences", async () => {
 
-    await RegistroConsorcioAcademico.set('0x554e3DEF5789Fb733E1173369f48F3F79901384C');
-    await RegistroConsorcioAcademico.set('0x554e3DEF5789Fb733E1173369f48F3F79901384C');
+    // await RegistroConsorcioAcademico.set('0x554e3DEF5789Fb733E1173369f48F3F79901384C');
+    // await RegistroConsorcioAcademico.set('0x554e3DEF5789Fb733E1173369f48F3F79901384C');
 
     const real_response = [
-      {indexConsorcio: 0, addressConsorcio: '0x554e3DEF5789Fb733E1173369f48F3F79901384C'},
-      {indexConsorcio: 1, addressConsorcio: '0x554e3DEF5789Fb733E1173369f48F3F79901384C'}
+      {indexConsorcio: 0, addressConsorcio: accounts[0]},
+      {indexConsorcio: 1, addressConsorcio: accounts[1]}
     ]
     const allCompetences = await RegistroConsorcioAcademico.getAll.call();
 

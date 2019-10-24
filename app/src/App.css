@@ -8,3 +8,49 @@
   max-width: 720px;
   margin: 4rem auto auto;
 }
+
+body {
+  background: #fff;
+  font-family: Lora;
+  margin: 20px;
+}
+
+a {
+  color: inherit;
+  margin-right: 16px;
+  text-decoration: none;
+}
+
+h4 {
+  text-align: center;
+}
+.highlight {
+  border-bottom: 2px solid #dd4c4f;
+}
+
+.page {
+  background: #fff;
+  height: 100%;
+  left: 0;
+  padding: 48px 32px 32px;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  will-change: transform;
+}
+
+.menu {
+  padding: 12px;
+  position: fixed;
+  z-index: 100;
+}
+
+input {
+  padding: 4px;
+  width: 80%;
+}
+
+select {
+  padding: 4px;
+  width: 80%; 
+}

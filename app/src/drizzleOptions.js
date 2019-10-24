@@ -1,5 +1,6 @@
 import CompetenciaAcademica from "./contracts/CompetenciaAcademica.json";
-import TutorialToken from "./contracts/TutorialToken.json";
+import RegistroCompetenciaAcademica from "./contracts/RegistroCompetenciaAcademica.json";
+import ConsorcioAcademico from "./contracts/ConsorcioAcademico";
 
 const options = {
   web3: {
@@ -9,7 +10,7 @@ const options = {
       url: "ws://127.0.0.1:8545",
     },
   },
-  contracts: [CompetenciaAcademica, TutorialToken],
+  contracts: [ConsorcioAcademico, RegistroCompetenciaAcademica, CompetenciaAcademica],
 //  events: {
 //    SimpleStorage: ["StorageSet"],
 //  },
