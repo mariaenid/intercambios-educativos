@@ -5,7 +5,7 @@ const ConsorcioAcademicoArtifacts = artifacts.require("ConsorcioAcademico");
   calle big number
 */
 
-contract("ConsorcioAcademico", accounts => {
+contract("...ConsorcioAcademico", accounts => {
   let ConsorcioAcademico;
 
   beforeEach(async () => {
@@ -62,9 +62,40 @@ contract("ConsorcioAcademico", accounts => {
     assert.deepEqual(real_response, responseContract, "The values are not the same");
   });
 
+  it( "... should get a list of competences by address account", async () => {
+    const contractAddresses = [
+      '0x554e3DEF5789Fb733E1173369f48F3F79901384C',
+      '0x6D534167805B7b93046e856329E72db26ead2558'
+    ];
+
+    contractAddresses.forEach(async(contractAddress) => {
+      await ConsorcioAcademico.setRegisterCompetenciaAcademica(
+        contractAddress,
+        accounts[0]
+      )
+    });
+
+    const competences = await ConsorcioAcademico.getRegisterCompetenciaAcademicaByOwner(
+      accounts[0]
+    )
+
+    const registersAcademicas = await Promise.all(competences.map(async(competence) => {
+      const response = await ConsorcioAcademico.getRegisterCompetenciaAcademica.call(competence.toNumber());
+      const {
+        _,
+        addressRegisterCompetencia
+      } = response;
+
+      return addressRegisterCompetencia;
+    }));
+
+    assert.deepEqual(registersAcademicas, contractAddresses);
+  })
+
   it("...should set a register and get  ", async () => {
     await ConsorcioAcademico.setRegisterCompetenciaAcademica(
       '0x554e3DEF5789Fb733E1173369f48F3F79901384C',
+      accounts[0]
     )
 
     const real_response = {

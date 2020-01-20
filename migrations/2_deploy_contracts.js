@@ -7,8 +7,6 @@ const RegistroConsorcioAcademico = artifacts.require("RegistroConsorcioAcademico
 
 module.exports = function(deployer, network, accounts) {
   let c1, c2;
-  deployer.deploy(SimpleStorage);
-  deployer.deploy(TutorialToken);
   deployer.deploy(ConsorcioAcademico,
     0,
     accounts[0],
@@ -24,6 +22,7 @@ module.exports = function(deployer, network, accounts) {
         'Ambato',
         ).then(r => {
           c2 = r.address;
+          console.log('Deployando consorcios ...');
           deployer.deploy(RegistroConsorcioAcademico, c1, c2);
         });
       }

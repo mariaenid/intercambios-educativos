@@ -35,7 +35,7 @@ class ContractDataContainer extends React.Component {
                 (getContractArtifacts(contractName)).abi,
                 contractAddress,
             )
-          };
+        };
 
         await this.state.context.drizzle.addContract(contractConfig);
         this.setState({instanced: !!this.state.context.drizzle.contracts[contractAddress]});
@@ -53,8 +53,8 @@ class ContractDataContainer extends React.Component {
             {instanced && (<p>
                 <strong>Datos del contrato inteligente: </strong>
                 <ContractData
-                contract={contractAddress}
-                method={MethodName}
+                    contract={contractAddress}
+                    method={MethodName}
                 />
             </p>)}
         </div>

@@ -1,6 +1,6 @@
 pragma solidity >=0.4.21 <0.6.0;
-// ConsorcioAcademico
 
+// ConsorcioAcademico
 contract ConsorcioAcademico {
 
     struct detailsConsorcio {
@@ -16,8 +16,13 @@ contract ConsorcioAcademico {
         uint indexRegisterCompetencia;
         address addressRegisterCompetencia;
     }
+    struct registersCompetenciaByOwner {
+        uint[] registers;
+    }
     uint countRegisterList = 0;
+
     mapping(uint => registerCompetenciaAcademica) registerList;
+    mapping(address => registersCompetenciaByOwner) registerAddressList;
 
     uint[] allowedCompetenceList;
 
@@ -60,11 +65,21 @@ contract ConsorcioAcademico {
 
     //competencias Academicas registradas
     function setRegisterCompetenciaAcademica(
-        address addressRegisterCompetencia
+        address addressRegisterCompetencia,
+        address addressOwnerCompetencia
     ) public {
         registerList[countRegisterList].indexRegisterCompetencia = countRegisterList;
         registerList[countRegisterList].addressRegisterCompetencia = addressRegisterCompetencia;
+
+        registerAddressList[addressOwnerCompetencia].registers.push(countRegisterList);
         countRegisterList++;
+    }
+
+    function getRegisterCompetenciaAcademicaByOwner( address addressOwnerCompetence) public view returns (
+      uint[] memory registers
+    ) {
+        registers = registerAddressList[addressOwnerCompetence].registers;
+
     }
 
     function getRegisterCompetenciaAcademica(
