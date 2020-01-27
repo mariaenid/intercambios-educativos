@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import { DrizzleProvider } from "drizzle-react";
 import { LoadingContainer } from "drizzle-react-components";
-import { withTheme } from 'styled-components';
 
 import "App.css";
 
 import store from 'middleware'
 import drizzleOptions from "drizzleOptions";
-import Nav from "nav/Nav";
+import Routes from "routes/Routes";
 
 class App extends Component {
 
@@ -15,11 +14,11 @@ class App extends Component {
     return (
       <DrizzleProvider store={store} options={drizzleOptions}>
         <LoadingContainer>
-          <Nav />
+            <Routes />
         </LoadingContainer>
       </DrizzleProvider>
     );
   }
 }
 
-export default withTheme(App);
+export default App;

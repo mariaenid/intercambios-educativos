@@ -1,17 +1,24 @@
 import React from "react";
 
 import ContractDataContainer from "containers/ContractDataContainer";
+import PropTypes from "prop-types";
+import { withRouter } from "react-router-dom";
 
 class CompetenciasContainer extends React.Component {
   // metodo para obtener valores de un contrato inteligente
+  PropTypes = {
+    match: PropTypes.object
+  }
 
   render(){
+    const { id } = this.props.match.params;
+
     return(
       <ContractDataContainer
-        contractAddress='0x422F84F458536D1657C3BA1f055035E022034c6f'
+        contractAddress={id}
         contractName='CompetenciaAcademica'
         MethodName='get'
       />)
   };
 }
-export default CompetenciasContainer;
+export default withRouter(CompetenciasContainer);

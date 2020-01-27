@@ -1,17 +1,27 @@
 import React from "react";
 
 import ContractDataContainer from "containers/ContractDataContainer";
+import { withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
 
 class ConsorciosContainer extends React.Component {
   // metodo para obtener valores de un contrato inteligente
 
+  PropTypes = {
+    match: PropTypes.object
+  }
+
+  // this.props.match.params.redirectParam
+
   render(){
+    const { id } = this.props.match.params;
+
     return(
       <ContractDataContainer
-        contractAddress='0x3fd21f8B856D80F1Da4C65e45750f77DaFaE45b3'
+        contractAddress={id}
         contractName='ConsorcioAcademico'
         MethodName='get'
       />)
   };
 }
-export default ConsorciosContainer;
+export default withRouter(ConsorciosContainer);
