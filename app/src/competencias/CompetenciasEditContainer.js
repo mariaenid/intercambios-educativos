@@ -9,7 +9,7 @@ class CompetenciasEditContainer extends React.Component {
     return(
       <ContractFormContainer
         title="Registro de Certificado"
-        contractAddress='0x422F84F458536D1657C3BA1f055035E022034c6f'
+        contractAddress='0xf3C0F3F57BE2B7c3A572749784476473E93D82B5'
         contractName='CompetenciaAcademica'
         methodName='set'
         args={['indexCentroEducacion', 'addressCentroEducacion', 'nameCentroEducacion', 'indexTipoCompetencia', 'nameTipoCompetencia', 'addressIdentificacionPersona', 'nameIdentificacionPersona']}

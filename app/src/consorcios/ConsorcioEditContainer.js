@@ -9,7 +9,7 @@ class ConsorcioEditContainer extends React.Component {
     return(
       <ContractFormContainer
         title="Registro de Consorcio"
-        contractAddress='0x7ab9915133A275E007996fA792791d95a6351191'
+        contractAddress='0xACf5BCc75A71b5395EFE4Ef5747dC6Da91F724fD'
         contractName='ConsorcioAcademico'
         methodName='set'
         args={['indexConsorcioEducativo', 'addressConsorcioEducativo', 'nameConsorcioEducativo', 'directionConsorcioEducativo']}
