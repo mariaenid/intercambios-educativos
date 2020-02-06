@@ -49,7 +49,7 @@ class SearchContainer extends React.Component {
       data: [
         {
           name: "Maria Pineda",
-          addressContract: "0xf3C0F3F57BE2B7c3A572749784476473E93D82B5",
+          addressContract: "0x9217120c3443D189E82543a77bacdA71f7d9636B",
           type: "certificado",
           nameCompentece: "Ingeniera en Electrónica"
         }
@@ -65,7 +65,7 @@ class SearchContainer extends React.Component {
       data: [
         {
           name: "UTPL",
-          addressContract: "0xACf5BCc75A71b5395EFE4Ef5747dC6Da91F724fD",
+          addressContract: "0xc5BADe12866Ab0fa039CB2f82Ea795753c9F52Fd",
           type: "consorcio"
         }
       ]

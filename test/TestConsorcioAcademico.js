@@ -1,129 +1,104 @@
-const ConsorcioAcademicoArtifacts = artifacts.require("ConsorcioAcademico");
+const AcademicConsortiumArtifacts = artifacts.require("AcademicConsortium");
 /*
   The uint values in a contract can't be same equals to another numbers setter
   Need evalue with valueOf() or toNumber() because has a new type value
   calle big number
 */
 
-contract("...ConsorcioAcademico", accounts => {
-  let ConsorcioAcademico;
+/*
+        address ad,
+        string memory name,
+        string memory phone,
+        string memory email,
+        string memory country,
+        string memory city,
+        CONSORTIUM_TYPE consortiumType
+*/
+
+contract("...academicConsortium", accounts => {
+  let AcademicConsortium;
 
   beforeEach(async () => {
-    ConsorcioAcademico = await ConsorcioAcademicoArtifacts.new(
-      '0',
+    AcademicConsortium = await AcademicConsortiumArtifacts.deployed(
       '0x554e3DEF5789Fb733E1173369f48F3F79901384C',
       'Universidad Tecnica Particular de Loja',
-      'Loja'
+      '1231313',
+      'mepineda@gmail.com',
+      'Ecuador',
+      'Loja',
+      0
       );
   });
 
-  it("...should  get the params of the contract", async () => {
-    const response = await ConsorcioAcademico.get.call();
 
+  it("...should  get the params of the contract", async () => {
+    const response = await AcademicConsortium.get.call();
     const real_response = {
-      indexConsorcioEducativo: 0,
-      addressConsorcioEducativo: '0x554e3DEF5789Fb733E1173369f48F3F79901384C',
-      nameConsorcioEducativo: 'Universidad Tecnica Particular de Loja',
-      directionConsorcioEducativo: 'Loja',
+      addressConsortium: '0x554e3DEF5789Fb733E1173369f48F3F79901384C',
+      name: 'Universidad Tecnica Particular de Loja',
+      phone: '1231313',
+      email: 'mepineda@gmail.com',
+      country: 'Ecuador',
+      city: 'Loja',
+      consortiumType: 0
     }
 
     const responseContract = {
-      indexConsorcioEducativo: response.indexConsorcioEducativo.toNumber(),
-      addressConsorcioEducativo: response.addressConsorcioEducativo,
-      nameConsorcioEducativo: response.nameConsorcioEducativo,
-      directionConsorcioEducativo: response.directionConsorcioEducativo,
+      addressConsortium: response.addressConsortium,
+      name: response.name,
+      phone: response.phone,
+      country: response.country,
+      email: response.email,
+      city: response.city,
+      consortiumType: response.consortiumType.toNumber()
     }
     assert.deepEqual(real_response, responseContract, "The values are not the same");
   });
 
   it("...should set a new param in the contract", async () => {
-    await ConsorcioAcademico.set(
-      '0',
+    await AcademicConsortium.set(
       '0x554e3DEF5789Fb733E1173369f48F3F79901384C',
-      'Universidad Tecnica Particular de Cuenca',
-      'Cuenca'
+      'Universidad Tecnica Particular de Loja',
+      '1231313',
+      'mepineda@gmail.com',
+      'Ecuador',
+      'Cuenca',
+      0
     );
 
-    const response = await ConsorcioAcademico.get.call();
+    const response = await AcademicConsortium.get.call();
 
     const real_response = {
-      indexConsorcioEducativo: 0,
-      addressConsorcioEducativo: '0x554e3DEF5789Fb733E1173369f48F3F79901384C',
-      nameConsorcioEducativo: 'Universidad Tecnica Particular de Cuenca',
-      directionConsorcioEducativo: 'Cuenca',
+      addressConsortium: '0x554e3DEF5789Fb733E1173369f48F3F79901384C',
+      name: 'Universidad Tecnica Particular de Loja',
+      phone: '1231313',
+      email: 'mepineda@gmail.com',
+      country: 'Ecuador',
+      city: 'Cuenca',
+      consortiumType: 0
     }
 
     const responseContract = {
-      indexConsorcioEducativo: response.indexConsorcioEducativo.toNumber(),
-      addressConsorcioEducativo: response.addressConsorcioEducativo,
-      nameConsorcioEducativo: response.nameConsorcioEducativo,
-      directionConsorcioEducativo: response.directionConsorcioEducativo,
+      addressConsortium: response.addressConsortium,
+      name: response.name,
+      phone: response.phone,
+      email: response.email,
+      country: response.country,
+      city: response.city,
+      consortiumType: response.consortiumType.toNumber()
     }
     assert.deepEqual(real_response, responseContract, "The values are not the same");
   });
 
-  it( "... should get a list of competences by address account", async () => {
-    const contractAddresses = [
-      '0x554e3DEF5789Fb733E1173369f48F3F79901384C',
-      '0x6D534167805B7b93046e856329E72db26ead2558'
-    ];
-
-    contractAddresses.forEach(async(contractAddress) => {
-      await ConsorcioAcademico.setRegisterCompetenciaAcademica(
-        contractAddress,
-        accounts[0]
-      )
-    });
-
-    const competences = await ConsorcioAcademico.getRegisterCompetenciaAcademicaByOwner(
-      accounts[0]
-    )
-
-    const registersAcademicas = await Promise.all(competences.map(async(competence) => {
-      const response = await ConsorcioAcademico.getRegisterCompetenciaAcademica.call(competence.toNumber());
-      const {
-        _,
-        addressRegisterCompetencia
-      } = response;
-
-      return addressRegisterCompetencia;
-    }));
-
-    assert.deepEqual(registersAcademicas, contractAddresses);
-  })
-
-  it("...should set a register and get  ", async () => {
-    await ConsorcioAcademico.setRegisterCompetenciaAcademica(
-      '0x554e3DEF5789Fb733E1173369f48F3F79901384C',
-      accounts[0]
-    )
-
-    const real_response = {
-      indexRegisterCompetencia: 0,
-      addressRegisterCompetencia: '0x554e3DEF5789Fb733E1173369f48F3F79901384C'
-    }
-
-    const response = await ConsorcioAcademico.getRegisterCompetenciaAcademica.call(0);
-    const {
-      indexRegisterCompetencia,
-      addressRegisterCompetencia
-    } = response;
-
-    const responseContract = {
-      indexRegisterCompetencia: indexRegisterCompetencia.toNumber(),
-      addressRegisterCompetencia
-    }
-    assert.deepEqual(real_response, responseContract, "The values are not the same");
-  })
 
   it("...should set a new competence and get all ", async () => {
-    await ConsorcioAcademico.setAllowedCompetence('0');
-    await ConsorcioAcademico.setAllowedCompetence('3');
-    await ConsorcioAcademico.setAllowedCompetence('5');
+    await AcademicConsortium.setCompetenceAllowed('0');
+    await AcademicConsortium.setCompetenceAllowed('3');
+    await AcademicConsortium.setCompetenceAllowed('5');
 
     const real_response = [0, 3, 5]
 
-    const response = await ConsorcioAcademico.getAllAllowedCompetence.call();
+    const response = await AcademicConsortium.getAllcompetenceAllowed.call();
     const responseContract = response.map(res => res.toNumber());
 
     assert.deepEqual(real_response, responseContract, "The values are not the same");
