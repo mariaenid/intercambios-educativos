@@ -63,7 +63,7 @@ contract AcademicConsortium {
     // Evento para anunciar en el Blockchain que un nuevo certificado ha sido agregado
 
     event academicConsorsium(CONTRACT_TYPE contractType);
-      
+
     constructor(
         address ad,
         string memory name,

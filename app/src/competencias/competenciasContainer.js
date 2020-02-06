@@ -16,7 +16,7 @@ class CompetenciasContainer extends React.Component {
     return(
       <ContractDataContainer
         contractAddress={id}
-        contractName='CompetenciaAcademica'
+        contractName='AcademicCertificate'
         MethodName='get'
       />)
   };

@@ -19,7 +19,7 @@ class ConsorciosContainer extends React.Component {
     return(
       <ContractDataContainer
         contractAddress={id}
-        contractName='ConsorcioAcademico'
+        contractName='AcademicConsortium'
         MethodName='get'
       />)
   };
