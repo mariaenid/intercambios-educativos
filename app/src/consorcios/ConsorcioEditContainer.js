@@ -5,6 +5,7 @@ import ContractFormContainer from "containers/ContractFormContainer";
 class ConsorcioEditContainer extends React.Component {
   // metodo para obtener valores de un contrato inteligente
 
+
   render(){
     return(
       <ContractFormContainer

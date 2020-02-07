@@ -27,7 +27,7 @@ class ContractDataContainer extends React.Component {
     }
 
     async componentDidMount() {
-        const { contractName, contractAddress } = this.props;
+        const { contractName, contractAddress, MethodName } = this.props;
 
         const contractConfig = {
             contractName: contractAddress,
@@ -38,13 +38,24 @@ class ContractDataContainer extends React.Component {
         };
 
         await this.state.context.drizzle.addContract(contractConfig);
-        this.setState({instanced: !!this.state.context.drizzle.contracts[contractAddress]});
+        const instanced = !!this.state.context.drizzle.contracts[contractAddress]
+        this.setState({instanced});
 
+        if(instanced){
+            const contract = this.state.context.drizzle.contracts[contractAddress];
+
+            const dataKey = contract.methods[MethodName].cacheCall();
+            this.setState({ dataKey });
+        }
+
+        // let drizzle know we want to watch the `myString` method
     }
 
     render () {
-        const { contractAddress, MethodName } = this.props;
-        const { instanced } = this.state
+        const { contractAddress, MethodName, render } = this.props;
+        const { instanced } = this.state;
+        console.log(this.state.dataKey);
+
         return(
         <div>
             <div className="section">
@@ -55,6 +66,7 @@ class ContractDataContainer extends React.Component {
                 <ContractData
                     contract={contractAddress}
                     method={MethodName}
+                    render={render}
                 />
             </p>)}
         </div>
@@ -63,7 +75,8 @@ class ContractDataContainer extends React.Component {
 }
 
 ContractDataContainer.contextTypes = {
-    drizzle: PropTypes.object
+    drizzle: PropTypes.object,
+    render: PropTypes.func
 };
 
 export default drizzleConnect(ContractDataContainer);

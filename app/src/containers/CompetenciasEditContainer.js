@@ -11,6 +11,8 @@ import ColorTextFields from "components/form";
 import CardForm from "../components/CardForm";
 import { Card } from "@material-ui/core";
 import AddElements from "../components/AddElements";
+import ContractFormContainer from "../containers/ContractFormContainer";
+import { ACADEMIC_CONSORTIUM_FIELDS } from "../constants.js/StaticFields";
 
 const competenciasMock = {
   columns: [
@@ -162,6 +164,22 @@ function CompetenciasEditContainer(props) {
     />
   );
 
+  const renderEditContainer = () =>
+  <ContractFormContainer
+    contractName='AcademicCertificate'
+    method='set'
+    labels={ACADEMIC_CONSORTIUM_FIELDS.map(field => field.key)}
+    values={[
+      '0x554e3DEF5789Fb733E1173369f48F3F79901384C',
+      'Universidad Tecnica Particular de Loja',
+      '0',
+      'Ingeniera en Sistemas',
+      '0x554e3DEF5789Fb733E1173369f48F3F79901384C',
+      'Maria Pineda',
+      '1105148595'
+    ]}
+  />
+
   const getStepContent = step => {
     let type = "consorcio";
     switch (step) {
@@ -172,10 +190,12 @@ function CompetenciasEditContainer(props) {
         type = "competencias";
         return renderCompetencias(type);
       default:
-        return "Complete...";
+        return renderEditContainer();
     }
   };
-  console.log("state", state);
+
+  console.log(state)
+
   return (
     <Steps
       className={classes.content}

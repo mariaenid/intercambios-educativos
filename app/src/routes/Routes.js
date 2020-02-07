@@ -60,7 +60,7 @@ class Routes extends React.Component {
             component={EditContainer}
           ></Route>
           <Route
-            path="/edit"
+            path="/edits"
             exact
             component={ConsorcioEditContainer}
           ></Route>

@@ -4,19 +4,18 @@ import 'react-toastify/dist/ReactToastify.css'
 import { drizzleConnect } from "drizzle-react";
 import { getContractArtifacts } from 'utils';
 
-import {
-    ContractForm,
-  } from "drizzle-react-components";
+import ContractForm from "../components/ContractForm";
 
-import ContractFormComponent from "components/ContractFormComponent";
 
 class ContractFormContainer extends React.Component {
     static propTypes = {
         contractName: PropTypes.string,
-        contractAddress: PropTypes.string,
-        methodName: PropTypes.string,
-        args: PropTypes.array
-      };
+        method: PropTypes.string.isRequired,
+        sendArgs: PropTypes.object,
+        labels: PropTypes.arrayOf(PropTypes.string),
+        values: PropTypes.arrayOf(PropTypes.string),
+        render: PropTypes.func
+    };
 
     constructor(props, context) {
         super(props);
@@ -24,39 +23,44 @@ class ContractFormContainer extends React.Component {
     }
 
     state = {
+        web3Contract: {},
+        byteCode: {},
         context: {},
         instanced: false
     }
 
     async componentDidMount() {
-        const { contractName, contractAddress } = this.props;
+        const { contractName } = this.props;
 
+        const byteCode = getContractArtifacts(contractName).byteCode;
+        const abi = getContractArtifacts(contractName).abi;
+        const web3Contract = new this.state.context.drizzle.web3.eth.Contract(
+            abi, {data: byteCode})
+        web3Contract.options.data = byteCode;
         const contractConfig = {
-            contractName: contractAddress,
-            web3Contract: new this.state.context.drizzle.web3.eth.Contract(
-                (getContractArtifacts(contractName)).abi,
-                contractAddress,
-            )
-          };
+            contractName: contractName,
+            web3Contract};
 
         await this.state.context.drizzle.addContract(contractConfig);
-        this.setState({instanced: !!this.state.context.drizzle.contracts[contractAddress]});
+        this.setState({instanced: !!this.state.context.drizzle.contracts[contractName],
+        web3Contract, byteCode
+        });
 
     }
 
     render() {
-        const { contractName, methodName, args, title } = this.props
+        const { contractName } = this.props;
+        const {instanced, web3Contract, byteCode} = this.state;
+        console.log('web3Cintract', web3Contract);
         return(
-            <div style={this.style}>
-                <h4> {title} </h4>
-                <ContractFormComponent
-                  contract={contractName}
-                  method={methodName}
-                  labels={args}
-                />
-            </div>
-);
-    }
+            <React.Fragment>
+                {instanced && (<ContractForm contract={contractName}
+                instanceContrat = {web3Contract}
+                byteCode={byteCode}
+                  {...this.props}
+                />)}
+            </React.Fragment>)
+        }
 
 }
 

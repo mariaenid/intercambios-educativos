@@ -11,9 +11,9 @@ const options = {
     },
   },
   contracts: [AcademicConsortium, AcademicCertificate, RegistroCompetenciaAcademica],
-//  events: {
-//    SimpleStorage: ["StorageSet"],
-//  },
+  events: {
+    AcademicConsortium: ["academicConsorsium"],
+  },
   polls: {
     accounts: 1500,
   }
