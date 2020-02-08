@@ -1,0 +1,323 @@
+---
+swagger: "2.0"
+info:
+  description: "We get information of semantic DB and scan for new academic certificates"
+  version: "1.0.0"
+  title: "Semantic Api Rest for Academic Certificates"
+  contact:
+    email: "mepineda1992@gmail.com"
+host: "semanticdb.swagger.io"
+basePath: "/v2"
+tags:
+- name: "consortium"
+  description: "Everything about Consortium"
+- name: "certificate"
+  description: "Access to certificate"
+- name: "academic competences"
+  description: "new competences"
+schemes:
+- "http"
+paths:
+  /consortium:
+    get:
+      tags:
+      - "consortium"
+      summary: "Get consortium"
+      description: "All about consortium"
+      operationId: "consortiumGET"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "get all about consortium"
+          schema:
+            $ref: "#/definitions/Consortium"
+        "400":
+          description: "No conection"
+        "404":
+          description: "No conection"
+      x-swagger-router-controller: "Consortium"
+    post:
+      tags:
+      - "consortium"
+      summary: "Add new consortium"
+      description: ""
+      operationId: "addPet"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Pet object that needs to be added to the store"
+        required: true
+        schema:
+          $ref: "#/definitions/Consortium"
+      responses:
+        "200":
+          description: "Consortium"
+          schema:
+            $ref: "#/definitions/Consortium"
+        "405":
+          description: "Invalid input"
+      x-swagger-router-controller: "Consortium"
+  /consortium/:consortiumId:
+    get:
+      tags:
+      - "consortium"
+      summary: "Find a consortium "
+      description: "Returns a single consortium"
+      operationId: "consortiumconsortiumIdGET"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "competenceId"
+        in: "path"
+        description: "ID of consortium to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Consortium"
+        "404":
+          description: "not found"
+      x-swagger-router-controller: "Consortium"
+  /certificate/:
+    get:
+      tags:
+      - "certificate"
+      summary: "Returns all certificates"
+      description: "Returns all certificates"
+      operationId: "certificateGET"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "get certificates"
+          schema:
+            $ref: "#/definitions/Certificate"
+      x-swagger-router-controller: "Certificate"
+    post:
+      tags:
+      - "certificate"
+      summary: "Place an order for a pet"
+      description: ""
+      operationId: "placeOrder"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "order placed for purchasing the pet"
+        required: true
+        schema:
+          $ref: "#/definitions/Certificate"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Certificate"
+        "400":
+          description: "Invalid Order"
+      x-swagger-router-controller: "Certificate"
+  /certificate/:certificateId:
+    get:
+      tags:
+      - "certificate"
+      summary: "Find a certificate "
+      description: "Returns a single certificate"
+      operationId: "certificatecertificateIdGET"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "certificateId"
+        in: "path"
+        description: "ID of pet to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Certificate"
+        "404":
+          description: "not found"
+      x-swagger-router-controller: "Certificate"
+  /competence:
+    get:
+      tags:
+      - "academic competences"
+      summary: "Get academic competences"
+      description: ""
+      operationId: "competenceGET"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Get comptences"
+        required: true
+        schema:
+          $ref: "#/definitions/Competences"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Competences"
+      x-swagger-router-controller: "AcademicCompetences"
+    post:
+      tags:
+      - "academic competences"
+      summary: "Add competences"
+      description: "add competences to the semantic server"
+      operationId: "competencePOST"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Add competences"
+        required: true
+        schema:
+          $ref: "#/definitions/Competences"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Competences"
+      x-swagger-router-controller: "AcademicCompetences"
+  /competences/:competenceId:
+    get:
+      tags:
+      - "academic competences"
+      summary: "Find a competence "
+      description: "Returns a single competence"
+      operationId: "competencescompetenceIdGET"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "competenceId"
+        in: "path"
+        description: "ID of competence to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Competences"
+        "404":
+          description: "not found"
+      x-swagger-router-controller: "AcademicCompetences"
+definitions:
+  Certificate:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      petId:
+        type: "integer"
+        format: "int64"
+      quantity:
+        type: "integer"
+        format: "int32"
+      shipDate:
+        type: "string"
+        format: "date-time"
+      status:
+        type: "string"
+        description: "Order Status"
+        enum:
+        - "placed"
+        - "approved"
+        - "delivered"
+      complete:
+        type: "boolean"
+        default: false
+    xml:
+      name: "Order"
+    example:
+      petId: 6
+      quantity: 1
+      id: 0
+      shipDate: "2000-01-23T04:56:07.000+00:00"
+      complete: false
+      status: "placed"
+  Competences:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      username:
+        type: "string"
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      email:
+        type: "string"
+      password:
+        type: "string"
+      phone:
+        type: "string"
+      userStatus:
+        type: "integer"
+        format: "int32"
+        description: "User Status"
+    xml:
+      name: "User"
+    example:
+      firstName: "firstName"
+      lastName: "lastName"
+      password: "password"
+      userStatus: 6
+      phone: "phone"
+      id: 0
+      email: "email"
+      username: "username"
+  Consortium:
+    type: "object"
+    required:
+    - "name"
+    - "photoUrls"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+        example: "doggie"
+      photoUrls:
+        type: "array"
+        xml:
+          name: "photoUrl"
+          wrapped: true
+        items:
+          type: "string"
+      status:
+        type: "string"
+        description: "pet status in the store"
+        enum:
+        - "available"
+        - "pending"
+        - "sold"
+    xml:
+      name: "Pet"
+    example:
+      photoUrls:
+      - "photoUrls"
+      - "photoUrls"
+      name: "doggie"
+      id: 0
+      status: "available"
