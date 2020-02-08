@@ -2,9 +2,12 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import "react-toastify/dist/ReactToastify.css";
 import { drizzleConnect } from "drizzle-react";
-import InputForm from "components/InputForm";
+import contract from "@truffle/contract";
 
-import Button from "components/Button";
+import { getContractArtifacts } from "utils";
+
+import Button from "@material-ui/core/Button";
+import { withStyles } from "@material-ui/styles";
 
 const translateType = type => {
   switch (true) {
@@ -19,18 +22,26 @@ const translateType = type => {
   }
 };
 
+const styles = (theme) =>  ({
+  button: {
+    color: '#fff',
+    'background-color': '#556cd6',
+    flex: 'align-end'
+  }
+});
+
+
 class ContractForm extends Component {
   constructor(props, context) {
     super(props);
 
-    this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 
     this.contracts = context.drizzle.contracts;
     this.utils = context.drizzle.web3.utils;
 
     // Get the contract ABI
-    const abi = this.contracts[this.props.contract].abi;
+    const abi = this.contracts[this.props.contractName].abi;
 
     this.inputs = [];
     var initialState = {};
@@ -51,53 +62,65 @@ class ContractForm extends Component {
     this.state = initialState;
   }
 
-  handleSubmit = async (event) => {
-    const { values, instanceContrat, byteCode, accounts } = this.props;
+  handleSubmit = async event => {
+    const { method, contractName, currentProvider, accounts, inputs } = this.props;
+
+    event.preventDefault();
 
     const convertedInputs = this.inputs.map(input => {
       if (input.type === "bytes32") {
-        return this.utils.toHex(values[input.name]);
+        return this.utils.toHex(inputs[input.name]);
       }
-      return this.inputs[input.name];
-
+      return inputs[input.name];
     });
-    console.log('convertedInputs', convertedInputs, values, instanceContrat);
-    if (this.props.sendArgs) {
-      return await instanceContrat.deploy({
-        arguments: [values]})
+
+    if(method) {
+      if (this.props.sendArgs) {
+        return this.contracts[this.props.contractName].methods[
+          this.props.method
+        ].cacheSend(...convertedInputs, this.props.sendArgs);
+      }
+
+      return this.contracts[this.props.contractName].methods[
+        this.props.method
+      ].cacheSend(...convertedInputs);
     }
 
-    return await instanceContrat.deploy({
-        arguments: [values], data: byteCode})
-        .send({from: accounts[0]})
-        .then(function(newContractInstance){
-            console.log(newContractInstance.options.address) // instance with the new contract address
-        });
 
-    }
+    const truffleContract = await contract(getContractArtifacts(contractName));
+    await truffleContract.setProvider(currentProvider);
 
-  handleInputChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
-  }
+    return await truffleContract.new(
+      "0x554e3DEF5789Fb733E1173369f48F3F79901384C",
+      "Universidad Tecnica Particular de Loja",
+      "0",
+      "Ingeniera en Sistemas",
+      "0x554e3DEF5789Fb733E1173369f48F3F79901384C",
+      "Maria Pineda",
+      "1105148595",
+      { from: accounts[0] }
+    );
+  };
 
   render() {
-    const { contract, instanceContrat } = this.props;
+    const { currentProvider, handleSubmit, classes } = this.props;
 
     if (this.props.render) {
       return this.props.render({
-        inputs: this.inputs,
+        inputs: this.props.inputs,
         inputTypes: this.inputs.map(input => translateType(input.type)),
-        handleSubmit: this.handleSubmit
+        handleSubmit: handleSubmit || this.handleSubmit
       });
     }
 
     return (
-        <React.Fragment>
-            {
-            instanceContrat && (<Button label={"Submit"} handleClick={this.handleSubmit} />)
-
-            }
-        </React.Fragment>
+      <React.Fragment>
+        {currentProvider && (
+            <Button onClick={handleSubmit || this.handleSubmit} className={classes.button}>
+            Submit
+          </Button>
+        )}
+      </React.Fragment>
     );
   }
 }
@@ -107,13 +130,20 @@ ContractForm.contextTypes = {
 };
 
 ContractForm.propTypes = {
-  contract: PropTypes.string.isRequired,
-  instanceContrat: PropTypes.func,
+  classes: PropTypes.object.isRequired,
+  contractName: PropTypes.string.isRequired,
+  inputs: PropTypes.arrayOf(PropTypes.string),
+
+  /* Deploy contracts*/
+  currentProvider: PropTypes.object,
+  truffleContract: PropTypes.object,
+  /* Send Transactions */
+  handleInputChange: PropTypes.func,
   method: PropTypes.string.isRequired,
   sendArgs: PropTypes.object,
   labels: PropTypes.arrayOf(PropTypes.string),
-  values: PropTypes.arrayOf(PropTypes.string),
-  render: PropTypes.func
+  render: PropTypes.func,
+  handleSubmit: PropTypes.func
 };
 
 /*
@@ -127,4 +157,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default drizzleConnect(ContractForm, mapStateToProps);
+export default withStyles(styles)(drizzleConnect(ContractForm, mapStateToProps));

@@ -7,15 +7,25 @@ import "App.css";
 import store from 'middleware'
 import drizzleOptions from "drizzleOptions";
 import Routes from "routes/Routes";
+import CssBaseline from '@material-ui/core/CssBaseline';
+
+import { ThemeProvider } from '@material-ui/core/styles';
+
+import theme from './theme';
 
 class App extends Component {
 
   render() {
     return (
       <DrizzleProvider store={store} options={drizzleOptions}>
-        <LoadingContainer>
-            <Routes />
-        </LoadingContainer>
+        <ThemeProvider theme={theme}>
+          <React.Fragment>
+            <CssBaseline />
+            <LoadingContainer>
+                <Routes />
+            </LoadingContainer>
+          </React.Fragment>
+        </ThemeProvider>
       </DrizzleProvider>
     );
   }

@@ -24,6 +24,7 @@ export const ACADEMIC_CONSORTIUM_FIELDS = [
 export const ACADEMIC_CERTIFICATE_FIELDS = [
     { 'label': 'Consortium contract address', 'key': 'contractAddressConsortiumAcademic' },
     { 'label': 'Consortium Name', 'key': 'nameConsortiumAcademic' },
+    {'label': '', 'key': 'indexCompetence'},
     { 'label': 'Name Competence', 'key': 'nameCompetence'},
     { 'label': 'Address Owner', 'key': 'addressOwner'},
     { 'label': 'Name Owner', 'key': 'nameOwner'},
