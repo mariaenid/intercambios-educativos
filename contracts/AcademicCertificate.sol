@@ -28,7 +28,7 @@ contract AcademicCertificate {
 
     certificate certificateOwn;
 
-    event academicCertificate(CONTRACT_TYPE contractType);
+    event academicCertificate(CONTRACT_TYPE contractType, address addressOwner, string nameConsortiumAcademic);
 
     constructor(
         address contractAddressConsortiumAcademic,
@@ -47,7 +47,7 @@ contract AcademicCertificate {
         certificateOwn.nameOwner = nameOwner;
         certificateOwn.identificationOwner = identificationOwner;
 
-        emit academicCertificate(CONTRACT_TYPE.Certificate);
+        emit academicCertificate(CONTRACT_TYPE.Certificate, certificateOwn.addressOwner, certificateOwn.nameConsortiumAcademic);
     }
 
     // solo deberia poder realizarlo el owner de la aplicacion
@@ -68,7 +68,7 @@ contract AcademicCertificate {
         certificateOwn.nameOwner = nameOwner;
         certificateOwn.identificationOwner = identificationOwner;
 
-        emit academicCertificate(CONTRACT_TYPE.Certificate);
+        emit academicCertificate(CONTRACT_TYPE.Certificate, certificateOwn.addressOwner, certificateOwn.nameConsortiumAcademic);
     }
 
     //Obtener compentencia

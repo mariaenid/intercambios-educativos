@@ -62,7 +62,7 @@ contract AcademicConsortium {
 
     // Evento para anunciar en el Blockchain que un nuevo certificado ha sido agregado
 
-    event academicConsorsium(CONTRACT_TYPE contractType);
+    event academicConsorsium(CONTRACT_TYPE contractType, address addressConsortium);
 
     constructor(
         address ad,
@@ -81,7 +81,7 @@ contract AcademicConsortium {
         ownConsortium.city = city;
         ownConsortium.consortiumType = consortiumType;
 
-        emit academicConsorsium(CONTRACT_TYPE.Consortium);
+        emit academicConsorsium(CONTRACT_TYPE.Consortium, ownConsortium.addressConsortium);
     }
 
     // get details of the consorcio
@@ -121,7 +121,7 @@ contract AcademicConsortium {
         ownConsortium.city = city;
         ownConsortium.consortiumType = consortiumType;
 
-        emit academicConsorsium(CONTRACT_TYPE.Consortium);
+        emit academicConsorsium(CONTRACT_TYPE.Consortium, ownConsortium.addressConsortium);
     }
 
     // Allowed competences
