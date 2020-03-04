@@ -14,7 +14,7 @@ export class Consortium {
 
   // new Consortium({hasCredential: '', hasDigitalRegister: '', alumni: '', hasAccount: '', name:''})
   constructor (dataIn) {
-    const { triples, main } = generateTriples('name', mainPrefix, dataIn, objectProperties)
+    const { triples, main } = generateTriples('hasAccount', mainPrefix, dataIn, objectProperties)
 
     this.triples = triples
     this.main = main

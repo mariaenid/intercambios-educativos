@@ -5,7 +5,7 @@ import SearchContainer from "containers/SearchContainer";
 
 import ConsorciosContainer from "consorcios/ConsorciosContainer";
 import EditContainer from "containers/EditContainer";
-import CompetenciasContainer from "competencias/CompetenciasContainer";
+import CompetenciasContainer from "competencias/competenciasContainer";
 
 import ConsorcioEditContainer from "consorcios/ConsorcioEditContainer";
 import MainContainer from "containers/MainContainer";

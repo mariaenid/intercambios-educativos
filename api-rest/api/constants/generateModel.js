@@ -7,17 +7,12 @@ export const generateTriples = (keyMain, mainPrefix, dataIn, objectProperties) =
   triples.push(`${objectProperties
       .reduce((acc, { name, prefix }, index) => {
         // entest:TestClass rdf:type owl:Class
-        if (!dataIn[name]) {
-          return
-        }
-
-        acc = `${acc} ${prefix} ${dataIn[name]}`
-        if (index < Object.keys(dataIn).length - 1) {
-          acc = `${acc}; `
+        if (dataIn[name]) {
+          acc = `${acc} ${prefix} sb:${dataIn[name]};`
         }
 
         return acc
-      }, `${main}`)}.`)
+      }, `${main}`).slice(0, -1)}.`)
 
   return { main, triples }
 }

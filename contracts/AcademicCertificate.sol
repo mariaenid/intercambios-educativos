@@ -1,4 +1,4 @@
-pragma solidity >=0.4.21 <0.6.0;
+pragma solidity >= 0.4.21 < 0.6.1;
 // Competencias academicas
 
 contract AcademicCertificate {
@@ -28,7 +28,12 @@ contract AcademicCertificate {
 
     certificate certificateOwn;
 
-    event academicCertificate(CONTRACT_TYPE contractType, address addressOwner, string nameConsortiumAcademic);
+    event academicCertificate(
+        CONTRACT_TYPE contractType,
+        address addressOwner,
+        string nameConsortiumAcademic,
+        address contractConsortium,
+        string nameOwner);
 
     constructor(
         address contractAddressConsortiumAcademic,
@@ -47,7 +52,11 @@ contract AcademicCertificate {
         certificateOwn.nameOwner = nameOwner;
         certificateOwn.identificationOwner = identificationOwner;
 
-        emit academicCertificate(CONTRACT_TYPE.Certificate, certificateOwn.addressOwner, certificateOwn.nameConsortiumAcademic);
+        emit academicCertificate(CONTRACT_TYPE.Certificate,
+            certificateOwn.addressOwner,
+            certificateOwn.nameConsortiumAcademic,
+            certificateOwn.contractAddressConsortiumAcademic,
+            certificateOwn.nameOwner);
     }
 
     // solo deberia poder realizarlo el owner de la aplicacion
@@ -68,7 +77,11 @@ contract AcademicCertificate {
         certificateOwn.nameOwner = nameOwner;
         certificateOwn.identificationOwner = identificationOwner;
 
-        emit academicCertificate(CONTRACT_TYPE.Certificate, certificateOwn.addressOwner, certificateOwn.nameConsortiumAcademic);
+        emit academicCertificate(CONTRACT_TYPE.Certificate,
+            certificateOwn.addressOwner,
+            certificateOwn.nameConsortiumAcademic,
+            certificateOwn.contractAddressConsortiumAcademic,
+            certificateOwn.nameOwner);
     }
 
     //Obtener compentencia

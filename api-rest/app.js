@@ -9,7 +9,7 @@ import { APP_ROOT } from './config/config'
 import morgan from 'morgan'
 import './config'
 import web3Service from './api/services/web3Service'
-import { processLog, processLogs } from './api/services/contractServices'
+import { processLog, processLogs, saveAllEvents } from './api/services/contractServices'
 import {GraphdbService} from './api/services/graphdbService'
 
 const app = express()
@@ -33,20 +33,22 @@ SwaggerExpress.create(config, (err, swaggerExpress) => {
 
   app.listen(port, async () => {
     const contracts = ['AcademicConsortium', 'AcademicCertificate']
-    const graphdb = new GraphdbService()
-
-    await graphdb.initCliente()
     // console.log('graphdb triples', graphdb.triples())
-    web3Service.eth.getPastLogs({ fromBlock: 0, toBlock: 'latest' }).then(
-      logs => {
-        if (logs) {
-          const allEvents = processLogs(contracts, logs)
-          const logCertificate = allEvents.find(event => event.contractName === 'AcademicCertificate')
-          console.log(graphdb.saveNewCertificate(logCertificate), 'certificate log')
-          console.log('Processed', allEvents)
-        }
+
+    const graphdb = new GraphdbService()
+    await graphdb.initCliente()
+
+    let allEvents = []
+    web3Service.eth.getPastLogs({ fromBlock: 0, toBlock: 'latest' })
+    .then(async(logs) => {
+      if (logs) {
+        allEvents = processLogs(contracts, logs)
+
+        await saveAllEvents(allEvents, graphdb)
       }
-    )
+    })
+    .then(() => console.log('Done'))
+    .catch(error => console.log('Error', error))
 
     web3Service.eth.subscribe(
       'logs', { fromBlock: '0', toBlock: 'latest' }, (error, log) => {
