@@ -1,13 +1,14 @@
 import React from "react";
 import clsx from "clsx";
 import { withStyles } from "@material-ui/styles";
+import { withRouter } from "react-router-dom";
 
 import PropTypes from "prop-types";
 import SideNavegation from "components/SideNavegation";
 import Typography from "@material-ui/core/Typography";
 
 import Table from "components/Table";
-import { withRouter } from 'react-router-dom';
+import { connect } from "react-redux";
 
 const drawerWidth = 240;
 
@@ -38,52 +39,51 @@ const styles = theme => ({
 });
 
 class SearchContainer extends React.Component {
-  completeData = {
-    certificados: {
-      columns: [
-        { title: "Name", field: "name", type: "string" },
-        { title: "Address", field: "addressContract", type: "string" },
-        { title: "Tipo", field: "type", type: "string" },
-        { tittle: "Titulo obtenido", field: "nameCompentece", type: "string" }
-      ],
-      data: [
-        {
-          name: "Maria Pineda",
-          addressContract: "0x9217120c3443D189E82543a77bacdA71f7d9636B",
-          type: "certificado",
-          nameCompentece: "Ingeniera en Electrónica"
-        }
-      ]
-    },
-    consorcios: {
-      columns: [
-        { title: "Name", field: "name", type: "string" },
-        { title: "Address", field: "addressContract", type: "string" },
-        { title: "Tipo", field: "type", type: "string" }
-        //TODO: agregar más detalles de la competencia, ver ejemplo Senescyt
-      ],
-      data: [
-        {
-          name: "UTPL",
-          addressContract: "0xc5BADe12866Ab0fa039CB2f82Ea795753c9F52Fd",
-          type: "consorcio"
-        }
-      ]
-    }
+  static propTypes = {
+    history: PropTypes.func,
+    classes: PropTypes.object.isRequired,
+    open: PropTypes.bool,
+    consortium: PropTypes.array
+  };
+
+  static defaultProps = {
+    consortium: []
   };
 
   routeChange = (event, rowData) => {
     console.log('event', event, rowData);
-    let path = `${rowData.type.toLowerCase()}/${rowData.addressContract}`;
+    let path = `${rowData.type.toLowerCase()}/${rowData.address}`;
     this.props.history.push(path);
   }
 
   renderTable = ({ data, columns, key }) => <Table data={data} columns={columns} contractType={key} onClickAction={this.routeChange}/>;
 
   render() {
+    console.log('it is consortium', this.props)
     const { classes, open } = this.props;
+    const { consortium, certificate } = this.props;
+    const completeData = {
+      certificados: {
+        columns: [
+          { title: "Name", field: "name", type: "string" },
+          { title: "Address", field: "address", type: "string" },
+          { title: "Tipo", field: "type", type: "string" },
+          { tittle: "Titulo obtenido", field: "nameCompentece", type: "string" }
+        ],
+        data: certificate
+      },
+      consorcios: {
+        columns: [
+          { title: "Name", field: "name", type: "string" },
+          { title: "Address", field: "hasDigitalRegister", type: "string" },
+          { title: "Tipo", field: "type", type: "string" }
+          //TODO: agregar más detalles de la competencia, ver ejemplo Senescyt
+        ],
+        data: consortium
+      }
+    };
     const options = [{title: "Consorcios", key: "consorcios"}, {title: "Certificados", key: "certificados"}];
-    const data = options.reduce((acc, {title, key}) => acc = {[key]: this.renderTable({key, ...this.completeData[key]}), ...acc}, {});
+    const data = options.reduce((acc, {title, key}) => acc = {[key]: this.renderTable({key, ...completeData[key]}), ...acc}, {});
 
     return (
       <main
@@ -100,10 +100,18 @@ class SearchContainer extends React.Component {
   }
 }
 
-SearchContainer.propTypes = {
-  history: PropTypes.func,
-  classes: PropTypes.object.isRequired,
-  open: PropTypes.bool
-};
+const mapStateToProps = (state) => {
+  const consortium = (state.consortium && state.consortium.data) || [];
+  const person = (state.person && state.person.data) || [];
 
-export default withRouter(withStyles(styles)(SearchContainer));
+  return ({consortium: consortium.map(row => {
+    const {hasDigitalRegister: address, ...rest} = row;
+    return ({...rest, address, type: 'consortium'})}),
+    certificate: person.map(row => {
+      const { hasDigitalCertificate: address, ...rest} = row;
+      return ({...rest, address, type: 'certificate'})
+    })
+  })
+}
+
+export default connect(mapStateToProps)(withRouter(withStyles(styles)(SearchContainer)));

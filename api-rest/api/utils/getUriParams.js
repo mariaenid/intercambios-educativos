@@ -1,4 +1,4 @@
-import { Base64 } from './base64';
+import { Base64 } from './base64'
 
 const url = require('url');
 
@@ -15,9 +15,15 @@ export const getProperties = uriParams => {
       return acc
     }
     const keyName = getUrlParams(p)
+
     let keyValue = getUrlParams(o)
 
-    acc[keyName] = keyValue
+    if (keyName === 'name') {
+      const data = Base64.decode(keyValue)
+      acc[keyName] = data.substring(0, data.length - 1)
+    } else {
+      acc[keyName] = keyValue
+    }
 
     return acc
   }, {})

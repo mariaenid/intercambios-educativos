@@ -47,9 +47,8 @@ class Routes extends React.Component {
             exact
             render={() => <SearchContainer open={open} />}
           />
-
           <Route
-            path="/consorcio/:id"
+            path="/consortium/:id"
             exact
             component={ConsorciosContainer}
           ></Route>
@@ -64,7 +63,7 @@ class Routes extends React.Component {
             component={ConsorcioEditContainer}
           ></Route>
           <Route
-            path="/certificado/:id"
+            path="/certificate/:id"
             exact
             component={CompetenciasContainer}
           ></Route>

@@ -1,15 +1,15 @@
 import { generateStore, EventActions } from 'drizzle'
 import { createStore, applyMiddleware } from 'redux'
+
 import { createLogger } from 'redux-logger'
-import reducers from '../reducers/index'
+import appReducers  from '../reducers/index'
 import thunk from 'redux-thunk';
 import { apiMiddleware } from 'redux-api-middleware';
 
 import drizzleOptions from '../drizzleOptions'
 import { toast } from 'react-toastify'
-const loggerMiddleware = createLogger()
 
-const contractEventNotifier = store => next => action => {
+const contractEventNotifier = ({store}) => next => action => {
     if (action.type === EventActions.EVENT_FIRED) {
       const contract = action.name
       const contractEvent = action.event.event
@@ -18,23 +18,30 @@ const contractEventNotifier = store => next => action => {
 
       toast.success(display, { position: toast.POSITION.TOP_RIGHT })
     }
+
     return next(action)
   }
 
-  const apiMiddlewareResponse = ({dispatch}) => next => action => {
-    return next (action);
-  }
 
 const appMiddlewares = [ contractEventNotifier ]
+// applyMiddleware(thunk, apiMiddleware, loggerMiddleware, contractEventNotifier)
 
-const store =  generateStore({
+export const store =  generateStore({
 drizzleOptions,
 appMiddlewares,
 disableReduxDevTools: false,  // enable ReduxDevTools!,
-},
-reducers,
-applyMiddleware(thunk, apiMiddleware, loggerMiddleware, apiMiddlewareResponse)
-)
+})
 
-export default store
+const apiMiddlewareResponse = dispatch => next => action => {
+  return next (action);
+}
+
+const loggerMiddleware = createLogger()
+export function configureStore(preloadedState) {
+  return createStore(
+    appReducers,
+    preloadedState,
+    applyMiddleware(thunk, apiMiddleware, loggerMiddleware, apiMiddlewareResponse)
+    )
+}
 

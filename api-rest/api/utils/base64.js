@@ -32,7 +32,7 @@ export const Base64 = {
     var n, r, i;
     var s, o, u, a;
     var f = 0;
-    e = e.replace(/++[++^A-Za-z0-9+/=]/g, "");
+    //e = e.replace(/++[++^A-Za-z0-9+/=]/g, "");
     while (f < e.length) {
       s = this._keyStr.indexOf(e.charAt(f++));
       o = this._keyStr.indexOf(e.charAt(f++));
@@ -73,6 +73,8 @@ export const Base64 = {
   _utf8_decode: function(e) {
     var t = "";
     var n = 0;
+    var c1 = 0
+    var c2 = 0
     var r = (c1 = c2 = 0);
     while (n < e.length) {
       r = e.charCodeAt(n);
