@@ -11,6 +11,9 @@ import ColorTextFields from "components/form";
 import CardForm from "../components/CardForm";
 import { Card } from "@material-ui/core";
 
+import ContractFormContainer from "../containers/ContractFormContainer";
+import { ACADEMIC_CONSORTIUM_FIELDS } from "../constants.js/StaticFields";
+
 const consorciosMock = {
   columns: [
     { title: "Name", field: "name", type: "string" },
@@ -77,7 +80,7 @@ const styles = theme => ({
 });
 
 function CertificateEditContainer(props) {
-  const [formulario, setFormulario] = React.useState({consorcio: {}, user: {}, competencias: {}});
+  const [formulario, setFormulario] = React.useState({ consorcio: {}, user: {}, competencias: {} });
   const { classes } = props;
 
   const getSteps = () => {
@@ -140,8 +143,9 @@ function CertificateEditContainer(props) {
 
 
   const renderForm = () =>
-    Object.keys(formulario).map(keyName => (
-      <Card className={classes.content}>
+    <Card className={classes.content}>
+      {Object.keys(formulario).map((keyName) =>
+      <React.Fragment>
         <Typography gutterBottom variant="h5" component="h5" className={classes.capitalize}>
           {keyName.toLocaleLowerCase()}
         </Typography>
@@ -152,21 +156,39 @@ function CertificateEditContainer(props) {
             );
           }
         })}
-      </Card>
-    ));
+      </React.Fragment>)}
+      <React.Fragment>
+      {renderEditContainer()}
+      </React.Fragment>
+    </Card>;
 
+  const renderEditContainer = () =>
+    <ContractFormContainer
+      contractName='AcademicCertificate'
+      method='set'
+      labels={ACADEMIC_CONSORTIUM_FIELDS.map(field => field.key)}
+      inputs={{
+        'contractAddressConsortiumAcademic': '0x554e3DEF5789Fb733E1173369f48F3F79901384C',
+        'nameConsortiumAcademic': 'Universidad Tecnica Particular de Loja',
+        'indexCompetence': '0',
+        'nameCompetence': 'Ingeniera en Sistemas',
+        'addressOwner': '0x554e3DEF5789Fb733E1173369f48F3F79901384C',
+        'nameOwner': 'Maria Pineda',
+        'identificationOwner': '1105148595'
+      }}
+    />
 
   const getStepContent = (step) => {
     let type = "";
     switch (step) {
       case 0:
-          type = "consorcio";
-          return renderListSelection(type, consorciosMock);
+        type = "consorcio";
+        return renderListSelection(type, consorciosMock);
       case 1:
         type = "competencias";
         return renderListSelection(type, certificatesTypesMock);
       case 2:
-        type="user";
+        type = "user";
         const names = ["name", "address", "identificacion", "direccion"];
         const values = names.map(name => formulario[type][name] || '');
 

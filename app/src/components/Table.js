@@ -1,6 +1,6 @@
 import React from "react";
 import MaterialTable from "material-table";
-import {PropTypes, defaultProps } from "prop-types";
+import {PropTypes } from "prop-types";
 import { withStyles } from "@material-ui/styles";
 
 const styles = () => ({
@@ -8,8 +8,6 @@ const styles = () => ({
     flexGrow: 1
   }
 });
-
-
 
  class Table extends React.Component {
 

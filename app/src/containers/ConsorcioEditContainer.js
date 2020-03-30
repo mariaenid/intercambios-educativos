@@ -4,13 +4,14 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/styles";
 
 import Steps from "components/Steps";
-import Table from "components/Table";
-import AddIcon from "@material-ui/icons/Add";
 import Typography from "@material-ui/core/Typography";
 import ColorTextFields from "components/form";
 import CardForm from "../components/CardForm";
 import { Card } from "@material-ui/core";
 import AddElements from "../components/AddElements";
+
+import ContractFormContainer from "../containers/ContractFormContainer";
+import { ACADEMIC_CONSORTIUM_FIELDS } from "../constants.js/StaticFields";
 
 const consorcioMock = {
   columns: [
@@ -122,6 +123,42 @@ function ConsorcioEditContainer(props) {
     />
   );
 
+  const renderForm = () =>
+    <Card className={classes.content}>
+      {Object.keys(state.consorcio).map((keyName) =>
+      <React.Fragment>
+        <Typography gutterBottom variant="h5" component="h5" className={classes.capitalize}>
+          {keyName.toLocaleLowerCase()}
+        </Typography>
+        {Object.keys(state.consorcio[keyName]).map(keyItem => {
+          if (keyItem !== "tableData") {
+            return (
+              <CardForm className={classes.drawerHeader} name={keyItem} text={state.consorcio[keyName][keyItem]} />
+            );
+          }
+        })}
+      </React.Fragment>)}
+      <React.Fragment>
+      {renderEditContainer()}
+      </React.Fragment>
+    </Card>;
+
+  const renderEditContainer = () =>
+    <ContractFormContainer
+      contractName='AcademicCertificate'
+      method='set'
+      labels={ACADEMIC_CONSORTIUM_FIELDS.map(field => field.key)}
+      inputs={{
+        'contractAddressConsortiumAcademic': '0x554e3DEF5789Fb733E1173369f48F3F79901384C',
+        'nameConsortiumAcademic': 'Universidad Tecnica Particular de Loja',
+        'indexCompetence': '0',
+        'nameCompetence': 'Ingeniera en Sistemas',
+        'addressOwner': '0x554e3DEF5789Fb733E1173369f48F3F79901384C',
+        'nameOwner': 'Maria Pineda',
+        'identificationOwner': '1105148595'
+      }}
+    />
+
   const getStepContent = step => {
     let type = "consorcio";
     switch (step) {
@@ -140,10 +177,10 @@ function ConsorcioEditContainer(props) {
         type = "competencias";
         return renderCompetencias(type);
       default:
-        return "Complete...";
+        return (renderForm());
     }
   };
-  console.log("state", state);
+
   return (
     <Steps
       className={classes.content}

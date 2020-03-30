@@ -1,0 +1,224 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: Starter api
+# during dev, should point to your local machine
+host: 127.0.0.1:10012
+# basePath prefixes all resource paths
+basePath: /
+#
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+paths:
+  /consortium:
+    # our controller name
+    x-swagger-router-controller: consortium
+    get:
+      tags: [ consortium ]
+      operationId: getAll
+      description: get the consortiums list
+      # define the type of response for Success "200" and Error
+      responses:
+        "200":
+          description: Success
+          schema:
+            type : array
+            items:
+              $ref: "#/definitions/Consortium"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /consortium/{id}:
+    # our controller name
+    x-swagger-router-controller: consortium
+    get:
+      tags: [ consortium ]
+      operationId: getOne
+      description: get ad by id
+      # define the type of response for Success "200" and Error
+      parameters:
+        - name: id
+          type: string
+          in: path
+          required: true
+      responses:
+        "200":
+          description: Success
+          schema:
+            type : object
+            $ref: "#/definitions/Consortium"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+
+  /certificate:
+    # our controller name
+    x-swagger-router-controller: certificate
+    get:
+      tags: [ certificate ]
+      operationId: getAll
+      description: get the consortiums list
+      # define the type of response for Success "200" and Error
+      responses:
+        "200":
+          description: Success
+          schema:
+            type : array
+            items:
+              $ref: "#/definitions/Certificate"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /certificate/{id}:
+    # our controller name
+    x-swagger-router-controller: certificate
+    get:
+      tags: [ certificate ]
+      operationId: getOne
+      description: get ad by id
+      # define the type of response for Success "200" and Error
+      parameters:
+        - name: id
+          type: string
+          in: path
+          required: true
+      responses:
+        "200":
+          description: Success
+          schema:
+            type : object
+            $ref: "#/definitions/Certificate"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+
+  /person:
+    # our controller name
+    x-swagger-router-controller: person
+    get:
+      tags: [ person ]
+      operationId: getAll
+      description: get the person list
+      # define the type of response for Success "200" and Error
+      responses:
+        "200":
+          description: Success
+          schema:
+            type : array
+            items:
+              $ref: "#/definitions/Person"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /person/{id}:
+    # our controller name
+    x-swagger-router-controller: person
+    get:
+      tags: [ person ]
+      operationId: getOne
+      description: get person by id
+      # define the type of response for Success "200" and Error
+      parameters:
+        - name: id
+          type: string
+          in: path
+          required: true
+      responses:
+        "200":
+          description: Success
+          schema:
+            type : object
+            $ref: "#/definitions/Person"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /swagger:
+    x-swagger-pipe: swagger_raw
+# complex objects have schema definitions
+definitions:
+  Consortium:
+    type: object
+    properties:
+      main:
+        type: string
+        description: consortium propertie
+      name:
+        type: string
+        description: user email
+      hasDigitalRegister:
+        type: string
+        description: user description
+      hasAccount:
+        type: string
+        description: user firstname
+    required:
+      - name
+  Certificate:
+    type: object
+    properties:
+      address:
+        type: string
+        description: certificate propertie
+      controlsAccount:
+        type: string
+        description: user email
+      isTypeOf:
+        type: string
+        description: user description
+      belongsTo:
+        type: string
+        description: user firstname
+      isValidatedBy:
+        type: string
+        description: validated by consortium
+    required:
+      - address
+  Person:
+    type: object
+    properties:
+      main:
+        type: string
+        description: consortium propertie
+      name:
+        type: string
+        description: user email
+      hasDigitalRegister:
+        type: string
+        description: user description
+      hasAccount:
+        type: string
+        description: user firstname
+    required:
+      - name
+  GeneralResponse:
+    type: object
+    properties:
+      success:
+        type: number
+        description: returns 1 if successful
+      description:
+        type: string
+        description: a short comment
+    required:
+      - success
+      - description
+  ErrorResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string

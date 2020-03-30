@@ -1,12 +1,11 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import SearchContainer from "containers/SearchContainer";
 
 import ConsorciosContainer from "consorcios/ConsorciosContainer";
 import EditContainer from "containers/EditContainer";
-import CompetenciasContainer from "competencias/CompetenciasContainer";
+import CompetenciasContainer from "competencias/competenciasContainer";
 
 import ConsorcioEditContainer from "consorcios/ConsorcioEditContainer";
 import MainContainer from "containers/MainContainer";
@@ -48,9 +47,8 @@ class Routes extends React.Component {
             exact
             render={() => <SearchContainer open={open} />}
           />
-
           <Route
-            path="/consorcio/:id"
+            path="/consortium/:id"
             exact
             component={ConsorciosContainer}
           ></Route>
@@ -60,12 +58,12 @@ class Routes extends React.Component {
             component={EditContainer}
           ></Route>
           <Route
-            path="/edit"
+            path="/edits"
             exact
             component={ConsorcioEditContainer}
           ></Route>
           <Route
-            path="/certificado/:id"
+            path="/certificate/:id"
             exact
             component={CompetenciasContainer}
           ></Route>

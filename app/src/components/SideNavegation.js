@@ -6,7 +6,6 @@ import { withStyles } from "@material-ui/styles";
 import PropTypes from "prop-types";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-import Table from "components/Table";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -52,10 +51,8 @@ export default function SideNavegation(props) {
     setValue(newValue);
   };
 
-  const handleChangeIndex = index => {
-    setValue(index);
-  };
   const { options, data } = props;
+  
   return (
     <Paper className={classes.root}>
       <Tabs
