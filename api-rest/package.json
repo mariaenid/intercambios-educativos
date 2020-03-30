@@ -16,7 +16,7 @@
     "logger": "^0.0.1",
     "morgan": "^1.7.0",
     "mysql": "^2.12.0",
-    "sequelize": "^3.27.0",
+    "sequelize": "^5.15.1",
     "swagger-express-mw": "^0.1.0",
     "swagger-ui-express": "^1.0.2",
     "uri-templates": "^0.2.0",
