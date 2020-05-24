@@ -17,13 +17,14 @@ contract AcademicCertificate {
     enum CONTRACT_TYPE { Certificate, Consortium }
 
     struct certificate {
-        address contractAddressConsortiumAcademic;
+        address addressInstitute;
         string nameConsortiumAcademic;
-        uint indexCompetence; // es formal o curso
         string nameCompetence;
         address addressOwner;
         string nameOwner;
         string identificationOwner;
+        string email;
+        string country;
     }
 
     certificate certificateOwn;
@@ -33,45 +34,47 @@ contract AcademicCertificate {
         address addressOwner,
         string nameConsortiumAcademic,
         address contractConsortium,
-        string nameOwner);
+        string nameOwner,
+        string nameCompetence);
 
     constructor(
-        address contractAddressConsortiumAcademic,
+        address addressInstitute,
         string memory nameConsortiumAcademic,
-        uint indexCompetence, // es formal o curso
         string memory nameCompetence,
         address addressOwner,
         string memory nameOwner,
-        string memory identificationOwner
+        string memory identificationOwner,
+        string memory email,
+        string memory country
         ) public {
-        certificateOwn.contractAddressConsortiumAcademic = contractAddressConsortiumAcademic;
+        certificateOwn.addressInstitute = addressInstitute;
         certificateOwn.nameConsortiumAcademic = nameConsortiumAcademic;
-        certificateOwn.indexCompetence = indexCompetence;
         certificateOwn.nameCompetence = nameCompetence;
         certificateOwn.addressOwner = addressOwner;
         certificateOwn.nameOwner = nameOwner;
         certificateOwn.identificationOwner = identificationOwner;
+        certificateOwn.email = email;
+        certificateOwn.country = country;
 
         emit academicCertificate(CONTRACT_TYPE.Certificate,
             certificateOwn.addressOwner,
             certificateOwn.nameConsortiumAcademic,
-            certificateOwn.contractAddressConsortiumAcademic,
-            certificateOwn.nameOwner);
+            certificateOwn.addressInstitute,
+            certificateOwn.nameOwner,
+            certificateOwn.nameCompetence);
     }
 
     // solo deberia poder realizarlo el owner de la aplicacion
     function set (
-        address contractAddressConsortiumAcademic,
+        address addressInstitute,
         string memory nameConsortiumAcademic,
-        uint indexCompetence, // es formal o curso
         string memory nameCompetence,
         address addressOwner,
         string memory nameOwner,
         string memory identificationOwner
         ) public {
-        certificateOwn.contractAddressConsortiumAcademic = contractAddressConsortiumAcademic;
+        certificateOwn.addressInstitute = addressInstitute;
         certificateOwn.nameConsortiumAcademic = nameConsortiumAcademic;
-        certificateOwn.indexCompetence = indexCompetence;
         certificateOwn.nameCompetence = nameCompetence;
         certificateOwn.addressOwner = addressOwner;
         certificateOwn.nameOwner = nameOwner;
@@ -80,29 +83,28 @@ contract AcademicCertificate {
         emit academicCertificate(CONTRACT_TYPE.Certificate,
             certificateOwn.addressOwner,
             certificateOwn.nameConsortiumAcademic,
-            certificateOwn.contractAddressConsortiumAcademic,
-            certificateOwn.nameOwner);
+            certificateOwn.addressInstitute,
+            certificateOwn.nameOwner,
+            certificateOwn.nameCompetence);
     }
-
     //Obtener compentencia
     function get() public view returns (
-        address contractAddressConsortiumAcademic,
+        address addressInstitute,
         string memory nameConsortiumAcademic,
-        uint indexCompetence, // es formal o curso
         string memory nameCompetence,
         address addressOwner,
         string memory nameOwner,
-        string memory identificationOwner
+        string memory identificationOwner,
+        string memory email,
+        string memory country
     ) {
-        contractAddressConsortiumAcademic = certificateOwn.contractAddressConsortiumAcademic;
+        addressInstitute = certificateOwn.addressInstitute;
         nameConsortiumAcademic = certificateOwn.nameConsortiumAcademic;
-        indexCompetence = certificateOwn.indexCompetence;
         nameCompetence = certificateOwn.nameCompetence;
         addressOwner = certificateOwn.addressOwner;
         nameOwner = certificateOwn.nameOwner;
         identificationOwner = certificateOwn.identificationOwner;
-
+        email = certificateOwn.email;
+        country = certificateOwn.country;
     }
 }
-
-

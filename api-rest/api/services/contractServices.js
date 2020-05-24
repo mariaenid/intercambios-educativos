@@ -86,10 +86,13 @@ export const saveAllEvents = async (logs, graphdb) =>
       const { contractName } = log
       switch (contractName) {
         case 'AcademicCertificate': {
+          console.log("AcademicCertificate", log)
           await graphdb.saveNewAcademicCertificate(log)
           break
         }
         case 'AcademicConsortium': {
+          console.log("AcademicConsortium", log)
+
           await graphdb.saveNewAcademicConsortium(log)
           break
         }
