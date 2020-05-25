@@ -1,15 +1,19 @@
 import MyComponent from "MyComponent";
 import { drizzleConnect } from "drizzle-react";
+import { connect } from "react-redux";
 
-const mapStateToProps = state => {
+const mapStateToPropsDrizzle = state => {
   return {
     accounts: state.accounts,
-    SimpleStorage: state.contracts.SimpleStorage,
-    TutorialToken: state.contracts.TutorialToken,
     drizzleStatus: state.drizzleStatus,
   };
 };
 
-const MyContainer = drizzleConnect(MyComponent, mapStateToProps);
+const mapStateToProps = state => {
 
-export default MyContainer;
+  return {certificate: (state.certificate && state.certificate.data) || []}
+}
+
+const MyContainer = drizzleConnect(MyComponent, mapStateToPropsDrizzle);
+
+export default connect(mapStateToProps)(MyContainer);

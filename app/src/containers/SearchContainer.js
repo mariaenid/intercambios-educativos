@@ -52,14 +52,13 @@ class SearchContainer extends React.Component {
 
   routeChange = (event, rowData) => {
     console.log('event', event, rowData);
-    let path = `${rowData.type.toLowerCase()}/${rowData.address}`;
+    let path = `${rowData.type.toLowerCase()}/${rowData.ca}`;
     this.props.history.push(path);
   }
 
   renderTable = ({ data, columns, key }) => <Table data={data} columns={columns} contractType={key} onClickAction={this.routeChange}/>;
 
   render() {
-    console.log('it is consortium', this.props)
     const { classes, open } = this.props;
     const { consortium, certificate } = this.props;
     const completeData = {
@@ -75,14 +74,14 @@ class SearchContainer extends React.Component {
       consorcios: {
         columns: [
           { title: "Name", field: "name", type: "string" },
-          { title: "Address", field: "hasDigitalRegister", type: "string" },
+          { title: "Address", field: "address", type: "string" },
           { title: "Tipo", field: "type", type: "string" }
           //TODO: agregar más detalles de la competencia, ver ejemplo Senescyt
         ],
         data: consortium
       }
     };
-    const options = [{title: "Consorcios", key: "consorcios"}, {title: "Certificados", key: "certificados"}];
+    const options = [{title: "Institutes", key: "consorcios"}, {title: "Certificates", key: "certificados"}];
     const data = options.reduce((acc, {title, key}) => acc = {[key]: this.renderTable({key, ...completeData[key]}), ...acc}, {});
 
     return (
@@ -102,14 +101,19 @@ class SearchContainer extends React.Component {
 
 const mapStateToProps = (state) => {
   const consortium = (state.consortium && state.consortium.data) || [];
+  const certificate = (state.certificate && state.certificate.data) || [];
   const person = (state.person && state.person.data) || [];
 
+  const filteredCertificate = certificate.filter(p => p.isTypeOf === "AcademicCertificate");
+
   return ({consortium: consortium.map(row => {
-    const {hasDigitalRegister: address, ...rest} = row;
-    return ({...rest, address, type: 'consortium'})}),
-    certificate: person.map(row => {
-      const { hasDigitalCertificate: address, ...rest} = row;
-      return ({...rest, address, type: 'certificate'})
+    const {hasAccount: address, hasDigitalRegister: ca, ...rest} = row;
+    return ({...rest, address, ca, type: 'institute'})}),
+
+    certificate: filteredCertificate.map(row => {
+      const { address, controlsAccount, ...rest} = row;
+      const {name} = person.find(({hasAccount}) => hasAccount === controlsAccount)
+      return ({...rest, address, ca: address, name, type: 'certificate'})
     })
   })
 }

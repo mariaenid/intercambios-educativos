@@ -4,21 +4,31 @@ import { GraphdbService } from '../services/graphdbService';
 import { getUrlParams, getProperties } from '../utils/getUriParams';
 
 const consortium = {}
+let institutes = []
 
 export async function getAll (req, res, next) {
-  const graphdb = new GraphdbService()
-  await graphdb.initCliente()
+  try {
+    const graphdb = new GraphdbService()
+    await graphdb.initCliente()
 
-  const { records: allRecords } = await graphdb.getAllClass('org:Consortium')
-  const all = await Promise.all(
-    allRecords.map(async ({ s }) => {
-      const main = getUrlParams(s)
-      return {
-        main,
-        ...await getPropertiesByName(main)
-      }
-    }))
-  res.json(all)
+    const response = await graphdb.getAllClass('org:Consortium')
+    const allRecords = response && response.records
+
+    if (!(institutes.length && institutes.length < allRecords.length)) {
+      institutes = await Promise.all(
+        allRecords.map(async ({ s }) => {
+          const main = getUrlParams(s)
+          return {
+            main,
+            ...await getPropertiesByName(main)
+          }
+        }))
+    }
+
+    res.json(institutes)
+  } catch (error) {
+    console.log('Error', error)
+  }
 }
 
 const getPropertiesByName = async (id) => {
@@ -30,11 +40,15 @@ const getPropertiesByName = async (id) => {
 }
 
 export async function getOne (req, res, next) {
-  const { id } = getParams(req, ['id'])
-  // const user = await models.user.findOne({ where: { id } })
-  const consortium = await getPropertiesByName(id)
-  if (!consortium) return res.sendStatus(404).send({ message: 'not found' })
-  return res.json(consortium)
+  try {
+    const { id } = getParams(req, ['id'])
+    // const user = await models.user.findOne({ where: { id } })
+    const consortium = await getPropertiesByName(id)
+    if (!consortium) return res.sendStatus(404).send({ message: 'not found' })
+    return res.json(consortium)
+  } catch (error) {
+    console.log('error', error)
+  }
 }
 
 export async function update (req, res, next) {

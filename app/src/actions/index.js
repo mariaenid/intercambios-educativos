@@ -20,8 +20,6 @@ export const BASE = process.env.API_SERVER ||  'http://localhost:10012';
 export const fetchEntities = () => {
   console.log('Fetchinnnng')
   return dispatch => {
-    console.log('HOLAAA', dispatch)
-
     for (let i = 0; i < ENTITIES.length; i++) {
       const entity = ENTITIES[i]
       console.log('Entity', entity)

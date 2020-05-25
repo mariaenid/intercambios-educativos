@@ -52,5 +52,13 @@ input {
 
 select {
   padding: 4px;
-  width: 80%; 
+  width: 80%;
+}
+
+.my_account {
+  width: 10%;
+  height: 10%;
+  /* flex: auto; */
+  /* flex-flow: row; */
+  padding-top: 50px;
 }

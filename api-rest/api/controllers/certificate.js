@@ -5,20 +5,31 @@ import { getUrlParams, getProperties } from '../utils/getUriParams';
 
 const certificate = {}
 
-export async function getAll (req, res, next) {
-  const graphdb = new GraphdbService()
-  await graphdb.initCliente()
+let certificates = []
 
-  const { records: allRecords } = await graphdb.getAllClass('sb:EducationalSmartContract')
-  const all = await Promise.all(
-    allRecords.map(async ({ s }) => {
-      const address = getUrlParams(s)
-      return {
-        address,
-        ...await getPropertiesByName(address)
-      }
-    }))
-  res.json(all)
+export async function getAll (req, res, next) {
+  try {
+    const graphdb = new GraphdbService()
+    await graphdb.initCliente()
+
+    const response = await graphdb.getAllClass('sb:EducationalSmartContract')
+    const allRecords = response && response.records
+
+    if (!(certificates.length && certificates.length < allRecords.length)) {
+      certificates = await Promise.all(
+        allRecords.map(async ({ s }) => {
+          const address = getUrlParams(s)
+          return {
+            address,
+            ...await getPropertiesByName(address)
+          }
+        }))
+    }
+
+    res.json(certificates)
+  } catch (error) {
+    console.log('Error', error)
+  }
 }
 
 const getPropertiesByName = async (id) => {
@@ -30,11 +41,15 @@ const getPropertiesByName = async (id) => {
 }
 
 export async function getOne (req, res, next) {
-  const { id } = getParams(req, ['id'])
-  // const user = await models.user.findOne({ where: { id } })
-  const certificate = await getPropertiesByName(id)
-  if (!certificate) return res.sendStatus(404).send({ message: 'not found' })
-  return res.json(certificate)
+  try {
+    const { id } = getParams(req, ['id'])
+    // const user = await models.user.findOne({ where: { id } })
+    const certificate = await getPropertiesByName(id)
+    if (!certificate) return res.sendStatus(404).send({ message: 'not found' })
+    return res.json(certificate)
+  } catch (error) {
+    console.log('error', error)
+  }
 }
 
 export async function update (req, res, next) {

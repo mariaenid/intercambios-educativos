@@ -1,72 +1,51 @@
 import React from "react";
 import {
   AccountData,
-  ContractData,
-  ContractForm,
 } from "drizzle-react-components";
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import Table from "components/Table";
 
 import logo from "./logo.png";
 
-export default ({ accounts }) => (
-  <div className="App">
-    <ToastContainer />
-    <div>
-      <img src={logo} alt="drizzle-logo" />
-      <h1>Drizzle Examples</h1>
-      <p>Examples of how to get started with Drizzle in various situations.</p>
-    </div>
+export default ({ accounts, certificate }) => {
+  console.log("Certificates", certificate)
 
-    <div className="section">
-      <h2>Active Account</h2>
-      <AccountData accountIndex="0" units="ether" precision="3" />
-    </div>
+  const routeChange = (event, rowData) => {
+    console.log('event', event, rowData);
+    let path = `${rowData.type.toLowerCase()}/${rowData.ca}`;
+    this.props.history.push(path);
+  }
 
-    <div className="section">
-      <h2>SimpleStorage</h2>
-      <p>
-        This shows a simple ContractData component with no arguments, along with
-        a form to set its value.
-      </p>
-      <p>
-        <strong>Stored Value: </strong>
-        <ContractData contract="SimpleStorage" method="storedData" />
-      </p>
-      <ContractForm contract="SimpleStorage" method="set" />
-    </div>
+  const dataDoc = {
+    columns: [
+      { title: "Name", field: "name", type: "string" },
+      { title: "Address", field: "address", type: "string" },
+      { title: "Tipo", field: "type", type: "string" }
+      //TODO: agregar más detalles de la competencia, ver ejemplo Senescyt
+    ],
+    data: certificate.filter(c => c.address === accounts[0])
+  }
+  const renderTable = ({ data, columns, key }) => <Table data={data} columns={columns} contractType={"certificados"} onClickAction={routeChange}/>;
 
-    <div className="section">
-      <h2>TutorialToken</h2>
-      <p>
-        Here we have a form with custom, friendly labels. Also note the token
-        symbol will not display a loading indicator. We've suppressed it with
-        the <code>hideIndicator</code> prop because we know this variable is
-        constant.
-      </p>
-      <p>
-        <strong>Total Supply: </strong>
-        <ContractData
-          contract="TutorialToken"
-          method="totalSupply"
-          methodArgs={[{ from: accounts[0] }]}
-        />{" "}
-        <ContractData contract="TutorialToken" method="symbol" hideIndicator />
-      </p>
-      <p>
-        <strong>My Balance: </strong>
-        <ContractData
-          contract="TutorialToken"
-          method="balanceOf"
-          methodArgs={[accounts[0]]}
-        />
-      </p>
-      <h3>Send Tokens</h3>
-      <ContractForm
-        contract="TutorialToken"
-        method="transfer"
-        labels={["To Address", "Amount to Send"]}
-      />
+
+  return (
+    <div className="App">
+      <ToastContainer />
+      <div>
+        <img src={logo} alt="account-logo" className="my_account" />
+        <h1>My Wallet</h1>
+      </div>
+
+      <div className="section">
+        <h2>Active Account</h2>
+        <p>{accounts[0]}</p>
+      </div>
+
+      <div className="section">
+        <h2>Certificates</h2>
+        {renderTable(dataDoc)}
+      </div>
     </div>
-  </div>
-);
+  );
+}

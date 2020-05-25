@@ -18,7 +18,7 @@ const styles = () => ({
       <React.Fragment>
         <MaterialTable
           className={classes.root}
-          title="Listado"
+          title="List"
           columns={columns}
           data={data}
           actions={[

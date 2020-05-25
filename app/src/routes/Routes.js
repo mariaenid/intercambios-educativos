@@ -10,6 +10,8 @@ import CompetenciasContainer from "competencias/competenciasContainer";
 import ConsorcioEditContainer from "consorcios/ConsorcioEditContainer";
 import MainContainer from "containers/MainContainer";
 
+import MyContainer from "../MyContainer";
+
 // import Redirect from "./components/redirect";
 //import SayHello from "./components/sayHello";
 // import NavBar from "./components/navbar";
@@ -48,7 +50,7 @@ class Routes extends React.Component {
             render={() => <SearchContainer open={open} />}
           />
           <Route
-            path="/consortium/:id"
+            path="/institute/:id"
             exact
             component={ConsorciosContainer}
           ></Route>
@@ -67,6 +69,11 @@ class Routes extends React.Component {
             exact
             component={CompetenciasContainer}
           ></Route>
+          <Route
+            path="/my_account"
+            exact
+            component={MyContainer}>
+          </Route>
         </Switch>
       </Router>
     );

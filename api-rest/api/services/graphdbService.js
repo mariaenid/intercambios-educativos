@@ -1,5 +1,4 @@
 import { EnapsoGraphDBClient } from "@innotrade/enapso-graphdb-client"
-import fs from 'fs'
 import { prefixes } from '../constants/prefix'
 import { EducationalSmartContract } from '../models/EducationalSmartContract'
 import { Consortium } from '../models/Consortium'
@@ -50,6 +49,16 @@ export class GraphdbService {
     }
   }
 
+  processText (data) {
+    let text = Base64.encode(data);
+
+    while (text[text.length - 1] === '=') {
+      text = text.slice(0, -1)
+    }
+
+    return text;
+  }
+
   async saveNewAcademicCertificate (log) {
     // const educationalContract = new EducationalSmartContract({isTypeOf: 'certificate', address: '0x2324', controlsAccount: 'UTPL'})
     // return educationalContract
@@ -66,11 +75,12 @@ export class GraphdbService {
       address: contractAddress,
       controlsAccount: items.addressOwner,
       belongsTo: items.addressOwner,
-      isValidatedBy: items.contractConsortium
+      isValidatedBy: items.contractConsortium,
+      title: this.processText(items.nameCompetence)
     })
 
     const person = new Person({
-      name: Base64.encode(items.nameOwner).slice(0, -1),
+      name: this.processText(items.nameOwner),
       hasAccount: items.addressOwner,
       hasDigitalCertificate: contractAddress
     })
@@ -101,7 +111,7 @@ export class GraphdbService {
     const consortium = new Consortium({
       hasAccount: items.addressConsortium,
       hasDigitalRegister: contractAddress,
-      name: Base64.encode(items.name).slice(0, -1)
+      name: this.processText(items.name)
     })
 
     //  new Consortium({hasCredential: '', hasDigitalRegister: '', alumni: '', hasAccount: '', name:''})
@@ -111,6 +121,14 @@ export class GraphdbService {
     await Promise.all(triples.map(async(triple) => await this.updateTriples(triple)))
     await Promise.all(digitalRegister.triples.map(async(triple) => await this.updateTriples(triple)))
     return 'OK'
+  }
+
+  sleep (milliseconds) {
+    const date = Date.now();
+    let currentDate = null;
+    do {
+      currentDate = Date.now();
+    } while (currentDate - date < milliseconds);
   }
 
   async updateTriples (triple) {
@@ -125,6 +143,9 @@ export class GraphdbService {
         'Insert ' +
           (resp.success ? 'succeeded' : 'failed') +
       ':\n' + JSON.stringify(resp, null, 2), triple)
+
+      // delay
+      this.sleep(50)
     } catch (e) {
       console.log(`Error updating new record ${e}`)
     }
@@ -156,7 +177,7 @@ export class GraphdbService {
     if (response.success) {
       let resp = await this.graphDBEndpoint.transformBindingsToResultSet(response)
       console.log('Query succeeded:\n' + JSON.stringify(resp, null, 2))
-      return resp
+      return resp || []
     } else {
       console.log('Query failed:\n' + JSON.stringify(response, null, 2))
     }
@@ -185,6 +206,7 @@ export class GraphdbService {
     if (response.success) {
       let resp = await this.graphDBEndpoint.transformBindingsToResultSet(response)
       console.log('Query succeeded:\n' + JSON.stringify(resp, null, 2))
+
       return resp
     } else {
       console.log('Query failed:\n' + JSON.stringify(response, null, 2))

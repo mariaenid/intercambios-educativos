@@ -15,7 +15,7 @@ const MainContainer = (props) => {
     return (
     <MenuBar
       title={process.env.REACT_APP_WEBSITE_NAME}
-      navegacion={[{text: "Busqueda", to: "/"}, {text: "Registro", to: "/edit"}]}
+      navegacion={[{text: "My Account", to: "/my_account"}, {text: "Busqueda", to: "/"}, {text: "Registro", to: "/edit"}]}
       handleDrawerOpen={handleDrawerOpen}
       open={open}
       handleDrawerClose={handleDrawerClose}
