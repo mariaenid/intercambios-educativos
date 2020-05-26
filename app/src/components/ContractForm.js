@@ -62,48 +62,27 @@ class ContractForm extends Component {
     this.state = initialState;
   }
 
-  handleSubmit = async event => {
-    const { method, contractName, currentProvider, accounts, inputs } = this.props;
+  handleSubmit = async (event) => {
+    const { contractName, currentProvider, accounts, inputs } = this.props;
 
-    event.preventDefault();
+    try {
+      event.preventDefault();
 
-    const convertedInputs = this.inputs.map(input => {
-      if (input.type === "bytes32") {
-        return this.utils.toHex(inputs[input.name]);
-      }
-      return inputs[input.name];
-    });
+      const truffleContract = await contract(getContractArtifacts(contractName));
+      await truffleContract.setProvider(currentProvider);
+      console.log("deploy ", inputs, truffleContract)
 
-    if(method) {
-      if (this.props.sendArgs) {
-        return this.contracts[this.props.contractName].methods[
-          this.props.method
-        ].cacheSend(...convertedInputs, this.props.sendArgs);
-      }
-
-      return this.contracts[this.props.contractName].methods[
-        this.props.method
-      ].cacheSend(...convertedInputs);
+      return await truffleContract.new(
+        ...inputs,
+        { from: accounts[0] }
+      );
+    } catch (error) {
+      console.log("Error", error)
     }
-
-
-    const truffleContract = await contract(getContractArtifacts(contractName));
-    await truffleContract.setProvider(currentProvider);
-
-    return await truffleContract.new(
-      "0x554e3DEF5789Fb733E1173369f48F3F79901384C",
-      "Universidad Tecnica Particular de Loja",
-      "0",
-      "Ingeniera en Sistemas",
-      "0x554e3DEF5789Fb733E1173369f48F3F79901384C",
-      "Maria Pineda",
-      "1105148595",
-      { from: accounts[0] }
-    );
   };
 
-  render() {
-    const { currentProvider, handleSubmit, classes } = this.props;
+  render () {
+    const { handleSubmit, classes } = this.props;
 
     if (this.props.render) {
       return this.props.render({
@@ -115,11 +94,9 @@ class ContractForm extends Component {
 
     return (
       <React.Fragment>
-        {currentProvider && (
-            <Button onClick={handleSubmit || this.handleSubmit} className={classes.button}>
-            Submitss
-          </Button>
-        )}
+        <Button onClick={handleSubmit || this.handleSubmit} className={classes.button}>
+          Submit
+        </Button>
       </React.Fragment>
     );
   }

@@ -1,5 +1,5 @@
-import AcademicConsortium from "contracts/AcademicConsortium.json";
-import AcademicCertificate from "contracts/AcademicCertificate.json";
+// import AcademicConsortium from "contracts/AcademicConsortium.json";
+// import AcademicCertificate from "contracts/AcademicCertificate.json";
 import RegistroCompetenciaAcademica from "contracts/RegistroCompetenciaAcademica.json";
 
 const options = {

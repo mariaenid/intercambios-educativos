@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
+
+import { drizzleConnect } from "drizzle-react";
 
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/styles";
@@ -48,6 +50,15 @@ function ConsorcioEditContainer(props) {
 
   const { classes } = props;
 
+  useEffect(() => {
+    const prevConsorcio = state["consorcio"] || {};
+    setState(prevState => ({
+      ...prevState,
+      ["consorcio"]: { ...prevConsorcio, "address": props.currentAccount }
+    }));
+
+  },[props.currentAccount])
+
   const getSteps = () => {
     return ["Datos informativos", "Guardado"];
   };
@@ -81,13 +92,11 @@ function ConsorcioEditContainer(props) {
 
   const renderEditContainer = () =>
     <ContractFormContainer
-      contractName='AcademicCertificate'
-      method='set'
+      contractName='AcademicConsortium'
       labels={INSTITUTE_PARAMS}
-      inputs={INSTITUTE_PARAMS.reduce((acc, p) => {
-          acc[p] = state.consorcio[p]
-          return acc
-        }, {})}
+      inputs={INSTITUTE_PARAMS.map((p) => {
+          return state.consorcio[p]
+        })}
     />
 
   const getStepContent = step => {
@@ -96,8 +105,8 @@ function ConsorcioEditContainer(props) {
       case 0:
           const names = INSTITUTE_PARAMS;
           const values = names.map(name => state[type][name] || '')
-        console.log("statess", state)
-        return (
+
+          return (
           <ColorTextFields
             names={names}
             handleChange={handleChangeInputs}
@@ -123,4 +132,10 @@ ConsorcioEditContainer.PropTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(ConsorcioEditContainer);
+const mapStateToProps = state => {
+  return {
+    currentAccount: state.accounts[0]
+  };
+};
+
+export default withStyles(styles)(drizzleConnect(ConsorcioEditContainer, mapStateToProps));

@@ -1,6 +1,7 @@
-import React from "react";
-
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
+
+import { drizzleConnect } from "drizzle-react";
 import { withStyles } from "@material-ui/styles";
 
 import Steps from "components/Steps";
@@ -8,6 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import ColorTextFields from "components/form";
 import CardForm from "../components/CardForm";
 import { Card } from "@material-ui/core";
+import ContractFormContainer from "../containers/ContractFormContainer";
 
 import CERTIFICATE_PARAMS from "../templates/certificate.json"
 
@@ -44,7 +46,7 @@ const styles = theme => ({
 });
 
 function CertificateEditContainer(props) {
-  const [formulario, setFormulario] = React.useState({ consorcio: {}, user: {}, competencias: {} });
+  const [state, setState] = React.useState({ user: {} });
   const { classes } = props;
 
   const getSteps = () => {
@@ -54,23 +56,22 @@ function CertificateEditContainer(props) {
     ];
   };
 
-  const onClickAction = (event, rowEvent) => {
-    console.log("rowEvent", rowEvent);
-    setFormulario({ ...formulario, [rowEvent.type]: { ...rowEvent } });
-    console.log(formulario);
-    /*
-    this.setState({consorcio: {
-      contractAddress, name
-    }}) */
-  };
+  useEffect(() => {
+    const prevUser = state["user"] || {};
+    setState(prevState => ({
+      ...prevState,
+      ["user"]: { ...prevUser, "address": props.currentAccount }
+    }));
+
+  },[props.currentAccount])
 
   const handleChangeInputs = event => {
     const type = "user";
     const keyLabel = event.target.name;
     const value = event.target.value;
-    const previousValue = formulario[type] || {};
-    setFormulario({
-      ...formulario,
+    const previousValue = state[type] || {};
+    setState({
+      ...state,
       [type]: { ...previousValue, [keyLabel]: value }
     });
     // TODO: agregar el valor del address del usuario
@@ -83,15 +84,27 @@ function CertificateEditContainer(props) {
           {"Edit Certificate"}
         </Typography>
         <React.Fragment>
-          {Object.keys(formulario["user"]).map(keyItem => {
+          {Object.keys(state["user"]).map(keyItem => {
             if (keyItem !== "tableData") {
               return (
-                <CardForm className={classes.drawerHeader} name={keyItem} text={formulario["user"][keyItem]} />
+                <CardForm className={classes.drawerHeader} name={keyItem} text={state["user"][keyItem]} />
               );
             }
           })}
         </React.Fragment>
+        <React.Fragment>
+            {renderEditContainer()}
+        </React.Fragment>
     </Card>;
+
+const renderEditContainer = () =>
+  <ContractFormContainer
+    contractName='AcademicCertificate'
+    labels={CERTIFICATE_PARAMS}
+    inputs={CERTIFICATE_PARAMS.map((p) => {
+        return state.user[p]
+      })}
+  />
 
   const getStepContent = (step) => {
     let type = "";
@@ -99,7 +112,7 @@ function CertificateEditContainer(props) {
       case 0:
         type = "user";
         const names = CERTIFICATE_PARAMS;
-        const values = names.map(name => formulario[type][name] || '');
+        const values = names.map(name => state[type][name] || '');
 
         return (
           <ColorTextFields
@@ -121,4 +134,10 @@ CertificateEditContainer.PropTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(CertificateEditContainer)
+const mapStateToProps = state => {
+  return {
+    currentAccount: state.accounts[0]
+  };
+};
+
+export default withStyles(styles)(drizzleConnect(CertificateEditContainer, mapStateToProps));

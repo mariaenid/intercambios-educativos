@@ -27,12 +27,13 @@ class CompetenciasContainer extends React.Component {
     const { id } = this.props.match.params;
 
     return (
-      <ContractDataContainer
-        contractAddress={id}
-        contractName="AcademicCertificate"
-        MethodName="get"
-        render={this.renderCertificate}
-      />
+        <ContractDataContainer
+          title={"Certificate Smart Contract"}
+          contractAddress={id}
+          contractName="AcademicCertificate"
+          MethodName="get"
+          render={this.renderCertificate}
+        />
     );
   }
 }

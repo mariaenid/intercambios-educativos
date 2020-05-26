@@ -15,7 +15,6 @@ const institutes = require("./fixtures/institutes.json")
 const competences = require("./fixtures/competences.json");
 
 const STUDENTS_NUMBER = 5;
-const INSTITUTES_NUMBER = institutes.length;
 
 const CONTRACT_NAMES = ["AcademicConsortium", "AcademicCertificate"];
 
@@ -28,7 +27,7 @@ const deployContracts = async (web3) => {
                 const {contractAddress, name, account: temp} = await createAcademicContract(web3, "AcademicConsortium", institute);
                 dataInfo.push({...temp, ...institute});
 
-                for (let i=0; i< STUDENTS_NUMBER; i++) {
+                for (let i=0; i < STUDENTS_NUMBER; i++) {
                     const certificate = certificateMock();
 
                     certificate.addressInstitute = contractAddress;
@@ -64,10 +63,7 @@ const createAcademicContract = async (web3, contractName, data) => {
 
 /*
     Main Script
-
-    console.log("holisss", certificateMock());
 */
-
 
 // add provider
 const provider = addProvider();

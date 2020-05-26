@@ -22,15 +22,15 @@ class ContractFormContainer extends React.Component {
   }
 
   state = {
-    web3Contract: {},
+    web3Contract: null,
     byteCode: {},
     context: {},
-    instanced: false
+    instanced: false,
+    currentProvider: null
   };
 
   async componentDidMount() {
     const { contractName } = this.props;
-
     const byteCode = getContractArtifacts(contractName).byteCode;
     const abi = getContractArtifacts(contractName).abi;
 
@@ -38,25 +38,28 @@ class ContractFormContainer extends React.Component {
       data: byteCode
     });
     web3Contract.options.data = byteCode;
+
     const contractConfig = {
       contractName: contractName,
-      web3Contract
+      web3Contract: web3Contract
     };
 
     await this.state.context.drizzle.addContract(contractConfig);
 
     this.setState({
-      instanced: !!this.state.context.drizzle.contracts[contractName],
-      currentProvider: web3Contract.currentProvider
+      instanced: !!this.state.context.drizzle.web3.eth.currentProvider,
+      currentProvider: await this.state.context.drizzle.web3.eth.currentProvider
     });
+
   }
 
   render() {
     const { contractName } = this.props;
-    const { instanced, currentProvider } = this.state;
+    const { currentProvider } = this.state;
+    console.log("CurrentProvicer", this.state.currentProvider)
     return (
       <React.Fragment>
-        {instanced && (
+        {!!currentProvider && (
           <ContractForm
             contractName={contractName}
             currentProvider={currentProvider}
@@ -68,11 +71,6 @@ class ContractFormContainer extends React.Component {
   }
 }
 
-ContractFormContainer.defaultProps = {
-  currentProvider: {},
-  truffleContract: {},
-  method: ""
-};
 ContractFormContainer.contextTypes = {
   drizzle: PropTypes.object
 };

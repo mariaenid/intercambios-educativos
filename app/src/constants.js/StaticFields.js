@@ -11,24 +11,24 @@ export const CONTRACT_TYPE = {
 }
 
 export const ACADEMIC_CONSORTIUM_FIELDS = [
-    { 'label': 'Consortium', 'key': 'addressConsortium' },
-    { 'label': 'Name', 'key': 'name' },
+    { 'label': 'Institute Contract address', 'key': 'addressConsortium' },
+    { 'label': 'Institute Name', 'key': 'name' },
     { 'label': 'Phone', 'key': 'phone' },
     { 'label': 'Email', 'key': 'email' },
     { 'label': 'Country', 'key': 'country' },
     {'label': 'City', 'key': 'city'},
-    {'label': 'Consortium type', 'key': 'consortiumType'},
     // {'label': 'Contract Address', 'key': 'contractAddress'} should be or not
 ];
 
 export const ACADEMIC_CERTIFICATE_FIELDS = [
-    { 'label': 'Consortium contract address', 'key': 'contractAddressConsortiumAcademic' },
-    { 'label': 'Consortium Name', 'key': 'nameConsortiumAcademic' },
-    {'label': '', 'key': 'indexCompetence'},
+    { 'label': 'Institute Contract address', 'key': 'addressInstitute' },
+    { 'label': 'Institute Name', 'key': 'nameConsortiumAcademic' },
     { 'label': 'Name Competence', 'key': 'nameCompetence'},
-    { 'label': 'Address Owner', 'key': 'addressOwner'},
-    { 'label': 'Name Owner', 'key': 'nameOwner'},
+    { 'label': 'Address Owner', 'key': 'address'},
+    { 'label': 'Name Owner', 'key': 'name'},
     { 'label': 'Identification Owner', 'key': 'identificationOwner'},
+    { 'label': 'Email', 'key': 'email'},
+    { 'label': 'Country', 'key': 'country'},
 ]
 
 const  staticFields = {

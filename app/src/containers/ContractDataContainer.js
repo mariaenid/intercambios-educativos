@@ -52,17 +52,16 @@ class ContractDataContainer extends React.Component {
     }
 
     render () {
-        const { contractAddress, MethodName, render } = this.props;
+        const { contractAddress, MethodName, render, title } = this.props;
         const { instanced } = this.state;
         console.log(this.state.dataKey);
 
         return(
-        <div>
-            <div className="section">
-                <h2>Contracto {contractAddress}</h2>
+        <div className="section">
+            <div>
+                <h3>{title}: {contractAddress}</h3>
             </div>
             {instanced && (<p>
-                <strong>Datos del contrato inteligente: </strong>
                 <ContractData
                     contract={contractAddress}
                     method={MethodName}
