@@ -1,6 +1,7 @@
 import MyComponent from "MyComponent";
 import { drizzleConnect } from "drizzle-react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 const mapStateToPropsDrizzle = state => {
   return {
@@ -16,4 +17,4 @@ const mapStateToProps = state => {
 
 const MyContainer = drizzleConnect(MyComponent, mapStateToPropsDrizzle);
 
-export default connect(mapStateToProps)(MyContainer);
+export default withRouter(connect(mapStateToProps)(MyContainer));

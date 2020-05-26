@@ -117,7 +117,7 @@ class ContractForm extends Component {
       <React.Fragment>
         {currentProvider && (
             <Button onClick={handleSubmit || this.handleSubmit} className={classes.button}>
-            Submit
+            Submitss
           </Button>
         )}
       </React.Fragment>

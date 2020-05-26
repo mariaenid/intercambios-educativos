@@ -8,11 +8,16 @@ let institutes = []
 
 export async function getAll (req, res, next) {
   try {
+    if (institutes.length > 0) {
+      res.json(institutes)
+      return
+    }
+
     const graphdb = new GraphdbService()
     await graphdb.initCliente()
 
     const response = await graphdb.getAllClass('org:Consortium')
-    const allRecords = response && response.records
+    const allRecords = response && response.records || []
 
     if (!(institutes.length && institutes.length < allRecords.length)) {
       institutes = await Promise.all(

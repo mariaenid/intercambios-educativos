@@ -2,13 +2,16 @@ import React from "react";
 import clsx from "clsx";
 import { withStyles } from "@material-ui/styles";
 
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+
 import PropTypes from "prop-types";
 import SideNavegation from "components/SideNavegation";
 import Typography from "@material-ui/core/Typography";
 
 import CertificateEditContainer from "containers/CertificateEditContainer";
 import ConsorcioEditContainer from "./ConsorcioEditContainer";
-import CompetenciasEditContainer from 'containers/CompetenciasEditContainer';
+// import CompetenciasEditContainer from 'containers/CompetenciasEditContainer';
 
 const styles = theme => ({
   drawerHeader: {
@@ -39,11 +42,11 @@ const styles = theme => ({
 class EditContainer extends React.Component {
 
   renderForm = (key) =>
-    key === 'certificados' ? <CertificateEditContainer /> : key === 'consorcios' ?<ConsorcioEditContainer />:  <CompetenciasEditContainer />;
+    key === 'certificados' ? <CertificateEditContainer /> : <ConsorcioEditContainer />;
 
   render() {
     const { classes, open } = this.props;
-    const options = [{title: "Consorcios", key: "consorcios"}, {title: "Certificados", key: "certificados"}, {title: "Competencias", key: "competencias"}];
+    const options = [{title: "Consorcios", key: "consorcios"}, {title: "Certificados", key: "certificados"}];
     const data = options.reduce((acc, {title, key}) => acc = {[key]: this.renderForm(key), ...acc}, {});
 
     return (
@@ -66,4 +69,23 @@ EditContainer.propTypes = {
   open: PropTypes.bool
 };
 
-export default withStyles(styles)(EditContainer);
+const mapStateToProps = (state) => {
+  const consortium = (state.consortium && state.consortium.data) || [];
+  const certificate = (state.certificate && state.certificate.data) || [];
+  const person = (state.person && state.person.data) || [];
+
+  const filteredCertificate = certificate.filter(p => p.isTypeOf === "AcademicCertificate");
+
+  return ({consortium: consortium.map(row => {
+    const {hasAccount: address, hasDigitalRegister: ca, ...rest} = row;
+    return ({...rest, address, ca, type: 'institute'})}),
+
+    certificate: filteredCertificate.map(row => {
+      const { address, controlsAccount, ...rest} = row;
+      const {name} = person.find(({hasAccount}) => hasAccount === controlsAccount)
+      return ({...rest, address, ca: address, name, type: 'certificate'})
+    })
+  })
+}
+
+export default connect(mapStateToProps)(withRouter(withStyles(styles)(EditContainer)));

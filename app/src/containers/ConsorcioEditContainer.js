@@ -4,21 +4,13 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/styles";
 
 import Steps from "components/Steps";
-import Typography from "@material-ui/core/Typography";
 import ColorTextFields from "components/form";
 import CardForm from "../components/CardForm";
 import { Card } from "@material-ui/core";
-import AddElements from "../components/AddElements";
 
 import ContractFormContainer from "../containers/ContractFormContainer";
-import { ACADEMIC_CONSORTIUM_FIELDS } from "../constants.js/StaticFields";
 
-const consorcioMock = {
-  columns: [
-    { title: "Name", field: "name" },
-    { title: "Tipo", field: "type" }
-  ]
-};
+import INSTITUTE_PARAMS from "../templates/institute.json"
 
 const styles = theme => ({
   drawerHeader: {
@@ -52,13 +44,12 @@ const styles = theme => ({
 function ConsorcioEditContainer(props) {
   const [state, setState] = React.useState({
     consorcio: {},
-    competencias: []
   });
 
   const { classes } = props;
 
   const getSteps = () => {
-    return ["Datos informativos", "Competencias", "Guardado"];
+    return ["Datos informativos", "Guardado"];
   };
 
   const handleChangeInputs = event => {
@@ -74,98 +65,38 @@ function ConsorcioEditContainer(props) {
     // TODO: agregar el valor del address del usuario
   };
 
-  const onRowAdd = newData =>
-    new Promise(resolve => {
-      setTimeout(() => {
-        resolve();
-        setState(prevState => {
-          const competencias = [...prevState.competencias];
-          competencias.push(newData);
-          return { ...prevState, competencias };
-        });
-      }, 600);
-    });
-
-  const onRowUpdate = (newData, oldData) =>
-    new Promise(resolve => {
-      setTimeout(() => {
-        resolve();
-        if (oldData) {
-          setState(prevState => {
-            const competencias = [...prevState.competencias];
-            competencias[competencias.indexOf(oldData)] = newData;
-            return { ...prevState, competencias };
-          });
-        }
-      }, 600);
-    });
-
-  const onRowDelete = oldData =>
-    new Promise(resolve => {
-      setTimeout(() => {
-        resolve();
-        setState(prevState => {
-          const competencias = [...prevState.competencias];
-          competencias.splice(competencias.indexOf(oldData), 1);
-          return { ...prevState, competencias };
-        });
-      }, 600);
-    });
-
-  const renderCompetencias = () => (
-    <AddElements
-      title={"Competencias disponibles"}
-      columns={consorcioMock.columns}
-      onRowAdd={onRowAdd}
-      onRowUpdate={onRowUpdate}
-      onRowDelete={onRowDelete}
-      data={state.competencias}
-    />
-  );
-
   const renderForm = () =>
-    <Card className={classes.content}>
-      {Object.keys(state.consorcio).map((keyName) =>
-      <React.Fragment>
-        <Typography gutterBottom variant="h5" component="h5" className={classes.capitalize}>
-          {keyName.toLocaleLowerCase()}
-        </Typography>
-        {Object.keys(state.consorcio[keyName]).map(keyItem => {
-          if (keyItem !== "tableData") {
-            return (
-              <CardForm className={classes.drawerHeader} name={keyItem} text={state.consorcio[keyName][keyItem]} />
-            );
-          }
-        })}
-      </React.Fragment>)}
-      <React.Fragment>
-      {renderEditContainer()}
-      </React.Fragment>
-    </Card>;
+    <React.Fragment>
+      {!!Object.keys(state.consorcio).length ?
+        <Card className={classes.content}>
+          {Object.keys(state.consorcio).map((keyName) =>
+          <React.Fragment>
+            <CardForm className={classes.drawerHeader} name={keyName} text={state.consorcio[keyName]} />
+          </React.Fragment>)}
+          <React.Fragment>
+            {renderEditContainer()}
+          </React.Fragment>
+        </Card> : <Card>No Records Found</Card>}
+    </React.Fragment>;
 
   const renderEditContainer = () =>
     <ContractFormContainer
       contractName='AcademicCertificate'
       method='set'
-      labels={ACADEMIC_CONSORTIUM_FIELDS.map(field => field.key)}
-      inputs={{
-        'contractAddressConsortiumAcademic': '0x554e3DEF5789Fb733E1173369f48F3F79901384C',
-        'nameConsortiumAcademic': 'Universidad Tecnica Particular de Loja',
-        'indexCompetence': '0',
-        'nameCompetence': 'Ingeniera en Sistemas',
-        'addressOwner': '0x554e3DEF5789Fb733E1173369f48F3F79901384C',
-        'nameOwner': 'Maria Pineda',
-        'identificationOwner': '1105148595'
-      }}
+      labels={INSTITUTE_PARAMS}
+      inputs={INSTITUTE_PARAMS.reduce((acc, p) => {
+          acc[p] = state.consorcio[p]
+          return acc
+        }, {})}
     />
 
   const getStepContent = step => {
     let type = "consorcio";
     switch (step) {
       case 0:
-          const names = ["name", "address", "direccion"];
+          const names = INSTITUTE_PARAMS;
           const values = names.map(name => state[type][name] || '')
-        console.log(values)
+        console.log("statess", state)
         return (
           <ColorTextFields
             names={names}
@@ -173,9 +104,6 @@ function ConsorcioEditContainer(props) {
             values={values}
           ></ColorTextFields>
         );
-      case 1:
-        type = "competencias";
-        return renderCompetencias(type);
       default:
         return (renderForm());
     }

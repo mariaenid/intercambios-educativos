@@ -4,50 +4,14 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/styles";
 
 import Steps from "components/Steps";
-import Table from "components/Table";
-import AddIcon from "@material-ui/icons/Add";
 import Typography from "@material-ui/core/Typography";
 import ColorTextFields from "components/form";
 import CardForm from "../components/CardForm";
 import { Card } from "@material-ui/core";
 
-import ContractFormContainer from "../containers/ContractFormContainer";
-import { ACADEMIC_CONSORTIUM_FIELDS } from "../constants.js/StaticFields";
-
-const consorciosMock = {
-  columns: [
-    { title: "Name", field: "name", type: "string" },
-    { title: "Address", field: "addressContract", type: "string" },
-    { title: "Tipo", field: "type", type: "string" }
-    //TODO: agregar más detalles de la competencia, ver ejemplo Senescyt
-  ],
-  data: [
-    {
-      name: "UTPL",
-      addressContract: "0xd994F90Bd30E1E033FC1Bba4C5B2Ad8747922c91",
-      type: "consorcio"
-    }
-  ]
-};
+import CERTIFICATE_PARAMS from "../templates/certificate.json"
 
 // TODO: esto vendrá de un contrato inteligente (o estará guardado en una ontología)
-const certificatesTypesMock = {
-  columns: [
-    { title: "Name", field: "name", type: "string" },
-    { title: "Tipo", field: "type", type: "string" }
-    //TODO: agregar más detalles de la competencia, ver ejemplo Senescyt
-  ],
-  data: [
-    {
-      name: "Electronica y Telecomunicaciones",
-      type: "competencias"
-    },
-    {
-      name: "Medicina",
-      type: "competencias"
-    }
-  ]
-};
 
 const styles = theme => ({
   drawerHeader: {
@@ -85,9 +49,7 @@ function CertificateEditContainer(props) {
 
   const getSteps = () => {
     return [
-      "Selección de consorcio",
-      "Selección de certificado",
-      "Datos informativos",
+      "Certificate Information",
       "Guardado"
     ];
   };
@@ -100,33 +62,6 @@ function CertificateEditContainer(props) {
     this.setState({consorcio: {
       contractAddress, name
     }}) */
-  };
-
-  const renderListSelection = (type, data) => {
-    return (
-      <div>
-        {!!formulario[type] && (
-          <main className={classes.content}>
-            {Object.keys(formulario[type]).map(line => {
-              if (line !== "tableData") {
-                return (
-                  <Typography className={classes.capitalize}>
-                    {line}: {formulario[type][line]}
-                  </Typography>
-                );
-              }
-            })}
-          </main>
-        )}
-        <Table
-          columns={data.columns}
-          data={data.data}
-          tooltip={"Select"}
-          onClickAction={onClickAction}
-          icon={() => <AddIcon />}
-        />
-      </div>
-    );
   };
 
   const handleChangeInputs = event => {
@@ -144,52 +79,26 @@ function CertificateEditContainer(props) {
 
   const renderForm = () =>
     <Card className={classes.content}>
-      {Object.keys(formulario).map((keyName) =>
-      <React.Fragment>
         <Typography gutterBottom variant="h5" component="h5" className={classes.capitalize}>
-          {keyName.toLocaleLowerCase()}
+          {"Edit Certificate"}
         </Typography>
-        {Object.keys(formulario[keyName]).map(keyItem => {
-          if (keyItem !== "tableData") {
-            return (
-              <CardForm className={classes.drawerHeader} name={keyItem} text={formulario[keyName][keyItem]} />
-            );
-          }
-        })}
-      </React.Fragment>)}
-      <React.Fragment>
-      {renderEditContainer()}
-      </React.Fragment>
+        <React.Fragment>
+          {Object.keys(formulario["user"]).map(keyItem => {
+            if (keyItem !== "tableData") {
+              return (
+                <CardForm className={classes.drawerHeader} name={keyItem} text={formulario["user"][keyItem]} />
+              );
+            }
+          })}
+        </React.Fragment>
     </Card>;
-
-  const renderEditContainer = () =>
-    <ContractFormContainer
-      contractName='AcademicCertificate'
-      method='set'
-      labels={ACADEMIC_CONSORTIUM_FIELDS.map(field => field.key)}
-      inputs={{
-        'contractAddressConsortiumAcademic': '0x554e3DEF5789Fb733E1173369f48F3F79901384C',
-        'nameConsortiumAcademic': 'Universidad Tecnica Particular de Loja',
-        'indexCompetence': '0',
-        'nameCompetence': 'Ingeniera en Sistemas',
-        'addressOwner': '0x554e3DEF5789Fb733E1173369f48F3F79901384C',
-        'nameOwner': 'Maria Pineda',
-        'identificationOwner': '1105148595'
-      }}
-    />
 
   const getStepContent = (step) => {
     let type = "";
     switch (step) {
       case 0:
-        type = "consorcio";
-        return renderListSelection(type, consorciosMock);
-      case 1:
-        type = "competencias";
-        return renderListSelection(type, certificatesTypesMock);
-      case 2:
         type = "user";
-        const names = ["name", "address", "identificacion", "direccion"];
+        const names = CERTIFICATE_PARAMS;
         const values = names.map(name => formulario[type][name] || '');
 
         return (

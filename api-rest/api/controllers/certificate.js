@@ -9,11 +9,16 @@ let certificates = []
 
 export async function getAll (req, res, next) {
   try {
+    if (certificates.length > 0) {
+      res.json(certificates)
+      return
+    }
+
     const graphdb = new GraphdbService()
     await graphdb.initCliente()
 
     const response = await graphdb.getAllClass('sb:EducationalSmartContract')
-    const allRecords = response && response.records
+    const allRecords = response && response.records || []
 
     if (!(certificates.length && certificates.length < allRecords.length)) {
       certificates = await Promise.all(
