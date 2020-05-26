@@ -6,25 +6,43 @@ import Table from "components/Table";
 
 import logo from "./logo.png";
 
-export default ({ accounts, certificate, history }) => {
+export default ({ accounts, certificate, history, consortium }) => {
 
-  const routeChange = (event, rowData) => {
-    console.log('event', rowData);
+  const routeChangeCertificate = (event, rowData) => {
+    // console.log('event', rowData);
 
-    let path = `certificate/${rowData.address}`;
+    let path = `certificate/${rowData.ca}`;
     history.push(path);
   }
+  // institute
 
-  const dataDoc = {
-    columns: [
-      { title: "Address", field: "controlsAccount", type: "string" },
-      { title: "Contract Address", field: "address", type: "string" }
-      //TODO: agregar más detalles de la competencia, ver ejemplo Senescyt
-    ],
-    data: certificate.filter(c => c.controlsAccount === accounts[0])
+  const routeChangeInstitute = (event, rowData) => {
+    // console.log('event', rowData);
+
+    let path = `institute/${rowData.ca}`;
+    history.push(path);
   }
-  const renderTable = ({ data, columns, key }) => <Table data={data} columns={columns} contractType={"certificados"} onClickAction={routeChange}/>;
+  const dataDoc = {
+    certificate: {
+      key: "certificate",
+      columns: [
+        { title: "Address", field: "controlsAccount", type: "string" },
+        { title: "Contract Address", field: "address", type: "string" }
+        //TODO: agregar más detalles de la competencia, ver ejemplo Senescyt
+      ],
+      data: certificate.filter(c => c.address === accounts[0]) || []
+    },
+    institute: {
+      key: "institute",
+      columns: [
+        { title: "Name", field: "name", type: "string" },
+        { title: "Address", field: "address", type: "string" },
+      ],
+      data: consortium.filter(c => c.address === accounts[0]) || []
+    }
+  }
 
+  const renderTable = ({ data, columns, key }) => <Table data={data} columns={columns} contractType={"certificados"} onClickAction={key === "certificate" ? routeChangeCertificate : routeChangeInstitute}/>;
 
   return (
     <div className="App">
@@ -39,10 +57,14 @@ export default ({ accounts, certificate, history }) => {
         <p>{accounts[0]}</p>
       </div>
 
-      <div className="section">
+      {(dataDoc.certificate && !!dataDoc.certificate.data.length) && <div className="section">
         <h2>Certificates</h2>
-        {renderTable(dataDoc)}
-      </div>
+        {renderTable(dataDoc.certificate)}
+      </div>}
+      {(dataDoc.institute && !!dataDoc.institute.data.length) && <div className="section">
+        <h2>Institutes</h2>
+        {renderTable(dataDoc.institute)}
+      </div>}
     </div>
   );
 }

@@ -76,7 +76,7 @@ function CompetenciasEditContainer(props) {
   const onClickAction = (event, rowEvent) => {
     console.log("rowEvent", rowEvent);
     setState({ ...state, [rowEvent.type]: { ...rowEvent } });
-    console.log(state);
+    // console.log(state);
     /*
     this.setState({consorcio: {
       contractAddress, name
@@ -175,7 +175,7 @@ function CompetenciasEditContainer(props) {
     }
   };
 
-  console.log(state)
+  // console.log(state)
 
   return (
     <Steps

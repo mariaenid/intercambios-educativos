@@ -65,9 +65,8 @@ class SearchContainer extends React.Component {
       certificados: {
         columns: [
           { title: "Name", field: "name", type: "string" },
-          { title: "Address", field: "address", type: "string" },
-          { title: "Tipo", field: "type", type: "string" },
-          { tittle: "Titulo obtenido", field: "nameCompentece", type: "string" }
+          { title: "Address Owner", field: "address", type: "string" },
+          { title: "Name Compentece", field: "title", type: "string" }
         ],
         data: certificate
       },
@@ -75,8 +74,6 @@ class SearchContainer extends React.Component {
         columns: [
           { title: "Name", field: "name", type: "string" },
           { title: "Address", field: "address", type: "string" },
-          { title: "Tipo", field: "type", type: "string" }
-          //TODO: agregar más detalles de la competencia, ver ejemplo Senescyt
         ],
         data: consortium
       }
@@ -111,9 +108,9 @@ const mapStateToProps = (state) => {
     return ({...rest, address, ca, type: 'institute'})}),
 
     certificate: filteredCertificate.map(row => {
-      const { address, controlsAccount, ...rest} = row;
+      const { address, controlsAccount, hasTitle, ...rest} = row;
       const {name} = person.find(({hasAccount}) => hasAccount === controlsAccount)
-      return ({...rest, address, ca: address, name, type: 'certificate'})
+      return ({...rest, address, ca: address, name, title: hasTitle, type: 'certificate'})
     })
   })
 }

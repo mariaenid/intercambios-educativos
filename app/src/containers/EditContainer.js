@@ -3,6 +3,8 @@ import clsx from "clsx";
 import { withStyles } from "@material-ui/styles";
 
 import { connect } from "react-redux";
+import { drizzleConnect } from "drizzle-react";
+
 import { withRouter } from "react-router-dom";
 
 import PropTypes from "prop-types";
@@ -45,8 +47,10 @@ class EditContainer extends React.Component {
     key === 'certificados' ? <CertificateEditContainer /> : <ConsorcioEditContainer />;
 
   render() {
-    const { classes, open } = this.props;
-    const options = [{title: "Consorcios", key: "consorcios"}, {title: "Certificados", key: "certificados"}];
+    const { classes, open, consortium, currentAccount } = this.props;
+    const isConsortiumType = !!((consortium || []).filter((c) => c.address === currentAccount)).lenght
+
+    const options = [isConsortiumType ? {title: "Institutes", key: "consorcios"} : {title: "Certificates", key: "certificados"}];
     const data = options.reduce((acc, {title, key}) => acc = {[key]: this.renderForm(key), ...acc}, {});
 
     return (
@@ -88,4 +92,6 @@ const mapStateToProps = (state) => {
   })
 }
 
-export default connect(mapStateToProps)(withRouter(withStyles(styles)(EditContainer)));
+const mapStateToPropsDrizzle = (state) => ({currentAccount: state.accounts[0]})
+
+export default connect(mapStateToProps)(withRouter(withStyles(styles)(drizzleConnect(EditContainer, mapStateToPropsDrizzle))));

@@ -13,7 +13,8 @@ class ConsorciosContainer extends React.Component {
   }
 
   renderConsortium = displayData => {
-    console.log('displayDAta', displayData);
+    // console.log('displayDAta', displayData);
+
     return (
     <div>
       {ACADEMIC_CONSORTIUM_FIELDS.map(field => {

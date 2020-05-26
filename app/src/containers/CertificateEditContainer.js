@@ -52,7 +52,7 @@ function CertificateEditContainer(props) {
   const getSteps = () => {
     return [
       "Certificate Information",
-      "Guardado"
+      "Saved"
     ];
   };
 

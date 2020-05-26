@@ -18,7 +18,7 @@ export const getProperties = uriParams => {
 
     let keyValue = getUrlParams(o)
 
-    if (keyName === 'name' || keyName === 'title') {
+    if (keyName === 'name' || keyName === 'hasTitle') {
       const data = Base64.decode(keyValue)
       acc[keyName] = data.substring(0, data.length - 1)
     } else {

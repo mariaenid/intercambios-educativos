@@ -70,7 +70,7 @@ class ContractForm extends Component {
 
       const truffleContract = await contract(getContractArtifacts(contractName));
       await truffleContract.setProvider(currentProvider);
-      console.log("deploy ", inputs, truffleContract)
+      // console.log("deploy ", inputs, truffleContract)
 
       return await truffleContract.new(
         ...inputs,
@@ -95,7 +95,7 @@ class ContractForm extends Component {
     return (
       <React.Fragment>
         <Button onClick={handleSubmit || this.handleSubmit} className={classes.button}>
-          Submit
+          Deploy
         </Button>
       </React.Fragment>
     );

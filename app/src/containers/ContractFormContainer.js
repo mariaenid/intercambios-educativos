@@ -56,7 +56,7 @@ class ContractFormContainer extends React.Component {
   render() {
     const { contractName } = this.props;
     const { currentProvider } = this.state;
-    console.log("CurrentProvicer", this.state.currentProvider)
+
     return (
       <React.Fragment>
         {!!currentProvider && (
