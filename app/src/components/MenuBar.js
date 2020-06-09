@@ -99,11 +99,11 @@ class MenuBar extends React.Component {
         >
           <Toolbar>
             <IconButton
+              edge="start"
+              className={classes.menuButton}
               color="inherit"
               aria-label="open drawer"
               onClick={handleDrawerOpen}
-              edge="start"
-              className={clsx(classes.menuButton, open && classes.hide)}
             >
               <MenuIcon />
             </IconButton>
