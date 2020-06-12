@@ -1,0 +1,39 @@
+ClassDiagram [frame=true framecolor=steelblue label="Diagrama de clases"] {
+ abstract class Institute {
+  private address : address
+  private name : string
+  private phone : string
+  private acronym: string
+  private country: string
+  public smart_contract(scAddress: address,
+    name: string,
+    addressInstitute: address)
+ }
+
+ class Student {
+  private name : string
+  private address: address
+  public address_owner(address: address)
+ }
+
+ class Certificate {
+ 	 private scAddressInstitute : address
+   private nameConsortiumAcademic: string
+   private nameCompetence: string
+   private addressOwner : address
+   private identification: string
+   private scAddress: string
+   private email: string
+   public smart_contract(scAddress: address)
+  }
+
+ class Administrator {
+   private address: address
+   public address_owner(address: address)
+ }
+
+ Institute -g-> Student
+ Institute -g-> Administrator
+ Student <-g- Certificate
+ Certificate <-g- Institute
+}

@@ -1,0 +1,21 @@
+SequenceDiagram [frame=true framecolor=steelblue label="Search Certificate or Certificates"] {
+	actor user
+
+  lifeline ":Graphic Interfaz" as web
+  lifeline ":Application" as app
+	lifeline ":Smart Constract" as sc
+  lifeline ":API Rest" as api
+  lifeline ":Blockchain" as eth
+  lifeline ":Graphdb" as graphdb
+
+  entity "Content server" as content autoactivate
+
+  user --> web "Set account, name or identification"
+  web --> api "Get linked data"
+  api --> graphdb "Get linked data"
+  user --> web "Choose certificate"
+  web --> app "Search on blockchain"
+  app --> sc "Search on blockchain"
+  sc --> eth "Get Contract"
+
+}

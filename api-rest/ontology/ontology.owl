@@ -1,0 +1,315 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.w3.org/2002/07/owl"
+     xmlns:ns0="https://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:schema="https://schema.org/">
+    <Ontology/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://schema.org/Consortium -->
+
+    <AnnotationProperty rdf:about="https://schema.org/Consortium">
+        <rdfs:range rdf:resource="https://schema.org/Consortium"/>
+        <rdfs:domain rdf:resource="https://schema.org/Organization"/>
+    </AnnotationProperty>
+    
+
+
+    <!-- https://schema.org/accountablePerson -->
+
+    <AnnotationProperty rdf:about="https://schema.org/accountablePerson">
+        <rdfs:range rdf:resource="https://schema.org/Person"/>
+        <rdfs:domain rdf:resource="https://schema.org/EducationalOccupationalCredential"/>
+    </AnnotationProperty>
+    
+
+
+    <!-- https://schema.org/alumni -->
+
+    <AnnotationProperty rdf:about="https://schema.org/alumni">
+        <rdfs:domain rdf:resource="https://schema.org/Consortium"/>
+    </AnnotationProperty>
+    
+
+
+    <!-- https://schema.org/competencyRequired -->
+
+    <AnnotationProperty rdf:about="https://schema.org/competencyRequired">
+        <rdfs:domain rdf:resource="https://schema.org/EducationalOccupationalCredential"/>
+    </AnnotationProperty>
+    
+
+
+    <!-- https://schema.org/credentialCategory -->
+
+    <AnnotationProperty rdf:about="https://schema.org/credentialCategory">
+        <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/text"/>
+    </AnnotationProperty>
+    
+
+
+    <!-- https://schema.org/hasCredential -->
+
+    <AnnotationProperty rdf:about="https://schema.org/hasCredential">
+        <rdfs:domain rdf:resource="https://schema.org/Consortium"/>
+    </AnnotationProperty>
+    
+
+
+    <!-- https://www.w3.org/1999/02/22-rdf-syntax-ns#objectProperty -->
+
+    <AnnotationProperty rdf:about="https://www.w3.org/1999/02/22-rdf-syntax-ns#objectProperty"/>
+    
+
+
+    <!-- https://www.w3.org/1999/02/22-rdf-syntax-ns#subclassOf -->
+
+    <AnnotationProperty rdf:about="https://www.w3.org/1999/02/22-rdf-syntax-ns#subclassOf"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://semantic-blockchain/competence -->
+
+    <ObjectProperty rdf:about="http://semantic-blockchain/competence">
+        <equivalentProperty rdf:resource="https://ethon.consensys.net/prop-address.html"/>
+        <equivalentProperty rdf:resource="https://schema.org/competencyRequired"/>
+        <rdfs:domain rdf:resource="http://ethon.consensys.net/LogEntry"/>
+        <rdfs:range rdf:resource="https://schema.org/url"/>
+        <schema:Consortium rdf:resource="https://schema.org/Consortium"/>
+        <ns0:objectProperty rdf:resource="https://ethon.consensys.net/class-logentry.html#contractCompetence"/>
+    </ObjectProperty>
+    
+
+
+    <!-- https://ethon.consensys.net/prop-address.html -->
+
+    <ObjectProperty rdf:about="https://ethon.consensys.net/prop-address.html">
+        <equivalentProperty rdf:resource="https://schema.org/additionalType"/>
+        <equivalentProperty rdf:resource="https://schema.org/discussionUrl"/>
+        <rdfs:domain rdf:resource="http://ethon.consensys.net/LogEntry"/>
+        <schema:Consortium rdf:resource="http://ethon.consensys.net/LogEntry"/>
+    </ObjectProperty>
+    
+
+
+    <!-- https://schema.org/EducationalOccupationalCredential -->
+
+    <ObjectProperty rdf:about="https://schema.org/EducationalOccupationalCredential">
+        <rdfs:domain rdf:resource="https://schema.org/Consortium"/>
+        <rdfs:range rdf:resource="https://schema.org/Person"/>
+        <schema:accountablePerson rdf:resource="https://schema.org/Person"/>
+        <schema:competencyRequired rdf:resource="https://schema.org/Person"/>
+        <schema:credentialCategory rdf:resource="https://schema.org/Person"/>
+    </ObjectProperty>
+    
+
+
+    <!-- https://schema.org/accountablePerson -->
+
+    <ObjectProperty rdf:about="https://schema.org/accountablePerson">
+        <equivalentProperty rdf:resource="https://schema.org/alumni"/>
+        <rdfs:range rdf:resource="https://schema.org/Person"/>
+    </ObjectProperty>
+    
+
+
+    <!-- https://schema.org/additionalType -->
+
+    <ObjectProperty rdf:about="https://schema.org/additionalType">
+        <rdfs:domain rdf:resource="http://semantic-blockchain.org/contract"/>
+        <rdfs:range rdf:resource="http://semantic-blockchain.org/contractConsortium"/>
+        <rdfs:range rdf:resource="https://schema.org/url"/>
+        <schema:Consortium rdf:resource="https://schema.org/Consortium"/>
+    </ObjectProperty>
+    
+
+
+    <!-- https://schema.org/alumni -->
+
+    <ObjectProperty rdf:about="https://schema.org/alumni">
+        <rdfs:domain rdf:resource="https://schema.org/Consortium"/>
+        <rdfs:range rdf:resource="https://schema.org/Person"/>
+    </ObjectProperty>
+    
+
+
+    <!-- https://schema.org/competencyRequired -->
+
+    <ObjectProperty rdf:about="https://schema.org/competencyRequired">
+        <rdfs:domain rdf:resource="http://ethon.consensys.net/LogEntry"/>
+        <rdfs:range rdf:resource="https://ethon.consensys.net/class-logentry.html#contractCompetence"/>
+        <rdfs:range rdf:resource="https://schema.org/url"/>
+    </ObjectProperty>
+    
+
+
+    <!-- https://schema.org/credentialCategory -->
+
+    <ObjectProperty rdf:about="https://schema.org/credentialCategory">
+        <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/text"/>
+    </ObjectProperty>
+    
+
+
+    <!-- https://schema.org/discussionUrl -->
+
+    <ObjectProperty rdf:about="https://schema.org/discussionUrl">
+        <rdfs:domain rdf:resource="https://schema.org/Person"/>
+        <rdfs:range rdf:resource="http://semantic-blockchaing.org/contractCertificate"/>
+        <rdfs:range rdf:resource="https://schema.org/url"/>
+        <schema:Consortium rdf:resource="https://schema.org/EducationalOccupationalCredential"/>
+    </ObjectProperty>
+    
+
+
+    <!-- https://schema.org/hasCredential -->
+
+    <ObjectProperty rdf:about="https://schema.org/hasCredential">
+        <rdfs:subPropertyOf rdf:resource="https://schema.org/EducationalOccupationalCredential"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ReflexiveProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="https://schema.org/Consortium"/>
+        <rdfs:range rdf:resource="https://schema.org/Person"/>
+    </ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://ethon.consensys.net/LogEntry -->
+
+    <Class rdf:about="http://ethon.consensys.net/LogEntry"/>
+    
+
+
+    <!-- http://semantic-blockchain.org/contract -->
+
+    <Class rdf:about="http://semantic-blockchain.org/contract">
+        <rdfs:subClassOf rdf:resource="http://ethon.consensys.net/LogEntry"/>
+    </Class>
+    
+
+
+    <!-- http://semantic-blockchain.org/contractConsortium -->
+
+    <Class rdf:about="http://semantic-blockchain.org/contractConsortium">
+        <rdfs:subClassOf rdf:resource="http://semantic-blockchain.org/contractConsortium"/>
+    </Class>
+    
+
+
+    <!-- http://semantic-blockchaing.org/contractCertificate -->
+
+    <Class rdf:about="http://semantic-blockchaing.org/contractCertificate">
+        <rdfs:subClassOf rdf:resource="http://semantic-blockchaing.org/contractCertificate"/>
+    </Class>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/text -->
+
+    <Class rdf:about="http://xmlns.com/foaf/0.1/text"/>
+    
+
+
+    <!-- https://ethon.consensys.net/class-logentry.html#contractCompetence -->
+
+    <Class rdf:about="https://ethon.consensys.net/class-logentry.html#contractCompetence">
+        <rdfs:subClassOf rdf:resource="https://ethon.consensys.net/class-logentry.html#contractCompetence"/>
+    </Class>
+    
+
+
+    <!-- https://schema.org/Consortium -->
+
+    <Class rdf:about="https://schema.org/Consortium"/>
+    
+
+
+    <!-- https://schema.org/Person -->
+
+    <Class rdf:about="https://schema.org/Person"/>
+    
+
+
+    <!-- https://schema.org/url -->
+
+    <Class rdf:about="https://schema.org/url"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotations
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="https://schema.org/Consortium">
+        <ns0:subclassOf rdf:resource="https://schema.org/Organization"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="https://schema.org/accountablePerson">
+        <ns0:objectProperty rdf:resource="https://schema.org/EducationalOccupationalCredential"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="https://schema.org/alumni">
+        <schema:Consortium rdf:resource="https://schema.org/Person"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="https://schema.org/competencyRequired">
+        <ns0:objectProperty rdf:resource="https://schema.org/EducationalOccupationalCredential"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="https://schema.org/credentialCategory">
+        <ns0:objectProperty rdf:resource="https://schema.org/EducationalOccupationalCredential"/>
+    </rdf:Description>
+    <AnnotationProperty rdf:about="https://schema.org/hasCredential">
+        <schema:hasCredential rdf:resource="https://schema.org/Person"/>
+        <ns0:subclassOf rdf:resource="https://schema.org/EducationalOccupationalCredential"/>
+    </AnnotationProperty>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

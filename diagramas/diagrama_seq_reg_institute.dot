@@ -1,0 +1,21 @@
+SequenceDiagram [frame=true framecolor=steelblue label="Register Institute Sequence Diagram"] {
+  actor admin
+
+  lifeline ":Graphic Interfaz" as web
+  lifeline ":Application" as app
+	lifeline ":Smart Constract" as sc
+  lifeline ":API Rest" as api
+  lifeline ":Blockchain" as eth
+  lifeline ":Graphdb" as graphdb
+
+  entity "Content server" as content autoactivate
+
+  admin --> eth "Create account"
+  admin --> web "Add data institute"
+  web --> app "Deploy Contract"
+  app --> sc "Deploy Contract"
+  sc --> eth "Deploy Contract"
+
+  eth --> api "Event from smart contract"
+  api --> graphdb "Save linked data"
+}
