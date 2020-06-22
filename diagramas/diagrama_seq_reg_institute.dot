@@ -1,5 +1,7 @@
 SequenceDiagram [frame=true framecolor=steelblue label="Register Institute Sequence Diagram"] {
-  actor admin
+  actor Admin
+  actor Institute
+  actor Student
 
   lifeline ":Graphic Interfaz" as web
   lifeline ":Application" as app
@@ -10,8 +12,8 @@ SequenceDiagram [frame=true framecolor=steelblue label="Register Institute Seque
 
   entity "Content server" as content autoactivate
 
-  admin --> eth "Create account"
-  admin --> web "Add data institute"
+  Admin --> eth "Create account"
+  Admin --> web "Add data institute"
   web --> app "Deploy Contract"
   app --> sc "Deploy Contract"
   sc --> eth "Deploy Contract"

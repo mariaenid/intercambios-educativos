@@ -1,6 +1,7 @@
 SequenceDiagram [frame=true framecolor=steelblue label="Register Certificate Sequence Diagram"] {
-  actor institute
-  actor student
+  actor Institute
+  actor Student
+  actor Admin
 
   lifeline ":Graphic Interfaz" as web
   lifeline ":Application" as app
@@ -11,13 +12,20 @@ SequenceDiagram [frame=true framecolor=steelblue label="Register Certificate Seq
 
   entity "Content server" as content autoactivate
 
-  student --> eth "Create or get account"
-  institute --> api "Get data"
+  Student --> eth "Create or get account"
+  Institute --> api "Get data"
   api --> graphdb "Get data"
-  institute --> app "Set data from certificate"
+  Institute --> app "Set data from certificate"
   app --> sc "Deploy Contract"
   sc --> eth "Deploy Contract"
 
   eth --> api "Event from smart contract"
   api --> graphdb "Save linked data"
+
+  Student --> app "Set data" [color="blue"]
+  app --> sc "Deploy certificate contract" [color="blue"]
+  sc --> eth "Deploy certificate contract" [color="blue"]
+  eth --> api "Event from smart contract" [color="blue"]
+  api --> graphdb "Save linked data" [color="blue"]
+
 }

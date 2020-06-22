@@ -2,17 +2,17 @@ DeploymentDiagram [frame=true framecolor=steelblue label="Deployment Diagram"] {
  node web as ":UserInterfaz" [color=lightblue] {
   artifact ss as "Student\n / Institute\n" [icon=file]
  }
+
  node appServer  as ":Application\nServer" [color=indigo]{
   artifact Web3Js [icon=artifact]
-  artifact MetaMask [icon=artifact]
   artifact ApiRest [icon=artifact]
  }
 
- node sc as ":SmartContract" [color=tomato] {
+ node sc as ":SmartContract" [color=blue] {
   artifact scc as " Smart Contract " [icon=file]
  }
 
- node dbServer as ":Blockchain" [color=tomato] {
+ node dbServer as ":Blockchain" [color=pink] {
   artifact db as " Ethereum " [icon=database]
  }
 
@@ -20,14 +20,19 @@ DeploymentDiagram [frame=true framecolor=steelblue label="Deployment Diagram"] {
   artifact gdb as " Semantic DataBase " [icon=database]
  }
 
- web -- appServer
- scc -- Web3Js
+node obdb as ":Object database" [color=pink] {
+	artifact _obdb   as "Object Database" [icon=database]
+}
+
+ web -- Web3Js
+ web -- ApiRest
+
+ Web3Js -- scc
  scc -- db
-
  Web3Js -- db
- MetaMask -- db
 
- ApiRest -- db
+ ApiRest -- scc
  ApiRest -- grdb
+ ApiRest -- _obdb
 
 }

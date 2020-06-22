@@ -1,0 +1,42 @@
+DeploymentDiagram [frame=true framecolor=steelblue label="Figure 5.6: Physical View of proposed architecture"] {
+
+ node dbServer as ":Network Blockchain" {
+  artifact node1 as "N" [icon=artifact]
+  artifact node2 as "N" [icon=artifact]
+  artifact node3 as "N" [icon=artifact]
+   artifact sc as "SCs" [icon=file]
+  }
+
+   node interfaz as "System" {
+    node ui as "User Interface \n Browser"{
+      artifact dat as "ReactJs\nTruffle"
+    }
+
+    node api as "Api Rest"{
+      artifact dati as "Node Express \n Web3Js \n graphdbJs"
+    }
+   }
+
+  node dbLink as ":Semantic Database" {
+    artifact _o as "Ontology" [icon=file]
+    artifact _l as "SPARQL" [icon=file]
+  }
+
+   node objectdb as ":Object Database" {
+    artifact _objectdb as "ObjectDatabase" [icon=database]
+
+  }
+
+  	node1 -- node2 "ipc" [color="red"]
+    node1 -- node3 "ipc" [color="blue"]
+    node2 -- node1 "ipc" [color="green"]
+    node2 -- node3 "ipc" [color="purple"]
+    node3 -- node1 "ipc" [color="yellow"]
+    node3 -- node2 "ipc" [color="orange"]
+
+  	node3 -- ui "web3JS(metamask)"
+    node1 -- api "web3JS"
+    api -- ui "HTTP" [color="purple"]
+    api -- dbLink
+    api -- objectdb
+}

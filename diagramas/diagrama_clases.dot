@@ -1,13 +1,12 @@
-ClassDiagram [frame=true framecolor=steelblue label="Diagrama de clases"] {
+ClassDiagram [frame=true framecolor=steelblue label="Class Diagram"] {
  abstract class Institute {
   private address : address
   private name : string
   private phone : string
   private acronym: string
   private country: string
-  public smart_contract(scAddress: address,
-    name: string,
-    addressInstitute: address)
+  public create_certificate()
+  public authorize_certificate()
  }
 
  class Student {
@@ -24,16 +23,33 @@ ClassDiagram [frame=true framecolor=steelblue label="Diagrama de clases"] {
    private identification: string
    private scAddress: string
    private email: string
-   public smart_contract(scAddress: address)
+   public create_promise_authorization()
   }
 
  class Administrator {
    private address: address
-   public address_owner(address: address)
+   public allow_access()
  }
 
+ class User {
+ 	public search_certificate()
+  public search_institute()
+ }
+
+ align {
+   Administrator
+   Institute
+ }
+
+  align {
+   User
+   Certificate
+ }
+
+ Administrator -g-> Institute
  Institute -g-> Student
- Institute -g-> Administrator
+ Institute -g-> Certificate
+ User -g-> Certificate
+ User -g-> Institute
  Student <-g- Certificate
- Certificate <-g- Institute
 }
