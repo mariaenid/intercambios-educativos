@@ -3,7 +3,6 @@ import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import {fetchEntities} from '../actions';
 import { useDispatch } from "react-redux";
-import Bar from "components/Bar";
 
 const MainContainer = (props) => {
     const { handleDrawerOpen, handleDrawerClose, open } = props;

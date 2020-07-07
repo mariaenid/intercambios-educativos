@@ -28,7 +28,7 @@
     "openzeppelin-solidity": "^2.1.1",
     "react-redux": "^7.2.0",
     "redux-form": "^8.2.6",
-    "truffle": "^5.1.26",
+    "truffle": "^5.1.33",
     "truffle-contract": "^4.0.31",
     "typeface-roboto": "0.0.75",
     "web3": "^1.2.6"

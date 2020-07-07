@@ -17,6 +17,7 @@ export const ACADEMIC_CONSORTIUM_FIELDS = [
     { 'label': 'Email', 'key': 'email' },
     { 'label': 'Country', 'key': 'country' },
     {'label': 'City', 'key': 'city'},
+    {'label': 'Siglas', 'key': 'siglas'}
     // {'label': 'Contract Address', 'key': 'contractAddress'} should be or not
 ];
 
@@ -24,8 +25,8 @@ export const ACADEMIC_CERTIFICATE_FIELDS = [
     { 'label': 'Institute Contract address', 'key': 'addressInstitute' },
     { 'label': 'Institute Name', 'key': 'nameConsortiumAcademic' },
     { 'label': 'Name Competence', 'key': 'nameCompetence'},
-    { 'label': 'Address Owner', 'key': 'address'},
-    { 'label': 'Name Owner', 'key': 'name'},
+    { 'label': 'Address Owner', 'key': 'addressOwner'},
+    { 'label': 'Name Owner', 'key': 'nameOwner'},
     { 'label': 'Identification Owner', 'key': 'identificationOwner'},
     { 'label': 'Email', 'key': 'email'},
     { 'label': 'Country', 'key': 'country'},

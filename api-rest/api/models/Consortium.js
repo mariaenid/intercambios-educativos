@@ -7,7 +7,8 @@ const objectProperties = [
   { name: 'hasDigitalRegister', prefix: 'sb:hasDigitalRegister', type: 'sb:EducationalSmartContract'},
   { name: 'alumni', prefix: 'org:alumni', type: 'org:Person'},
   { name: 'hasAccount', prefix: 'sb:hasAccount', type: 'ethon:Account'},
-  { name: 'name', prefix: 'org:name', type: 'org:Text'}
+  { name: 'name', prefix: 'sb:name', type: 'org:Text'},
+  { name: 'siglas', prefix: 'sb:siglas', type: 'org:Text'},
 ]
 
 export class Consortium {

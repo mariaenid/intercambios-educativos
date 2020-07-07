@@ -5,6 +5,7 @@ import { ToastContainer } from 'react-toastify'
 import Table from "components/Table";
 
 import logo from "./logo.png";
+import Button from '@material-ui/core/Button';
 
 export default ({ accounts, certificate, history, consortium }) => {
 
@@ -60,11 +61,13 @@ export default ({ accounts, certificate, history, consortium }) => {
       {(dataDoc.certificate && !!dataDoc.certificate.data.length) && <div className="section">
         <h2>Certificates</h2>
         {renderTable(dataDoc.certificate)}
+        <Button onClick={()=>console.log("24")}> New Certificate </Button>
       </div>}
       {(dataDoc.institute && !!dataDoc.institute.data.length) && <div className="section">
         <h2>Institutes</h2>
         {renderTable(dataDoc.institute)}
       </div>}
+
     </div>
   );
 }

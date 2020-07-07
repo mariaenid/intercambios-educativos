@@ -40,6 +40,7 @@ contract AcademicConsortium {
         string country;
         string city;
         CONSORTIUM_TYPE consortiumType;
+        string siglas;
     }
 
     consortiumDetails ownConsortium;
@@ -62,7 +63,7 @@ contract AcademicConsortium {
 
     // Evento para anunciar en el Blockchain que un nuevo certificado ha sido agregado
 
-    event academicConsorsium(CONTRACT_TYPE contractType, address addressConsortium, string name);
+    event academicConsorsium(CONTRACT_TYPE contractType, address addressConsortium, string name, string siglas);
 
     constructor(
         address ad,
@@ -71,7 +72,8 @@ contract AcademicConsortium {
         string memory email,
         string memory country,
         string memory city,
-        CONSORTIUM_TYPE consortiumType
+        CONSORTIUM_TYPE consortiumType,
+        string memory siglas
     ) public {
         ownConsortium.addressConsortium = ad;
         ownConsortium.name = name;
@@ -79,9 +81,10 @@ contract AcademicConsortium {
         ownConsortium.email = email;
         ownConsortium.country = country;
         ownConsortium.city = city;
+        ownConsortium.siglas = siglas;
         ownConsortium.consortiumType = consortiumType;
 
-        emit academicConsorsium(CONTRACT_TYPE.Consortium, ownConsortium.addressConsortium, ownConsortium.name);
+        emit academicConsorsium(CONTRACT_TYPE.Consortium, ownConsortium.addressConsortium, ownConsortium.name, ownConsortium.siglas);
     }
 
     // get details of the consorcio
@@ -92,13 +95,15 @@ contract AcademicConsortium {
         string memory email,
         string memory country,
         string memory city,
-        CONSORTIUM_TYPE consortiumType
+        CONSORTIUM_TYPE consortiumType,
+        string memory siglas
     ) {
         addressConsortium = ownConsortium.addressConsortium;
         name = ownConsortium.name;
         phone = ownConsortium.phone;
         email = ownConsortium.email;
         country = ownConsortium.country;
+        siglas = ownConsortium.siglas;
         city = ownConsortium.city;
         consortiumType = ownConsortium.consortiumType;
     }
@@ -111,6 +116,7 @@ contract AcademicConsortium {
         string memory email,
         string memory country,
         string memory city,
+        string memory siglas,
         CONSORTIUM_TYPE consortiumType
     ) public {
         ownConsortium.addressConsortium = addressConsortium;
@@ -119,21 +125,9 @@ contract AcademicConsortium {
         ownConsortium.email = email;
         ownConsortium.country = country;
         ownConsortium.city = city;
+        ownConsortium.siglas = siglas;
         ownConsortium.consortiumType = consortiumType;
 
-        emit academicConsorsium(CONTRACT_TYPE.Consortium, ownConsortium.addressConsortium, ownConsortium.name);
-    }
-
-    // Allowed competences
-    function setCompetenceAllowed (uint competenceAllowedIndex) public {
-        competenceAllowedList.push(competenceAllowedIndex);
-    }
-
-    function getAllowedCompetence (uint competenceAllowedIndex) public view returns (uint) {
-        return competenceAllowedList[competenceAllowedIndex];
-    }
-
-    function getAllcompetenceAllowed () public view returns (uint[] memory) {
-        return competenceAllowedList;
+        emit academicConsorsium(CONTRACT_TYPE.Consortium, ownConsortium.addressConsortium, ownConsortium.name, ownConsortium.siglas);
     }
 }

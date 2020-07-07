@@ -90,17 +90,4 @@ contract("...academicConsortium", accounts => {
     assert.deepEqual(real_response, responseContract, "The values are not the same");
   });
 
-
-  it("...should set a new competence and get all ", async () => {
-    await AcademicConsortium.setCompetenceAllowed('0');
-    await AcademicConsortium.setCompetenceAllowed('3');
-    await AcademicConsortium.setCompetenceAllowed('5');
-
-    const real_response = [0, 3, 5]
-
-    const response = await AcademicConsortium.getAllcompetenceAllowed.call();
-    const responseContract = response.map(res => res.toNumber());
-
-    assert.deepEqual(real_response, responseContract, "The values are not the same");
-  })
 });

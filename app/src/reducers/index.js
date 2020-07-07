@@ -1,5 +1,3 @@
-import { combineReducers } from 'redux';
-
 import {FETCH_DATA_REQUEST,
     FETCH_DATA_SUCCESS,
     FETCH_DATA_FAILURE,

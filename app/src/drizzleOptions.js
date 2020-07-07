@@ -10,7 +10,7 @@ const options = {
       url: "ws://127.0.0.1:8545",
     },
   },
-  contracts: [ RegistroCompetenciaAcademica],
+  contracts: [ ],
   events: {
     AcademicConsortium: ["academicConsorsium"],
   },

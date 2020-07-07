@@ -10,7 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import Table from "components/Table";
 import { connect } from "react-redux";
 
-const drawerWidth = 240;
+// const drawerWidth = 240;
 
 const styles = theme => ({
   drawerHeader: {
@@ -66,7 +66,8 @@ class SearchContainer extends React.Component {
         columns: [
           { title: "Name", field: "name", type: "string" },
           { title: "Address Owner", field: "address", type: "string" },
-          { title: "Name Compentece", field: "title", type: "string" }
+          { title: "Name Compentece", field: "title", type: "string" },
+          { title: "Contract Address", field: "ca", type: "string"}
         ],
         data: certificate
       },
@@ -74,6 +75,8 @@ class SearchContainer extends React.Component {
         columns: [
           { title: "Name", field: "name", type: "string" },
           { title: "Address", field: "address", type: "string" },
+          { title: "Siglas", field: "siglas", type: "string" },
+          { title: "Contract Address", field: "ca", type: "string"}
         ],
         data: consortium
       }
@@ -110,7 +113,7 @@ const mapStateToProps = (state) => {
     certificate: filteredCertificate.map(row => {
       const { address, controlsAccount, hasTitle, ...rest} = row;
       const {name} = person.find(({hasAccount}) => hasAccount === controlsAccount)
-      return ({...rest, address, ca: address, name, title: hasTitle, type: 'certificate'})
+      return ({...rest, address: controlsAccount, ca: address, name, title: hasTitle, type: 'certificate'})
     })
   })
 }

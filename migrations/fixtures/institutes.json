@@ -6,7 +6,8 @@
     "email": "correo.general@epn.edu.ec",
     "country": "Ecuador",
     "city": "QUITO",
-    "consortiumType": 0
+    "consortiumType": 0,
+    "siglas": "EPN"
   },
   {
     "address": null,
@@ -15,7 +16,8 @@
     "email": "info@live.espoch.edu.ec",
     "country": "Ecuador",
     "city": "QUITO",
-    "consortiumType": 0
+    "consortiumType": 0,
+    "siglas": "ESPOCH"
   },
   {
     "address": null,
@@ -24,7 +26,8 @@
     "email": "espam@espam.edu.ec ",
     "country": "Ecuador",
     "city": "MANABÍ",
-    "consortiumType": 0
+    "consortiumType": 0,
+    "siglas": "ESPAM"
   },
   {
     "address": null,
@@ -33,7 +36,8 @@
     "email": "rectorado@ucee.edu.ec",
     "country": "Ecuador",
     "city": "QUITO",
-    "consortiumType": 0
+    "consortiumType": 0,
+    "siglas": "UCEE"
   },
   {
     "address": null,
@@ -42,7 +46,8 @@
     "email": "ugrector@uge.edu.ec",
     "country": "Ecuador",
     "city": "GUAYAQUIL",
-    "consortiumType": 0
+    "consortiumType": 0,
+    "siglas": "UGE"
   },
   {
     "address": null,
@@ -51,7 +56,8 @@
     "email": "secretaria.rector@ucuenca.edu.ec",
     "country": "Ecuador",
     "city": "CUENCA",
-    "consortiumType": 0
+    "consortiumType": 0,
+    "siglas": ""
   },
   {
     "address": null,
@@ -60,7 +66,8 @@
     "email": "rector@unl.edu.ec",
     "country": "ECUADOR",
     "city": "LOJA",
-    "consortiumType": 0
+    "consortiumType": 0,
+    "siglas": "UNL"
   },
   {
     "address": null,
@@ -69,7 +76,8 @@
     "email": "utarectorado@uta.edu.ec",
     "country": "ECUADOR",
     "city": "AMBATO",
-    "consortiumType": 0
+    "consortiumType": 0,
+    "siglas": "UTA"
   },
   {
     "address": null,
@@ -78,7 +86,8 @@
     "email": "utm@utmachala.edu.ec ",
     "country": "ECUADOR",
     "city": "MACHALA",
-    "consortiumType": 0
+    "consortiumType": 0,
+    "siglas": "UTM"
   },
   {
     "address": null,
@@ -87,7 +96,8 @@
     "email": "rectorado@utn.edu.ec",
     "country": "ECUADOR",
     "city": "IBARRA",
-    "consortiumType": 0
+    "consortiumType": 0,
+    "siglas": "UTN"
   },
   {
     "address": null,
@@ -96,7 +106,8 @@
     "email": "lino.toscanini@cu.ucsg.edu.ec",
     "country": "ECUADOR",
     "city": "GUAYAQUIL",
-    "consortiumType": 0
+    "consortiumType": 0,
+    "siglas": "UCSG"
   },
   {
     "address": null,
@@ -105,7 +116,8 @@
     "email": "jbarbosa@utpl.edu.ec",
     "country": "ECUADOR",
     "city": "LOJA",
-    "consortiumType": 0
+    "consortiumType": 0,
+    "siglas": "UTPL"
   },
   {
     "address": null,
@@ -114,7 +126,8 @@
     "email": "rectorado@uazuay.edu.ec",
     "country": "ECUADOR",
     "city": "CUENCA",
-    "consortiumType": 0
+    "consortiumType": 0,
+    "siglas": ""
   },
   {
     "address": null,
@@ -123,7 +136,8 @@
     "email": "jherran@ups.edu.ec",
     "country": "ECUADOR",
     "city": "CUENCA",
-    "consortiumType": 0
+    "consortiumType": 0,
+    "siglas": "UPS"
   },
   {
     "address": null,
@@ -132,7 +146,8 @@
     "email": "info@uotavalo.edu.ec",
     "country": "ECUADOR",
     "city": "OTAVALO",
-    "consortiumType": 0
+    "consortiumType": 0,
+    "siglas": ""
   },
   {
     "address": null,
@@ -141,6 +156,7 @@
     "email": "espe@espe.com",
     "country": "ECUADOR",
     "city": "SANGOLQUÍ",
-    "consortiumType": 0
+    "consortiumType": 0,
+    "siglas": "ESPE"
   }
 ]

@@ -101,7 +101,6 @@ export class GraphdbService {
       contractAddress,
       items // name, contractType, addressConsortium
     } = log
-
     const digitalRegister = new EducationalSmartContract({
       isTypeOf: contractName,
       address: contractAddress,
@@ -111,10 +110,11 @@ export class GraphdbService {
     const consortium = new Consortium({
       hasAccount: items.addressConsortium,
       hasDigitalRegister: contractAddress,
-      name: this.processText(items.name)
+      name: this.processText(items.name),
+      siglas: this.processText(items.siglas)
     })
 
-    //  new Consortium({hasCredential: '', hasDigitalRegister: '', alumni: '', hasAccount: '', name:''})
+    //  new Consortium({hasCredential: '', hasDigitalRegister: '', alumni: '', hasAccount: '', name:'', siglas: ''})
     const triples = consortium.triples
     triples.concat(digitalRegister.triples)
 
@@ -147,7 +147,7 @@ export class GraphdbService {
       // delay
       this.sleep(50)
     } catch (e) {
-      console.log(`Error updating new record ${e}`)
+      console.log(`Error updating new record`, e, triple)
     }
   }
 

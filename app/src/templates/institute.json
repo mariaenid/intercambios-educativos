@@ -4,5 +4,6 @@
     "email",
     "country",
     "city",
-    "consortiumType"
+    "consortiumType",
+    "siglas"
 ]

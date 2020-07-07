@@ -36,7 +36,7 @@ class ConsorciosContainer extends React.Component {
 
     return(
       <ContractDataContainer
-        title={"Institute Smart Contract"}
+        title={"Academic Institute "}
         contractAddress={id}
         contractName='AcademicConsortium'
         MethodName='get'
