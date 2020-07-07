@@ -1,0 +1,170 @@
+[ {
+  "@id" : "http://ethon.consensys.net/Account",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ]
+}, {
+  "@id" : "http://semantic-blockchain.org/EducationalSmartContract",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
+  "https://www.w3.org/1999/02/22-rdf-syntax-ns#objectProperty" : [ {
+    "@id" : "http://semantic-blockchain.org/address"
+  }, {
+    "@id" : "http://semantic-blockchain.org/belongsTo"
+  }, {
+    "@id" : "http://semantic-blockchain.org/controlsAccount"
+  }, {
+    "@id" : "http://semantic-blockchain.org/isTypeOf"
+  }, {
+    "@id" : "http://semantic-blockchain.org/title"
+  } ]
+}, {
+  "@id" : "http://semantic-blockchain.org/address",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://www.w3.org/ns/org#Consortium"
+  }, {
+    "@id" : "http://www.w3.org/ns/org#Person"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@id" : "http://ethon.consensys.net/Account"
+  } ]
+}, {
+  "@id" : "http://semantic-blockchain.org/belongsTo",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://www.w3.org/ns/org#Consortium"
+  }, {
+    "@id" : "http://www.w3.org/ns/org#Person"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@id" : "http://semantic-blockchain.org/EducationalSmartContract"
+  } ]
+}, {
+  "@id" : "http://semantic-blockchain.org/controlsAccount",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://ethon.consensys.net/Account"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@id" : "http://www.w3.org/ns/org#Consortium"
+  }, {
+    "@id" : "http://www.w3.org/ns/org#Person"
+  } ]
+}, {
+  "@id" : "http://semantic-blockchain.org/hasAccount",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://www.w3.org/ns/org#Consortium"
+  }, {
+    "@id" : "http://www.w3.org/ns/org#Person"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@id" : "http://ethon.consensys.net/Account"
+  } ]
+}, {
+  "@id" : "http://semantic-blockchain.org/hasDigitalRegister",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://www.w3.org/ns/org#Consortium"
+  }, {
+    "@id" : "http://www.w3.org/ns/org#Person"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@id" : "http://semantic-blockchain.org/EducationalSmartContract"
+  } ],
+  "http://www.w3.org/2002/07/owl#equivalentProperty" : [ {
+    "@id" : "http://www.w3.org/ns/org#hasCredential"
+  } ]
+}, {
+  "@id" : "http://semantic-blockchain.org/isTypeOf",
+  "@type" : [ "http://www.w3.org/2002/07/owl#DatatypeProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://semantic-blockchain.org/EducationalSmartContract"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@id" : "http://www.w3.org/2001/XMLSchema#string"
+  } ]
+}, {
+  "@id" : "http://semantic-blockchain.org/name",
+  "@type" : [ "http://www.w3.org/2002/07/owl#DatatypeProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://www.w3.org/ns/org#Consortium"
+  }, {
+    "@id" : "http://www.w3.org/ns/org#Person"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@id" : "http://www.w3.org/2001/XMLSchema#string"
+  } ]
+}, {
+  "@id" : "http://semantic-blockchain.org/siglas",
+  "@type" : [ "http://www.w3.org/2002/07/owl#DatatypeProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://www.w3.org/ns/org#Consortium"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@id" : "http://www.w3.org/2001/XMLSchema#string"
+  } ]
+}, {
+  "@id" : "http://semantic-blockchain.org/title",
+  "@type" : [ "http://www.w3.org/2002/07/owl#DatatypeProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://semantic-blockchain.org/EducationalSmartContract"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@id" : "http://www.w3.org/2001/XMLSchema#string"
+  } ],
+  "https://www.w3.org/1999/02/22-rdf-syntax-ns#objectProperty" : [ {
+    "@id" : "http://www.w3.org/2001/XMLSchema#string"
+  } ]
+}, {
+  "@id" : "http://www.semanticweb.org/mariapineda/ontologies/2020/6/untitled-ontology-48",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Ontology" ]
+}, {
+  "@id" : "http://www.w3.org/ns/org#Consortium",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
+  "https://www.w3.org/1999/02/22-rdf-syntax-ns#objectProperty" : [ {
+    "@id" : "http://semantic-blockchain.org/hasAccount"
+  }, {
+    "@id" : "http://semantic-blockchain.org/hasDigitalRegister"
+  }, {
+    "@id" : "http://semantic-blockchain.org/name"
+  }, {
+    "@id" : "http://semantic-blockchain.org/siglas"
+  } ]
+}, {
+  "@id" : "http://www.w3.org/ns/org#Person",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
+  "https://www.w3.org/1999/02/22-rdf-syntax-ns#objectProperty" : [ {
+    "@id" : "http://semantic-blockchain.org/hasAccount"
+  }, {
+    "@id" : "http://semantic-blockchain.org/hasDigitalRegister"
+  }, {
+    "@id" : "http://www.w3.org/ns/org#alumni"
+  } ]
+}, {
+  "@id" : "http://www.w3.org/ns/org#alumni",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://www.w3.org/ns/org#Consortium"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@id" : "http://www.w3.org/ns/org#Person"
+  } ]
+}, {
+  "@id" : "http://www.w3.org/ns/org#hasCredential",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://www.w3.org/ns/org#Consortium"
+  }, {
+    "@id" : "http://www.w3.org/ns/org#Person"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@id" : "http://semantic-blockchain.org/EducationalSmartContract"
+  } ]
+}, {
+  "@id" : "https://schema.org/hasCredential",
+  "https://www.w3.org/1999/02/22-rdf-syntax-ns#objectProperty" : [ {
+    "@id" : "http://www.w3.org/ns/org#Consortium"
+  } ]
+}, {
+  "@id" : "https://www.w3.org/1999/02/22-rdf-syntax-ns#objectProperty",
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+} ]
