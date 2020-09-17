@@ -1,6 +1,5 @@
 // import AcademicConsortium from "contracts/AcademicConsortium.json";
 // import AcademicCertificate from "contracts/AcademicCertificate.json";
-import RegistroCompetenciaAcademica from "contracts/RegistroCompetenciaAcademica.json";
 
 const options = {
   web3: {
@@ -10,7 +9,7 @@ const options = {
       url: "ws://127.0.0.1:8545",
     },
   },
-  contracts: [ RegistroCompetenciaAcademica],
+  contracts: [ ],
   events: {
     AcademicConsortium: ["academicConsorsium"],
   },

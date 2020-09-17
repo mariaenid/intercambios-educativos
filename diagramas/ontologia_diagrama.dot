@@ -1,0 +1,18 @@
+digraph g {
+
+  "org:Consortium" -> "EducationalSmartContract" [label="belongsTo (Domain>Range)"]
+	"org:Consortium" -> "Account" [label="address (Domain>Range)"]
+	"org:Consortium" -> "EducationalSmartContract" [label="org:hasCredential (Domain>Range)"]
+	"org:Consortium" -> "Account" [label="hasAccount (Domain>Range)"]
+	"org:Consortium" -> "org:Person" [label="org:alumni (Domain>Range)"]
+	"org:Consortium" -> "EducationalSmartContract" [label="hasDigitalRegister (Domain>Range)"]
+
+  "org:Person" -> "EducationalSmartContract" [label="org:hasCredential (Domain>Range)"]
+	"org:Person" -> "Account" [label="address (Domain>Range)"]
+	"org:Person" -> "EducationalSmartContract" [label="hasDigitalRegister (Domain>Range)"]
+	"org:Person" -> "Account" [label="hasAccount (Domain>Range)"]
+	"org:Person" -> "EducationalSmartContract" [label="belongsTo (Domain>Range)"]
+	"org:Person" -> "Account" [label="controlsAccount (Domain>Range)"]
+	"Account" -> "org:Consortium" [label="controlsAccount (Domain>Range)"]
+
+}
