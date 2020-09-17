@@ -7,7 +7,6 @@ y se agrego country en los campos por generalizacion
 
 Fields:
 name: //nombre de la institucion
-phone: //telefono de la institucion
 email: // correo
 country: //pais de origen
 city: //luegar especifico
@@ -35,10 +34,10 @@ contract AcademicConsortium {
         address addressConsortium;
         // information fields
         string name;
-        string phone;
         string email;
         string country;
         string city;
+        string siglas;
         CONSORTIUM_TYPE consortiumType;
     }
 
@@ -57,9 +56,6 @@ contract AcademicConsortium {
     mapping(uint => academicCertificate) registerList;
     mapping(address => academicCertificateByOwner) registerAddressList;
 
-    // corresponde a la lista de tipos de competencias que puede certificar un consorcio
-    uint[] competenceAllowedList;
-
     // Evento para anunciar en el Blockchain que un nuevo certificado ha sido agregado
 
     event academicConsorsium(CONTRACT_TYPE contractType, address addressConsortium, string name);
@@ -67,18 +63,18 @@ contract AcademicConsortium {
     constructor(
         address ad,
         string memory name,
-        string memory phone,
         string memory email,
         string memory country,
         string memory city,
+        string memory siglas,
         CONSORTIUM_TYPE consortiumType
     ) public {
         ownConsortium.addressConsortium = ad;
         ownConsortium.name = name;
-        ownConsortium.phone = phone;
         ownConsortium.email = email;
         ownConsortium.country = country;
         ownConsortium.city = city;
+        ownConsortium.siglas = siglas;
         ownConsortium.consortiumType = consortiumType;
 
         emit academicConsorsium(CONTRACT_TYPE.Consortium, ownConsortium.addressConsortium, ownConsortium.name);
@@ -88,18 +84,18 @@ contract AcademicConsortium {
     function get () public view returns (
         address addressConsortium,
         string memory name,
-        string memory phone,
         string memory email,
         string memory country,
         string memory city,
+        string memory siglas,
         CONSORTIUM_TYPE consortiumType
     ) {
         addressConsortium = ownConsortium.addressConsortium;
         name = ownConsortium.name;
-        phone = ownConsortium.phone;
         email = ownConsortium.email;
         country = ownConsortium.country;
         city = ownConsortium.city;
+        siglas = ownConsortium.siglas;
         consortiumType = ownConsortium.consortiumType;
     }
 
@@ -107,33 +103,21 @@ contract AcademicConsortium {
     function set (
         address addressConsortium,
         string memory name,
-        string memory phone,
         string memory email,
         string memory country,
         string memory city,
+        string memory siglas,
         CONSORTIUM_TYPE consortiumType
     ) public {
         ownConsortium.addressConsortium = addressConsortium;
         ownConsortium.name = name;
-        ownConsortium.phone = phone;
         ownConsortium.email = email;
         ownConsortium.country = country;
         ownConsortium.city = city;
+        ownConsortium.siglas = siglas;
         ownConsortium.consortiumType = consortiumType;
 
         emit academicConsorsium(CONTRACT_TYPE.Consortium, ownConsortium.addressConsortium, ownConsortium.name);
     }
 
-    // Allowed competences
-    function setCompetenceAllowed (uint competenceAllowedIndex) public {
-        competenceAllowedList.push(competenceAllowedIndex);
-    }
-
-    function getAllowedCompetence (uint competenceAllowedIndex) public view returns (uint) {
-        return competenceAllowedList[competenceAllowedIndex];
-    }
-
-    function getAllcompetenceAllowed () public view returns (uint[] memory) {
-        return competenceAllowedList;
-    }
 }

@@ -2,144 +2,144 @@
   {
     "address": null,
     "name": "ESCUELA POLITÉCNICA NACIONAL",
-    "phone": "2507144 / 2508959",
     "email": "correo.general@epn.edu.ec",
     "country": "Ecuador",
     "city": "QUITO",
+    "siglas": "EPN",
     "consortiumType": 0
   },
   {
     "address": null,
     "name": "ESCUELA SUPERIOR POLITÉCNICA DE CHIMBORAZO",
-    "phone": "03 2 998-200",
     "email": "info@live.espoch.edu.ec",
     "country": "Ecuador",
     "city": "QUITO",
+    "siglas": "ESPOCH",
     "consortiumType": 0
   },
   {
     "address": null,
     "name": "ESCUELA SUPERIOR POLITÉCNICA AGROPECUARIA DE MANABÍ",
-    "phone": "05-2 685-134/156 , ext. 114, 115; 5-2685048/035",
     "email": "espam@espam.edu.ec ",
     "country": "Ecuador",
     "city": "MANABÍ",
+    "siglas": "ESPAM MFL",
     "consortiumType": 0
   },
   {
     "address": null,
     "name": "UNIVERSIDAD CENTRAL DEL ECUADOR",
-    "phone": "2226080 /2521-590",
     "email": "rectorado@ucee.edu.ec",
     "country": "Ecuador",
     "city": "QUITO",
+    "siglas": "UCEE",
     "consortiumType": 0
   },
   {
     "address": null,
     "name": "UNIVERSIDAD DE GUAYAQUIL",
-    "phone": "04 2281559, 2296580",
     "email": "ugrector@uge.edu.ec",
     "country": "Ecuador",
+    "siglas": "UGE",
     "city": "GUAYAQUIL",
     "consortiumType": 0
   },
   {
     "address": null,
     "name": "UNIVERSIDAD DE CUENCA",
-    "phone": "0474051000, 4051002",
     "email": "secretaria.rector@ucuenca.edu.ec",
     "country": "Ecuador",
+    "siglas": "UCUENCA",
     "city": "CUENCA",
     "consortiumType": 0
   },
   {
     "address": null,
     "name": "UNIVERSIDAD NACIONAL DE LOJA",
-    "phone": "072547252",
     "email": "rector@unl.edu.ec",
     "country": "ECUADOR",
+    "siglas": "UNL",
     "city": "LOJA",
     "consortiumType": 0
   },
   {
     "address": null,
     "name": "UNIVERSIDAD TÉCNICA DE AMBATO",
-    "phone": "2 523039/2520825",
     "email": "utarectorado@uta.edu.ec",
     "country": "ECUADOR",
+    "siglas": "UTA",
     "city": "AMBATO",
     "consortiumType": 0
   },
   {
     "address": null,
     "name": "UNIVERSIDAD TÉCNICA DE MACHALA",
-    "phone": "072983 362",
     "email": "utm@utmachala.edu.ec ",
     "country": "ECUADOR",
+    "siglas": "UTM",
     "city": "MACHALA",
     "consortiumType": 0
   },
   {
     "address": null,
     "name": "UNIVERSIDAD TÉCNICA DEL NORTE",
-    "phone": "06 2997800 ext. 7013",
     "email": "rectorado@utn.edu.ec",
     "country": "ECUADOR",
+    "siglas": "UTN",
     "city": "IBARRA",
     "consortiumType": 0
   },
   {
     "address": null,
     "name": "UNIVERSIDAD CATÓLICA DE SANTIAGO DE GUAYAQUIL",
-    "phone": "04 2206943- 206950",
     "email": "lino.toscanini@cu.ucsg.edu.ec",
     "country": "ECUADOR",
+    "siglas": "UCSG",
     "city": "GUAYAQUIL",
     "consortiumType": 0
   },
   {
     "address": null,
     "name": "UNIVERSIDAD TÉCNICA PARTICULAR DE LOJA",
-    "phone": "07 2570275/ 2 588 730 Ext. 2215",
     "email": "jbarbosa@utpl.edu.ec",
     "country": "ECUADOR",
+    "siglas": "UTPL",
     "city": "LOJA",
     "consortiumType": 0
   },
   {
     "address": null,
     "name": "UNIVERSIDAD DEL AZUAY",
-    "phone": "07 409 1000 ext. 151",
     "email": "rectorado@uazuay.edu.ec",
     "country": "ECUADOR",
+    "siglas": "UAZUAY",
     "city": "CUENCA",
     "consortiumType": 0
   },
   {
     "address": null,
     "name": "UNIVERSIDAD POLITÉCNICA SALESIANA",
-    "phone": "3962868, 02 3962900/ 3962800",
     "email": "jherran@ups.edu.ec",
     "country": "ECUADOR",
+    "siglas": "UPS",
     "city": "CUENCA",
     "consortiumType": 0
   },
   {
     "address": null,
     "name": "UNIVERSIDAD DE OTAVALO",
-    "phone": "(06) 2923-850 ext. 116, 113 ",
     "email": "info@uotavalo.edu.ec",
     "country": "ECUADOR",
+    "siglas": "UOTAVALO",
     "city": "OTAVALO",
     "consortiumType": 0
   },
   {
     "address": null,
     "name": "UNIVERSIDAD DE LAS FUERZAS ARMADAS (ESPE)",
-    "phone": "02 3989457",
     "email": "espe@espe.com",
     "country": "ECUADOR",
+    "siglas": "ESPE",
     "city": "SANGOLQUÍ",
     "consortiumType": 0
   }

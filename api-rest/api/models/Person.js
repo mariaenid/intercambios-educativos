@@ -20,7 +20,6 @@ const objectProperties = [
 ]
 
 export class Person {
-
   // new Person({hasCredential: '', hasDigitalCertificate: '', hasAccount: '', name:''})
   constructor (dataIn) {
     const { triples, main } = generateTriples('hasAccount', mainPrefix, dataIn, objectProperties)
