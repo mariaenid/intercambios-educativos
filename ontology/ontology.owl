@@ -1,0 +1,230 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/mariapineda/ontologies/2020/6/untitled-ontology-48#"
+     xml:base="http://www.semanticweb.org/mariapineda/ontologies/2020/6/untitled-ontology-48"
+     xmlns:sb="http://semantic-blockchain.org/"
+     xmlns:org="https://schema.org/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:ethon="http://ethon.consensys.net/"
+     xmlns:rdf-syntax-ns="https://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/mariapineda/ontologies/2020/6/untitled-ontology-48"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://www.w3.org/1999/02/22-rdf-syntax-ns#objectProperty -->
+
+    <owl:AnnotationProperty rdf:about="https://www.w3.org/1999/02/22-rdf-syntax-ns#objectProperty"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://semantic-blockchain.org/address -->
+
+    <owl:ObjectProperty rdf:about="http://semantic-blockchain.org/address">
+        <rdfs:domain rdf:resource="http://www.w3.org/ns/org#Consortium"/>
+        <rdfs:domain rdf:resource="http://www.w3.org/ns/org#Person"/>
+        <rdfs:range rdf:resource="http://ethon.consensys.net/Account"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://semantic-blockchain.org/belongsTo -->
+
+    <owl:ObjectProperty rdf:about="http://semantic-blockchain.org/belongsTo">
+        <rdfs:domain rdf:resource="http://www.w3.org/ns/org#Consortium"/>
+        <rdfs:domain rdf:resource="http://www.w3.org/ns/org#Person"/>
+        <rdfs:range rdf:resource="http://semantic-blockchain.org/EducationalSmartContract"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://semantic-blockchain.org/controlsAccount -->
+
+    <owl:ObjectProperty rdf:about="http://semantic-blockchain.org/controlsAccount">
+        <rdfs:domain rdf:resource="http://ethon.consensys.net/Account"/>
+        <rdfs:range rdf:resource="http://www.w3.org/ns/org#Consortium"/>
+        <rdfs:range rdf:resource="http://www.w3.org/ns/org#Person"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://semantic-blockchain.org/hasAccount -->
+
+    <owl:ObjectProperty rdf:about="http://semantic-blockchain.org/hasAccount">
+        <rdfs:domain rdf:resource="http://www.w3.org/ns/org#Consortium"/>
+        <rdfs:domain rdf:resource="http://www.w3.org/ns/org#Person"/>
+        <rdfs:range rdf:resource="http://ethon.consensys.net/Account"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://semantic-blockchain.org/hasDigitalRegister -->
+
+    <owl:ObjectProperty rdf:about="http://semantic-blockchain.org/hasDigitalRegister">
+        <owl:equivalentProperty rdf:resource="http://www.w3.org/ns/org#hasCredential"/>
+        <rdfs:domain rdf:resource="http://www.w3.org/ns/org#Consortium"/>
+        <rdfs:domain rdf:resource="http://www.w3.org/ns/org#Person"/>
+        <rdfs:range rdf:resource="http://semantic-blockchain.org/EducationalSmartContract"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/org#alumni -->
+
+    <owl:ObjectProperty rdf:about="http://www.w3.org/ns/org#alumni">
+        <rdfs:domain rdf:resource="http://www.w3.org/ns/org#Consortium"/>
+        <rdfs:range rdf:resource="http://www.w3.org/ns/org#Person"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/org#hasCredential -->
+
+    <owl:ObjectProperty rdf:about="http://www.w3.org/ns/org#hasCredential">
+        <rdfs:domain rdf:resource="http://www.w3.org/ns/org#Consortium"/>
+        <rdfs:domain rdf:resource="http://www.w3.org/ns/org#Person"/>
+        <rdfs:range rdf:resource="http://semantic-blockchain.org/EducationalSmartContract"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://semantic-blockchain.org/isTypeOf -->
+
+    <owl:DatatypeProperty rdf:about="http://semantic-blockchain.org/isTypeOf">
+        <rdfs:domain rdf:resource="http://semantic-blockchain.org/EducationalSmartContract"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://semantic-blockchain.org/name -->
+
+    <owl:DatatypeProperty rdf:about="http://semantic-blockchain.org/name">
+        <rdfs:domain rdf:resource="http://www.w3.org/ns/org#Consortium"/>
+        <rdfs:domain rdf:resource="http://www.w3.org/ns/org#Person"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://semantic-blockchain.org/siglas -->
+
+    <owl:DatatypeProperty rdf:about="http://semantic-blockchain.org/siglas">
+        <rdfs:domain rdf:resource="http://www.w3.org/ns/org#Consortium"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://semantic-blockchain.org/title -->
+
+    <owl:DatatypeProperty rdf:about="http://semantic-blockchain.org/title">
+        <rdfs:domain rdf:resource="http://semantic-blockchain.org/EducationalSmartContract"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdf-syntax-ns:objectProperty rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://ethon.consensys.net/Account -->
+
+    <owl:Class rdf:about="http://ethon.consensys.net/Account"/>
+    
+
+
+    <!-- http://semantic-blockchain.org/EducationalSmartContract -->
+
+    <owl:Class rdf:about="http://semantic-blockchain.org/EducationalSmartContract">
+        <rdf-syntax-ns:objectProperty rdf:resource="http://semantic-blockchain.org/address"/>
+        <rdf-syntax-ns:objectProperty rdf:resource="http://semantic-blockchain.org/belongsTo"/>
+        <rdf-syntax-ns:objectProperty rdf:resource="http://semantic-blockchain.org/controlsAccount"/>
+        <rdf-syntax-ns:objectProperty rdf:resource="http://semantic-blockchain.org/isTypeOf"/>
+        <rdf-syntax-ns:objectProperty rdf:resource="http://semantic-blockchain.org/title"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/ns/org#Consortium -->
+
+    <owl:Class rdf:about="http://www.w3.org/ns/org#Consortium">
+        <rdf-syntax-ns:objectProperty rdf:resource="http://semantic-blockchain.org/hasAccount"/>
+        <rdf-syntax-ns:objectProperty rdf:resource="http://semantic-blockchain.org/hasDigitalRegister"/>
+        <rdf-syntax-ns:objectProperty rdf:resource="http://semantic-blockchain.org/name"/>
+        <rdf-syntax-ns:objectProperty rdf:resource="http://semantic-blockchain.org/siglas"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/ns/org#Person -->
+
+    <owl:Class rdf:about="http://www.w3.org/ns/org#Person">
+        <rdf-syntax-ns:objectProperty rdf:resource="http://semantic-blockchain.org/hasAccount"/>
+        <rdf-syntax-ns:objectProperty rdf:resource="http://semantic-blockchain.org/hasDigitalRegister"/>
+        <rdf-syntax-ns:objectProperty rdf:resource="http://www.w3.org/ns/org#alumni"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotations
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="https://schema.org/hasCredential">
+        <rdf-syntax-ns:objectProperty rdf:resource="http://www.w3.org/ns/org#Consortium"/>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

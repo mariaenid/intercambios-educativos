@@ -39,14 +39,4 @@ Table.defaultProps = {
   tooltip: 'Ir'
 }
 
-Table.PropTypes = {
-  icon: PropTypes.any,
-  tooltip: PropTypes.string,
-  classes: PropTypes.object.isRequired,
-  columns: PropTypes.object,
-  data: PropTypes.Array,
-  contractType: PropTypes.string,
-  onClickAction: PropTypes.func
-}
-
 export default withStyles(styles)(Table);

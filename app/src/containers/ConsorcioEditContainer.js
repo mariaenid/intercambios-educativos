@@ -54,7 +54,7 @@ function ConsorcioEditContainer(props) {
     const prevConsorcio = state["consorcio"] || {};
     setState(prevState => ({
       ...prevState,
-      ["consorcio"]: { ...prevConsorcio, "address": props.currentAccount }
+      "consorcio": { ...prevConsorcio, "address": props.currentAccount }
     }));
 
   },[props.currentAccount])
@@ -127,11 +127,12 @@ function ConsorcioEditContainer(props) {
   );
 }
 
+/*
 ConsorcioEditContainer.PropTypes = {
   open: PropTypes.bool,
   classes: PropTypes.object.isRequired
 };
-
+*/
 const mapStateToProps = state => {
   return {
     currentAccount: state.accounts[0]

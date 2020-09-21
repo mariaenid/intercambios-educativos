@@ -1,0 +1,378 @@
+{
+  "_comment" : "Created with OWL2VOWL (version 0.3.5), http://vowl.visualdataweb.org",
+  "header" : {
+    "baseIris" : [ "http://ethon.consensys.net", "http://www.w3.org/ns/org", "http://www.w3.org/2000/01/rdf-schema", "http://semantic-blockchain.org", "http://www.w3.org/2001/XMLSchema" ],
+    "iri" : "http://www.semanticweb.org/mariapineda/ontologies/2020/6/untitled-ontology-48"
+  },
+  "namespace" : [ ],
+  "class" : [ {
+    "id" : "2",
+    "type" : "owl:Class"
+  }, {
+    "id" : "6",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "5",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "7",
+    "type" : "owl:Class"
+  }, {
+    "id" : "13",
+    "type" : "owl:Class"
+  }, {
+    "id" : "1",
+    "type" : "owl:Class"
+  }, {
+    "id" : "14",
+    "type" : "owl:Class"
+  }, {
+    "id" : "15",
+    "type" : "owl:Class"
+  }, {
+    "id" : "16",
+    "type" : "owl:Class"
+  }, {
+    "id" : "11",
+    "type" : "owl:Class"
+  }, {
+    "id" : "21",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "8",
+    "type" : "owl:Class"
+  }, {
+    "id" : "20",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "9",
+    "type" : "owl:Class"
+  }, {
+    "id" : "12",
+    "type" : "owl:Class"
+  } ],
+  "classAttribute" : [ {
+    "iri" : "http://semantic-blockchain.org/EducationalSmartContract",
+    "baseIri" : "http://semantic-blockchain.org",
+    "instances" : 0,
+    "annotations" : {
+      "objectProperty" : [ {
+        "identifier" : "objectProperty",
+        "language" : "undefined",
+        "value" : "http://semantic-blockchain.org/isTypeOf",
+        "type" : "iri"
+      }, {
+        "identifier" : "objectProperty",
+        "language" : "undefined",
+        "value" : "http://semantic-blockchain.org/controlsAccount",
+        "type" : "iri"
+      }, {
+        "identifier" : "objectProperty",
+        "language" : "undefined",
+        "value" : "http://semantic-blockchain.org/belongsTo",
+        "type" : "iri"
+      }, {
+        "identifier" : "objectProperty",
+        "language" : "undefined",
+        "value" : "http://semantic-blockchain.org/address",
+        "type" : "iri"
+      }, {
+        "identifier" : "objectProperty",
+        "language" : "undefined",
+        "value" : "http://semantic-blockchain.org/title",
+        "type" : "iri"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "EducationalSmartContract"
+    },
+    "attributes" : [ "external" ],
+    "id" : "2"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "6",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "5",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "instances" : 0,
+    "union" : [ "8", "9" ],
+    "attributes" : [ "union", "anonymous" ],
+    "id" : "7"
+  }, {
+    "instances" : 0,
+    "union" : [ "8", "9" ],
+    "attributes" : [ "union", "anonymous" ],
+    "id" : "13"
+  }, {
+    "instances" : 0,
+    "union" : [ "8", "9" ],
+    "attributes" : [ "union", "anonymous" ],
+    "id" : "1"
+  }, {
+    "instances" : 0,
+    "union" : [ "8", "9" ],
+    "attributes" : [ "union", "anonymous" ],
+    "id" : "14"
+  }, {
+    "instances" : 0,
+    "union" : [ "8", "9" ],
+    "attributes" : [ "union", "anonymous" ],
+    "id" : "15"
+  }, {
+    "instances" : 0,
+    "union" : [ "8", "9" ],
+    "attributes" : [ "union", "anonymous" ],
+    "id" : "16"
+  }, {
+    "iri" : "http://ethon.consensys.net/Account",
+    "baseIri" : "http://ethon.consensys.net",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "Account"
+    },
+    "attributes" : [ "external" ],
+    "id" : "11"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "21",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/ns/org#Consortium",
+    "baseIri" : "http://www.w3.org/ns/org",
+    "instances" : 0,
+    "annotations" : {
+      "objectProperty" : [ {
+        "identifier" : "objectProperty",
+        "language" : "undefined",
+        "value" : "http://semantic-blockchain.org/hasAccount",
+        "type" : "iri"
+      }, {
+        "identifier" : "objectProperty",
+        "language" : "undefined",
+        "value" : "http://semantic-blockchain.org/name",
+        "type" : "iri"
+      }, {
+        "identifier" : "objectProperty",
+        "language" : "undefined",
+        "value" : "http://semantic-blockchain.org/hasDigitalRegister",
+        "type" : "iri"
+      }, {
+        "identifier" : "objectProperty",
+        "language" : "undefined",
+        "value" : "http://semantic-blockchain.org/siglas",
+        "type" : "iri"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "Consortium"
+    },
+    "attributes" : [ "external" ],
+    "id" : "8"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "20",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/ns/org#Person",
+    "baseIri" : "http://www.w3.org/ns/org",
+    "instances" : 0,
+    "annotations" : {
+      "objectProperty" : [ {
+        "identifier" : "objectProperty",
+        "language" : "undefined",
+        "value" : "http://www.w3.org/ns/org#alumni",
+        "type" : "iri"
+      }, {
+        "identifier" : "objectProperty",
+        "language" : "undefined",
+        "value" : "http://semantic-blockchain.org/hasAccount",
+        "type" : "iri"
+      }, {
+        "identifier" : "objectProperty",
+        "language" : "undefined",
+        "value" : "http://semantic-blockchain.org/hasDigitalRegister",
+        "type" : "iri"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "Person"
+    },
+    "attributes" : [ "external" ],
+    "id" : "9"
+  }, {
+    "instances" : 0,
+    "union" : [ "8", "9" ],
+    "attributes" : [ "union", "anonymous" ],
+    "id" : "12"
+  } ],
+  "property" : [ {
+    "id" : "0",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "4",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "10",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "3",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "17",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "18",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "19",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "22",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "23",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "24",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "25",
+    "type" : "owl:objectProperty"
+  } ],
+  "propertyAttribute" : [ {
+    "iri" : "http://www.w3.org/ns/org#hasCredential",
+    "equivalent" : [ "3" ],
+    "baseIri" : "http://www.w3.org/ns/org",
+    "range" : "2",
+    "label" : {
+      "IRI-based" : "hasCredential"
+    },
+    "domain" : "1",
+    "attributes" : [ "external", "object" ],
+    "id" : "0"
+  }, {
+    "iri" : "http://semantic-blockchain.org/title",
+    "baseIri" : "http://semantic-blockchain.org",
+    "range" : "5",
+    "annotations" : {
+      "objectProperty" : [ {
+        "identifier" : "objectProperty",
+        "language" : "undefined",
+        "value" : "http://www.w3.org/2001/XMLSchema#string",
+        "type" : "iri"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "title"
+    },
+    "domain" : "2",
+    "attributes" : [ "external", "datatype" ],
+    "id" : "4"
+  }, {
+    "iri" : "http://semantic-blockchain.org/controlsAccount",
+    "baseIri" : "http://semantic-blockchain.org",
+    "range" : "12",
+    "label" : {
+      "IRI-based" : "controlsAccount"
+    },
+    "domain" : "11",
+    "attributes" : [ "external", "object" ],
+    "id" : "10"
+  }, {
+    "iri" : "http://semantic-blockchain.org/hasDigitalRegister",
+    "equivalent" : [ "0" ],
+    "baseIri" : "http://semantic-blockchain.org",
+    "range" : "2",
+    "label" : {
+      "IRI-based" : "hasDigitalRegister"
+    },
+    "domain" : "7",
+    "attributes" : [ "external", "object" ],
+    "id" : "3"
+  }, {
+    "iri" : "http://semantic-blockchain.org/hasAccount",
+    "baseIri" : "http://semantic-blockchain.org",
+    "range" : "11",
+    "label" : {
+      "IRI-based" : "hasAccount"
+    },
+    "domain" : "13",
+    "attributes" : [ "external", "object" ],
+    "id" : "17"
+  }, {
+    "iri" : "http://semantic-blockchain.org/belongsTo",
+    "baseIri" : "http://semantic-blockchain.org",
+    "range" : "2",
+    "label" : {
+      "IRI-based" : "belongsTo"
+    },
+    "domain" : "14",
+    "attributes" : [ "external", "object" ],
+    "id" : "18"
+  }, {
+    "iri" : "http://semantic-blockchain.org/name",
+    "baseIri" : "http://semantic-blockchain.org",
+    "range" : "20",
+    "label" : {
+      "IRI-based" : "name"
+    },
+    "domain" : "16",
+    "attributes" : [ "external", "datatype" ],
+    "id" : "19"
+  }, {
+    "iri" : "http://semantic-blockchain.org/isTypeOf",
+    "baseIri" : "http://semantic-blockchain.org",
+    "range" : "21",
+    "label" : {
+      "IRI-based" : "isTypeOf"
+    },
+    "domain" : "2",
+    "attributes" : [ "external", "datatype" ],
+    "id" : "22"
+  }, {
+    "iri" : "http://www.w3.org/ns/org#alumni",
+    "baseIri" : "http://www.w3.org/ns/org",
+    "range" : "9",
+    "label" : {
+      "IRI-based" : "alumni"
+    },
+    "domain" : "8",
+    "attributes" : [ "external", "object" ],
+    "id" : "23"
+  }, {
+    "iri" : "http://semantic-blockchain.org/siglas",
+    "baseIri" : "http://semantic-blockchain.org",
+    "range" : "6",
+    "label" : {
+      "IRI-based" : "siglas"
+    },
+    "domain" : "8",
+    "attributes" : [ "external", "datatype" ],
+    "id" : "24"
+  }, {
+    "iri" : "http://semantic-blockchain.org/address",
+    "baseIri" : "http://semantic-blockchain.org",
+    "range" : "11",
+    "label" : {
+      "IRI-based" : "address"
+    },
+    "domain" : "15",
+    "attributes" : [ "external", "object" ],
+    "id" : "25"
+  } ]
+}

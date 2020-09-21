@@ -140,9 +140,3 @@ export default function Steps(props) {
 Step.defaultProps ={
   isAllowed: false
 }
-
-Steps.PropTypes = {
-  isAllowed: PropTypes.bool,
-  getSteps: PropTypes.func,
-  getStepContent: PropTypes.func
-}

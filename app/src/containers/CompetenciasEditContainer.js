@@ -186,9 +186,4 @@ function CompetenciasEditContainer(props) {
   );
 }
 
-CompetenciasEditContainer.PropTypes = {
-  open: PropTypes.bool,
-  classes: PropTypes.object.isRequired
-};
-
 export default withStyles(styles)(CompetenciasEditContainer);

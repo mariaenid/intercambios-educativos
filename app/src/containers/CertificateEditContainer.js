@@ -129,10 +129,11 @@ const renderEditContainer = () =>
   return <Steps className={classes.content} getSteps={getSteps} getStepContent={getStepContent}></Steps>;
 }
 
+/*
 CertificateEditContainer.PropTypes = {
   open: PropTypes.bool,
   classes: PropTypes.object.isRequired,
-};
+};*/
 
 const mapStateToProps = state => {
   return {

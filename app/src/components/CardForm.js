@@ -34,7 +34,3 @@ export default function CardForm(props) {
   );
 }
 
-CardForm.PropTypes = {
-  name: PropTypes.string,
-  text: PropTypes.string
-};

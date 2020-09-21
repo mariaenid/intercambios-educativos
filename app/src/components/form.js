@@ -53,10 +53,4 @@ export default function ColorTextFields(props) {
   );
 }
 
-ColorTextFields.PropTypes = {
-    title: PropTypes.string,
-    names: PropTypes.array,
-    values: PropTypes.array,
-    onChange: PropTypes.func
-}
 

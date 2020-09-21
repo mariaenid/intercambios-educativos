@@ -75,8 +75,3 @@ export default function SideNavegation(props) {
   );
 }
 
-//Contendrá las options y lo que contendria cada menu
-SideNavegation.PropTypes = {
-  options: PropTypes.array,
-  data: PropTypes.object
-};

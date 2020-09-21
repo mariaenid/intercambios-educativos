@@ -1,0 +1,141 @@
+@prefix : <http://www.semanticweb.org/mariapineda/ontologies/2020/6/untitled-ontology-48#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/mariapineda/ontologies/2020/6/untitled-ontology-48> .
+
+<http://www.semanticweb.org/mariapineda/ontologies/2020/6/untitled-ontology-48> rdf:type owl:Ontology .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  https://www.w3.org/1999/02/22-rdf-syntax-ns#objectProperty
+<https://www.w3.org/1999/02/22-rdf-syntax-ns#objectProperty> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://semantic-blockchain.org/address
+<http://semantic-blockchain.org/address> rdf:type owl:ObjectProperty ;
+                                         rdfs:domain <http://www.w3.org/ns/org#Consortium> ,
+                                                     <http://www.w3.org/ns/org#Person> ;
+                                         rdfs:range <http://ethon.consensys.net/Account> .
+
+
+###  http://semantic-blockchain.org/belongsTo
+<http://semantic-blockchain.org/belongsTo> rdf:type owl:ObjectProperty ;
+                                           rdfs:domain <http://www.w3.org/ns/org#Consortium> ,
+                                                       <http://www.w3.org/ns/org#Person> ;
+                                           rdfs:range <http://semantic-blockchain.org/EducationalSmartContract> .
+
+
+###  http://semantic-blockchain.org/controlsAccount
+<http://semantic-blockchain.org/controlsAccount> rdf:type owl:ObjectProperty ;
+                                                 rdfs:domain <http://ethon.consensys.net/Account> ;
+                                                 rdfs:range <http://www.w3.org/ns/org#Consortium> ,
+                                                            <http://www.w3.org/ns/org#Person> .
+
+
+###  http://semantic-blockchain.org/hasAccount
+<http://semantic-blockchain.org/hasAccount> rdf:type owl:ObjectProperty ;
+                                            rdfs:domain <http://www.w3.org/ns/org#Consortium> ,
+                                                        <http://www.w3.org/ns/org#Person> ;
+                                            rdfs:range <http://ethon.consensys.net/Account> .
+
+
+###  http://semantic-blockchain.org/hasDigitalRegister
+<http://semantic-blockchain.org/hasDigitalRegister> rdf:type owl:ObjectProperty ;
+                                                    owl:equivalentProperty <http://www.w3.org/ns/org#hasCredential> ;
+                                                    rdfs:domain <http://www.w3.org/ns/org#Consortium> ,
+                                                                <http://www.w3.org/ns/org#Person> ;
+                                                    rdfs:range <http://semantic-blockchain.org/EducationalSmartContract> .
+
+
+###  http://www.w3.org/ns/org#alumni
+<http://www.w3.org/ns/org#alumni> rdf:type owl:ObjectProperty ;
+                                  rdfs:domain <http://www.w3.org/ns/org#Consortium> ;
+                                  rdfs:range <http://www.w3.org/ns/org#Person> .
+
+
+###  http://www.w3.org/ns/org#hasCredential
+<http://www.w3.org/ns/org#hasCredential> rdf:type owl:ObjectProperty ;
+                                         rdfs:domain <http://www.w3.org/ns/org#Consortium> ,
+                                                     <http://www.w3.org/ns/org#Person> ;
+                                         rdfs:range <http://semantic-blockchain.org/EducationalSmartContract> .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://semantic-blockchain.org/isTypeOf
+<http://semantic-blockchain.org/isTypeOf> rdf:type owl:DatatypeProperty ;
+                                          rdfs:domain <http://semantic-blockchain.org/EducationalSmartContract> ;
+                                          rdfs:range xsd:string .
+
+
+###  http://semantic-blockchain.org/name
+<http://semantic-blockchain.org/name> rdf:type owl:DatatypeProperty ;
+                                      rdfs:domain <http://www.w3.org/ns/org#Consortium> ,
+                                                  <http://www.w3.org/ns/org#Person> ;
+                                      rdfs:range xsd:string .
+
+
+###  http://semantic-blockchain.org/siglas
+<http://semantic-blockchain.org/siglas> rdf:type owl:DatatypeProperty ;
+                                        rdfs:domain <http://www.w3.org/ns/org#Consortium> ;
+                                        rdfs:range xsd:string .
+
+
+###  http://semantic-blockchain.org/title
+<http://semantic-blockchain.org/title> rdf:type owl:DatatypeProperty ;
+                                       rdfs:domain <http://semantic-blockchain.org/EducationalSmartContract> ;
+                                       rdfs:range xsd:string ;
+                                       <https://www.w3.org/1999/02/22-rdf-syntax-ns#objectProperty> xsd:string .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://ethon.consensys.net/Account
+<http://ethon.consensys.net/Account> rdf:type owl:Class .
+
+
+###  http://semantic-blockchain.org/EducationalSmartContract
+<http://semantic-blockchain.org/EducationalSmartContract> rdf:type owl:Class ;
+                                                          <https://www.w3.org/1999/02/22-rdf-syntax-ns#objectProperty> <http://semantic-blockchain.org/address> ,
+                                                                                                                       <http://semantic-blockchain.org/belongsTo> ,
+                                                                                                                       <http://semantic-blockchain.org/controlsAccount> ,
+                                                                                                                       <http://semantic-blockchain.org/isTypeOf> ,
+                                                                                                                       <http://semantic-blockchain.org/title> .
+
+
+###  http://www.w3.org/ns/org#Consortium
+<http://www.w3.org/ns/org#Consortium> rdf:type owl:Class ;
+                                      <https://www.w3.org/1999/02/22-rdf-syntax-ns#objectProperty> <http://semantic-blockchain.org/hasAccount> ,
+                                                                                                   <http://semantic-blockchain.org/hasDigitalRegister> ,
+                                                                                                   <http://semantic-blockchain.org/name> ,
+                                                                                                   <http://semantic-blockchain.org/siglas> .
+
+
+###  http://www.w3.org/ns/org#Person
+<http://www.w3.org/ns/org#Person> rdf:type owl:Class ;
+                                  <https://www.w3.org/1999/02/22-rdf-syntax-ns#objectProperty> <http://semantic-blockchain.org/hasAccount> ,
+                                                                                               <http://semantic-blockchain.org/hasDigitalRegister> ,
+                                                                                               <http://www.w3.org/ns/org#alumni> .
+
+
+#################################################################
+#    Annotations
+#################################################################
+
+<https://schema.org/hasCredential> <https://www.w3.org/1999/02/22-rdf-syntax-ns#objectProperty> <http://www.w3.org/ns/org#Consortium> .
+
+
+###  Generated by the OWL API (version 5.1.14) https://github.com/owlcs/owlapi/

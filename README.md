@@ -23,3 +23,6 @@ GRAPHDB:
     ```
     docker build --build-arg edition=free --build-arg version=9.1.1 -t ontotext/graphdb:9.1.1-free free-edition
     ```
+
+    Referencia: <https://github.com/dhlab-basel/docker-graphdb-free>
+

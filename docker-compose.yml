@@ -1,28 +1,59 @@
 version: "3.0"
 
 services:
-  api:
+version: '3'
+services:
+  graphdb:
+    image: graphdb
+    build: ./graphdb
+    container_name: graphdb
     restart: unless-stopped
-    build:
-      context: .
+    ports:
+      - "7200:7200"
+    environment:
+      VERSION: 9.1.1
+      EDITION: free
+
+  ganache:
+    image: ganache
+    build: ./ganache-cli
+    container_name: ganache
+    restart: unless-stopped
+    ports:
+      - "8545:8545"
+
+  api:
+    image: api-rest
+    build: ./api-rest
+    container_name: api
+    restart: unless-stopped
+    depends_on:
+      - graphdb
+      - ganache
+    environment:
+      NODE_ENV: production
+      GRAPHDB_BASE_URL: "http://graphdb:7200"
+      LOCAL_PROVIDER: "http://ganache:8545"
+    volumes:
+      - ./app/src/contracts/:/api/contracts
+    ports:
+      - "10012:10012"
+    links:
+      - graphdb
+      - ganache
+
+  app:
+    image: app
+    build: ./app
+    container_name: app
+    restart: unless-stopped
+    depends_on:
+      - graphdb
+      - ganache
+      - api
     ports:
       - "3000:3000"
-    depends_on:
-      - db
-    environment:
-      PORT: 3000
-      DB_PORT: 27017
-      DB_HOSTNAME: db
-      DB_NAME: votos
-      JWT_SECRET: secreto123
     links:
-      - db
-    depends_on:
-      - db
-  db:
-    image: mvertes/alpine-mongo
-    volumes:
-    - /tmp/mongodb:/data
-    ports:
-      - "27017:27017"
-
+      - graphdb
+      - ganache
+      - api
