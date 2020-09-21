@@ -42,6 +42,7 @@
     "supertest": "^1.0.0"
   },
   "scripts": {
+    "deploy": "NODE_ENV=production && $(npm bin)/babel-node app.js",
     "precommit": "npm run lint",
     "start_": "BABEL_ENV=development nodemon --watch api --exec 'BABEL_ENV=development babel-node app.js'",
     "lint": "$(npm bin)/eslint api --ext js",

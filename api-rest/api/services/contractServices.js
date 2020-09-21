@@ -1,8 +1,11 @@
-import AcademicConsortium from "../../../app/src/contracts/AcademicConsortium.json";
-import AcademicCertificate from "../../../app/src/contracts/AcademicCertificate.json";
-import RegistroCompetenciaAcademica from "../../../app/src/contracts/RegistroCompetenciaAcademica.json";
-import web3Service from "./web3Service.js";
-import { GraphdbService } from "./graphdbService.js";
+
+const PATH = process.env.NODE_ENV === 'production' ? '../../contracts' : '../../../app/src/contracts';
+
+const AcademicConsortium = require(`${PATH}/AcademicConsortium.json`);
+const AcademicCertificate = require(`${PATH}/AcademicCertificate.json`);
+const RegistroCompetenciaAcademica = require(`${PATH}/RegistroCompetenciaAcademica.json`);
+
+import web3Service from './web3Service.js';
 
 export const mapContractNameToArtifacts = {
   AcademicConsortium: AcademicConsortium,
@@ -19,13 +22,13 @@ export const instanceContract = contractName =>
 export const getContractEvents = contracts =>
   contracts.reduce((acc, contract) => {
     const abiContract = getContractArtifacts(contract).abi;
-    const events = abiContract.filter(method => method.type === "event");
+    const events = abiContract.filter(method => method.type === 'event');
 
     // event has name inputs
     const parameterEvents = events.map(event => {
       const topics = web3Service.eth.abi.encodeEventSignature({
         name: event.name,
-        type: "event",
+        type: 'event',
         inputs: event.inputs
       });
 

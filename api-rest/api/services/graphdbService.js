@@ -1,4 +1,4 @@
-import { EnapsoGraphDBClient } from "@innotrade/enapso-graphdb-client"
+import { EnapsoGraphDBClient } from '@innotrade/enapso-graphdb-client'
 import { prefixes } from '../constants/prefix'
 import { EducationalSmartContract } from '../models/EducationalSmartContract'
 import { Consortium } from '../models/Consortium'
@@ -6,12 +6,12 @@ import { Person } from '../models/Person'
 import web3Service from './web3Service'
 import { Base64 } from '../utils/base64'
 
-const GRAPHDB_BASE_URL = process.env.GRAPHDB_BASE_URL || 'http://localhost:7200',
-  GRAPHDB_REPOSITORY = process.env.GRAPHDB_REPOSITORY || "semantic-blockchain",
-  GRAPHDB_USERNAME = process.env.GRAPHDB_USERNAME || "admin",
-  GRAPHDB_PASSWORD = process.env.GRAPHDB_PASSWORD || "admin",
-  GRAPHDB_CONTEXT_SB =
-    process.env.GRAPHDB_CONTEXT_BLOCKCHAIN || "http://semantic-blockchain.org";
+const GRAPHDB_BASE_URL = process.env.GRAPHDB_BASE_URL || 'http://localhost:7200';
+const GRAPHDB_REPOSITORY = process.env.GRAPHDB_REPOSITORY || 'semantic-blockchain';
+const GRAPHDB_USERNAME = process.env.GRAPHDB_USERNAME || 'admin';
+const GRAPHDB_PASSWORD = process.env.GRAPHDB_PASSWORD || 'admin';
+const GRAPHDB_CONTEXT_SB =
+    process.env.GRAPHDB_CONTEXT_BLOCKCHAIN || 'http://semantic-blockchain.org';
 
 export class GraphdbService {
   constructor () {

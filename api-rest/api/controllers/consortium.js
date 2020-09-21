@@ -23,9 +23,10 @@ export async function getAll (req, res, next) {
       institutes = await Promise.all(
         allRecords.map(async ({ s }) => {
           const main = getUrlParams(s)
+          const properties = await getPropertiesByName(main)
           return {
             main,
-            ...await getPropertiesByName(main)
+            ...properties
           }
         }))
     }
