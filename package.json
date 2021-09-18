@@ -22,7 +22,7 @@
   "homepage": "https://github.com/truffle-box/drizzle-box#readme",
   "dependencies": {
     "@material-ui/core": "^4.5.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.2",
     "esm": "^3.2.25",
     "faker": "^4.1.0",
     "openzeppelin-solidity": "^2.1.1",
